@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://marksmanager.56mfu9rwbj.us-east-1.elasticbeanstalk.com/ApplicationWebService?wsdl" uri="xml-resources/web-service-references/ApplicationWebService/wsdl/marksmanager.56mfu9rwbj.us-east-1.elasticbeanstalk.com/ApplicationWebService.wsdl"/>
+    <system systemId="http://marksmanager.56mfu9rwbj.us-east-1.elasticbeanstalk.com:80/ApplicationWebService?xsd=1" uri="xml-resources/web-service-references/ApplicationWebService/wsdl/marksmanager.56mfu9rwbj.us-east-1.elasticbeanstalk.com_80/ApplicationWebService.xsd_1.xsd"/>
+</catalog>
