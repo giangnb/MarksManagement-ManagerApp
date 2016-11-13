@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="classId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="clazz" type="{http://ws.marksmana.com/}clazz" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,26 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getStudentsByClass", propOrder = {
-    "classId"
+    "clazz"
 })
 public class GetStudentsByClass {
 
-    protected int classId;
+    protected Clazz clazz;
 
     /**
-     * Gets the value of the classId property.
+     * Gets the value of the clazz property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Clazz }
+     *     
      */
-    public int getClassId() {
-        return classId;
+    public Clazz getClazz() {
+        return clazz;
     }
 
     /**
-     * Sets the value of the classId property.
+     * Sets the value of the clazz property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Clazz }
+     *     
      */
-    public void setClassId(int value) {
-        this.classId = value;
+    public void setClazz(Clazz value) {
+        this.clazz = value;
     }
 
 }

@@ -5,17 +5,33 @@
  */
 package com.client.manager.views.classes;
 
+import com.client.manager.dto.TeacherDTO;
+import com.client.service.Clazz;
+import com.client.service.Teacher;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Phương Nam
  */
 public class ClassFrame extends javax.swing.JPanel {
-
+    private Clazz clazz;
+    private List<TeacherDTO> teachersList = new ArrayList<>();
+    private Teacher teacher;
+    private DefaultTableModel mInfo;
+    private DefaultComboBoxModel mBulk, mTeacher;
+    private DefaultListModel mClass;
+    
     /**
      * Creates new form ClassFrame
      */
     public ClassFrame() {
         initComponents();
+        btnRemoveInfo.setEnabled(false);
     }
 
     /**
@@ -28,43 +44,42 @@ public class ClassFrame extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListClass = new javax.swing.JList<>();
+        lstClass = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         cboBulk = new javax.swing.JComboBox<>();
         txtName = new javax.swing.JTextField();
         lblChairman = new javax.swing.JLabel();
         lblNote = new javax.swing.JLabel();
-        btnChon = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblMonHoc = new javax.swing.JTable();
-        txtChairman = new javax.swing.JTextField();
-        btnSum = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
-        btnSub = new javax.swing.JButton();
+        tblInfo = new javax.swing.JTable();
+        btnAddInfo = new javax.swing.JButton();
+        btnAddClass = new javax.swing.JButton();
+        btnRemoveInfo = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnAddEdit = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        cboTeacher = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        ListClass.setModel(new javax.swing.AbstractListModel<String>() {
+        lstClass.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item1", "Item2", " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(ListClass);
+        jScrollPane1.setViewportView(lstClass);
 
         jLabel1.setText("Khối:");
 
         lblName.setText("Tên:");
 
-        cboBulk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khối 10", "Khối 11", "Khối 12", " " }));
+        cboBulk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Khối --", " " }));
 
         lblChairman.setText("Chủ nhiệm:");
 
         lblNote.setText("Ghi chú:");
 
-        btnChon.setText("Chọn");
-
-        tblMonHoc.setModel(new javax.swing.table.DefaultTableModel(
+        tblInfo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tblInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -79,31 +94,43 @@ public class ClassFrame extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        });
+        tblInfo.getTableHeader().setReorderingAllowed(false);
+        tblInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInfoMouseClicked(evt);
             }
         });
-        tblMonHoc.setShowHorizontalLines(false);
-        tblMonHoc.setShowVerticalLines(false);
-        jScrollPane2.setViewportView(tblMonHoc);
+        jScrollPane2.setViewportView(tblInfo);
 
-        btnSum.setText("+");
+        btnAddInfo.setText("+");
 
-        btnAdd.setText("Thêm mới");
+        btnAddClass.setText("Thêm mới");
+        btnAddClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddClassActionPerformed(evt);
+            }
+        });
 
-        btnSub.setText("-");
+        btnRemoveInfo.setText("-");
+        btnRemoveInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveInfoActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Xóa");
 
-        btnAddEdit.setText("Thêm/Sửa");
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setText("Lưu thay đổi");
+
+        cboTeacher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chủ nhiệm --" }));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,100 +138,118 @@ public class ClassFrame extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                    .addComponent(btnAddClass, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                        .addComponent(btnAddEdit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblChairman))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboBulk, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtChairman)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnChon))
-                            .addComponent(txtName)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lblChairman))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboBulk, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtName)
+                                    .addComponent(cboTeacher, 0, 363, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSave))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(lblNote, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNote, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnRemoveInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAddInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSum)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSub)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAdd)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblName)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(cboBulk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChairman)
-                            .addComponent(btnChon)
-                            .addComponent(txtChairman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAddClass)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblName)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNote)
-                                .addGap(0, 101, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSum)
-                            .addComponent(btnSub))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDelete)
-                            .addComponent(btnAddEdit))
-                        .addGap(11, 11, 11)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(cboBulk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblChairman)
+                                    .addComponent(cboTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblNote)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnAddInfo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnRemoveInfo)
+                                        .addGap(0, 80, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnDelete)
+                                    .addComponent(btnSave)))))
+                    .addComponent(jSeparator1))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
+        // TODO add your handling code here:
+        if (tblInfo.getSelectedRow()>=0) {
+            btnRemoveInfo.setEnabled(true);
+        } else {
+            btnRemoveInfo.setEnabled(false);
+        }
+    }//GEN-LAST:event_tblInfoMouseClicked
+
+    private void btnAddClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClassActionPerformed
+        // TODO add your handling code here:
+        AddClassFrame.showDialog(null);
+    }//GEN-LAST:event_btnAddClassActionPerformed
+
+    private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnRemoveInfoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ListClass;
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAddEdit;
-    private javax.swing.JButton btnChon;
+    private javax.swing.JButton btnAddClass;
+    private javax.swing.JButton btnAddInfo;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSub;
-    private javax.swing.JButton btnSum;
+    private javax.swing.JButton btnRemoveInfo;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cboBulk;
+    private javax.swing.JComboBox<String> cboTeacher;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblChairman;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNote;
-    private javax.swing.JTable tblMonHoc;
-    private javax.swing.JTextField txtChairman;
+    private javax.swing.JList<String> lstClass;
+    private javax.swing.JTable tblInfo;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

@@ -138,36 +138,11 @@ public class WebMethods implements Serializable{
         return port.getPropertyValueByKey(propertyKey);
     }
 
-    public static java.util.List<com.client.service.Score> getScoresByClass(int classId) {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.getScoresByClass(classId);
-    }
-
-    public static java.util.List<com.client.service.Score> getScoresBySubject(int subjectId) {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.getScoresBySubject(subjectId);
-    }
-
-    public static java.util.List<com.client.service.Student> getStudent() {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.getStudent();
-    }
-
     public static Student getStudentById(int id) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
         return port.getStudentById(id);
     }
-
-    public static java.util.List<com.client.service.Student> getStudentsByClass(int classId) {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.getStudentsByClass(classId);
-    }
-
     public static java.util.List<com.client.service.Student> getStudentsByName(java.lang.String name) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
@@ -310,6 +285,24 @@ public class WebMethods implements Serializable{
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
         return port.updateTeacher(teacher);
+    }
+
+    public static java.util.List<com.client.service.Student> getStudents() {
+        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
+        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
+        return port.getStudents();
+    }
+
+    public static java.util.List<com.client.service.Student> getStudentsByClass(com.client.service.Clazz clazz) {
+        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
+        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
+        return port.getStudentsByClass(clazz);
+    }
+
+    public static java.util.List<com.client.service.Student> addStudentsList(java.util.List<com.client.service.Student> studentList) {
+        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
+        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
+        return port.addStudentsList(studentList);
     }
     
 }

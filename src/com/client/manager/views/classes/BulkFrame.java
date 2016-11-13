@@ -53,6 +53,7 @@ public class BulkFrame extends javax.swing.JPanel {
 
         lblSubject.setText("Môn học:");
 
+        tblSubject.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblSubject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -80,15 +81,16 @@ public class BulkFrame extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblSubject.setShowHorizontalLines(false);
         tblSubject.setShowVerticalLines(false);
+        tblSubject.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblSubject);
 
         lblNote.setText("Ghi chú:");
 
         btnDelete.setText("Xóa");
 
-        btnAddEdit.setText("Thêm/Sửa");
+        btnAddEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAddEdit.setText("Lưu thay đổi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,11 +108,6 @@ public class BulkFrame extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(txtName))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
-                        .addComponent(btnAddEdit))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
@@ -121,11 +118,16 @@ public class BulkFrame extends javax.swing.JPanel {
                                 .addComponent(lblSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtGhiChu))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                                        .addComponent(btnAddEdit))
+                                    .addComponent(txtGhiChu))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

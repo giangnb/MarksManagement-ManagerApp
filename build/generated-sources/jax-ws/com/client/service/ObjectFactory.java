@@ -27,13 +27,16 @@ public class ObjectFactory {
     private final static QName _GetTeachers_QNAME = new QName("http://ws.marksmana.com/", "getTeachers");
     private final static QName _RemoveClass_QNAME = new QName("http://ws.marksmana.com/", "removeClass");
     private final static QName _AddSubjectResponse_QNAME = new QName("http://ws.marksmana.com/", "addSubjectResponse");
+    private final static QName _GetStudents_QNAME = new QName("http://ws.marksmana.com/", "getStudents");
     private final static QName _AdminLogin_QNAME = new QName("http://ws.marksmana.com/", "adminLogin");
     private final static QName _GetScoresBySubject_QNAME = new QName("http://ws.marksmana.com/", "getScoresBySubject");
     private final static QName _GetAdmins_QNAME = new QName("http://ws.marksmana.com/", "getAdmins");
     private final static QName _AdminLoginResponse_QNAME = new QName("http://ws.marksmana.com/", "adminLoginResponse");
     private final static QName _RemoveBulkResponse_QNAME = new QName("http://ws.marksmana.com/", "removeBulkResponse");
     private final static QName _GetBulkByIdResponse_QNAME = new QName("http://ws.marksmana.com/", "getBulkByIdResponse");
+    private final static QName _GetScoresByStudentAndSubject_QNAME = new QName("http://ws.marksmana.com/", "getScoresByStudentAndSubject");
     private final static QName _RemoveScoresResponse_QNAME = new QName("http://ws.marksmana.com/", "removeScoresResponse");
+    private final static QName _GetScoresByStudentAndSubjectResponse_QNAME = new QName("http://ws.marksmana.com/", "getScoresByStudentAndSubjectResponse");
     private final static QName _RemoveProperty_QNAME = new QName("http://ws.marksmana.com/", "removeProperty");
     private final static QName _GetSubjectsByBulk_QNAME = new QName("http://ws.marksmana.com/", "getSubjectsByBulk");
     private final static QName _ArchiveToLogByStudent_QNAME = new QName("http://ws.marksmana.com/", "archiveToLogByStudent");
@@ -49,10 +52,11 @@ public class ObjectFactory {
     private final static QName _RemoveSubject_QNAME = new QName("http://ws.marksmana.com/", "removeSubject");
     private final static QName _GetSubjectByIdResponse_QNAME = new QName("http://ws.marksmana.com/", "getSubjectByIdResponse");
     private final static QName _AddStudent_QNAME = new QName("http://ws.marksmana.com/", "addStudent");
-    private final static QName _GetScoresByClass_QNAME = new QName("http://ws.marksmana.com/", "getScoresByClass");
     private final static QName _GetBulkById_QNAME = new QName("http://ws.marksmana.com/", "getBulkById");
     private final static QName _AddTeacher_QNAME = new QName("http://ws.marksmana.com/", "addTeacher");
     private final static QName _UpdateTeacherResponse_QNAME = new QName("http://ws.marksmana.com/", "updateTeacherResponse");
+    private final static QName _GetScoresBySubjectAndClassResponse_QNAME = new QName("http://ws.marksmana.com/", "getScoresBySubjectAndClassResponse");
+    private final static QName _AddScoreResponse_QNAME = new QName("http://ws.marksmana.com/", "addScoreResponse");
     private final static QName _RemoveScores_QNAME = new QName("http://ws.marksmana.com/", "removeScores");
     private final static QName _UpdateClassResponse_QNAME = new QName("http://ws.marksmana.com/", "updateClassResponse");
     private final static QName _Properties_QNAME = new QName("http://ws.marksmana.com/", "properties");
@@ -64,10 +68,10 @@ public class ObjectFactory {
     private final static QName _UpdateStudentResponse_QNAME = new QName("http://ws.marksmana.com/", "updateStudentResponse");
     private final static QName _RemoveBulk_QNAME = new QName("http://ws.marksmana.com/", "removeBulk");
     private final static QName _GetSubjectsByBulkResponse_QNAME = new QName("http://ws.marksmana.com/", "getSubjectsByBulkResponse");
-    private final static QName _GetStudent_QNAME = new QName("http://ws.marksmana.com/", "getStudent");
     private final static QName _GetPropertyValueByKey_QNAME = new QName("http://ws.marksmana.com/", "getPropertyValueByKey");
     private final static QName _Admin_QNAME = new QName("http://ws.marksmana.com/", "admin");
     private final static QName _UpdatePropertyResponse_QNAME = new QName("http://ws.marksmana.com/", "updatePropertyResponse");
+    private final static QName _AddScore_QNAME = new QName("http://ws.marksmana.com/", "addScore");
     private final static QName _Teacher_QNAME = new QName("http://ws.marksmana.com/", "teacher");
     private final static QName _GetBulks_QNAME = new QName("http://ws.marksmana.com/", "getBulks");
     private final static QName _AddBulk_QNAME = new QName("http://ws.marksmana.com/", "addBulk");
@@ -75,20 +79,26 @@ public class ObjectFactory {
     private final static QName _AddBulkResponse_QNAME = new QName("http://ws.marksmana.com/", "addBulkResponse");
     private final static QName _GetClassByIdResponse_QNAME = new QName("http://ws.marksmana.com/", "getClassByIdResponse");
     private final static QName _GetProperties_QNAME = new QName("http://ws.marksmana.com/", "getProperties");
+    private final static QName _GetStudentsResponse_QNAME = new QName("http://ws.marksmana.com/", "getStudentsResponse");
     private final static QName _GetTeacherByIdResponse_QNAME = new QName("http://ws.marksmana.com/", "getTeacherByIdResponse");
     private final static QName _ArchiveToLog_QNAME = new QName("http://ws.marksmana.com/", "archiveToLog");
     private final static QName _GetTeacherById_QNAME = new QName("http://ws.marksmana.com/", "getTeacherById");
     private final static QName _UpdateAdmin_QNAME = new QName("http://ws.marksmana.com/", "updateAdmin");
+    private final static QName _GetScoresBySubjectAndClass_QNAME = new QName("http://ws.marksmana.com/", "getScoresBySubjectAndClass");
     private final static QName _UpdateBulk_QNAME = new QName("http://ws.marksmana.com/", "updateBulk");
     private final static QName _AddProperty_QNAME = new QName("http://ws.marksmana.com/", "addProperty");
     private final static QName _TeacherLoginResponse_QNAME = new QName("http://ws.marksmana.com/", "teacherLoginResponse");
     private final static QName _AddSubject_QNAME = new QName("http://ws.marksmana.com/", "addSubject");
     private final static QName _GetStudentsByClassResponse_QNAME = new QName("http://ws.marksmana.com/", "getStudentsByClassResponse");
+    private final static QName _GetClassesByTeacherResponse_QNAME = new QName("http://ws.marksmana.com/", "getClassesByTeacherResponse");
+    private final static QName _GetTeacherByName_QNAME = new QName("http://ws.marksmana.com/", "getTeacherByName");
     private final static QName _GetStudentsByNameResponse_QNAME = new QName("http://ws.marksmana.com/", "getStudentsByNameResponse");
     private final static QName _ArchiveToLogByStudentResponse_QNAME = new QName("http://ws.marksmana.com/", "archiveToLogByStudentResponse");
     private final static QName _GetSubjectById_QNAME = new QName("http://ws.marksmana.com/", "getSubjectById");
     private final static QName _AddAdminResponse_QNAME = new QName("http://ws.marksmana.com/", "addAdminResponse");
+    private final static QName _AddStudentsListResponse_QNAME = new QName("http://ws.marksmana.com/", "addStudentsListResponse");
     private final static QName _AddScores_QNAME = new QName("http://ws.marksmana.com/", "addScores");
+    private final static QName _AddStudentsList_QNAME = new QName("http://ws.marksmana.com/", "addStudentsList");
     private final static QName _Bulk_QNAME = new QName("http://ws.marksmana.com/", "bulk");
     private final static QName _AddPropertyResponse_QNAME = new QName("http://ws.marksmana.com/", "addPropertyResponse");
     private final static QName _UpdateAdminResponse_QNAME = new QName("http://ws.marksmana.com/", "updateAdminResponse");
@@ -104,12 +114,12 @@ public class ObjectFactory {
     private final static QName _UpdateBulkResponse_QNAME = new QName("http://ws.marksmana.com/", "updateBulkResponse");
     private final static QName _GetPropertyByKeyResponse_QNAME = new QName("http://ws.marksmana.com/", "getPropertyByKeyResponse");
     private final static QName _GetClassById_QNAME = new QName("http://ws.marksmana.com/", "getClassById");
+    private final static QName _GetTeacherByNameResponse_QNAME = new QName("http://ws.marksmana.com/", "getTeacherByNameResponse");
     private final static QName _RemoveClassResponse_QNAME = new QName("http://ws.marksmana.com/", "removeClassResponse");
     private final static QName _RemoveSubjectResponse_QNAME = new QName("http://ws.marksmana.com/", "removeSubjectResponse");
     private final static QName _UpdateClass_QNAME = new QName("http://ws.marksmana.com/", "updateClass");
     private final static QName _UpdateScore_QNAME = new QName("http://ws.marksmana.com/", "updateScore");
     private final static QName _AddClassResponse_QNAME = new QName("http://ws.marksmana.com/", "addClassResponse");
-    private final static QName _GetStudentResponse_QNAME = new QName("http://ws.marksmana.com/", "getStudentResponse");
     private final static QName _GetSubjectsResponse_QNAME = new QName("http://ws.marksmana.com/", "getSubjectsResponse");
     private final static QName _UpdateScoreResponse_QNAME = new QName("http://ws.marksmana.com/", "updateScoreResponse");
     private final static QName _EditArchiveRemark_QNAME = new QName("http://ws.marksmana.com/", "editArchiveRemark");
@@ -117,6 +127,7 @@ public class ObjectFactory {
     private final static QName _GetBulksResponse_QNAME = new QName("http://ws.marksmana.com/", "getBulksResponse");
     private final static QName _GetSubjects_QNAME = new QName("http://ws.marksmana.com/", "getSubjects");
     private final static QName _GetAdminsResponse_QNAME = new QName("http://ws.marksmana.com/", "getAdminsResponse");
+    private final static QName _GetClassesByTeacher_QNAME = new QName("http://ws.marksmana.com/", "getClassesByTeacher");
     private final static QName _UpdateScores_QNAME = new QName("http://ws.marksmana.com/", "updateScores");
     private final static QName _GetSubjectsByTeacher_QNAME = new QName("http://ws.marksmana.com/", "getSubjectsByTeacher");
     private final static QName _AddScoresResponse_QNAME = new QName("http://ws.marksmana.com/", "addScoresResponse");
@@ -128,7 +139,6 @@ public class ObjectFactory {
     private final static QName _GetStudentsByName_QNAME = new QName("http://ws.marksmana.com/", "getStudentsByName");
     private final static QName _GetClasses_QNAME = new QName("http://ws.marksmana.com/", "getClasses");
     private final static QName _UpdateSubject_QNAME = new QName("http://ws.marksmana.com/", "updateSubject");
-    private final static QName _GetScoresByClassResponse_QNAME = new QName("http://ws.marksmana.com/", "getScoresByClassResponse");
     private final static QName _AddStudentResponse_QNAME = new QName("http://ws.marksmana.com/", "addStudentResponse");
 
     /**
@@ -227,6 +237,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetScoresBySubjectAndClass }
+     * 
+     */
+    public GetScoresBySubjectAndClass createGetScoresBySubjectAndClass() {
+        return new GetScoresBySubjectAndClass();
+    }
+
+    /**
      * Create an instance of {@link ArchiveToLog }
      * 
      */
@@ -264,6 +282,14 @@ public class ObjectFactory {
      */
     public GetProperties createGetProperties() {
         return new GetProperties();
+    }
+
+    /**
+     * Create an instance of {@link GetStudentsResponse }
+     * 
+     */
+    public GetStudentsResponse createGetStudentsResponse() {
+        return new GetStudentsResponse();
     }
 
     /**
@@ -347,6 +373,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetTeacherByName }
+     * 
+     */
+    public GetTeacherByName createGetTeacherByName() {
+        return new GetTeacherByName();
+    }
+
+    /**
+     * Create an instance of {@link GetClassesByTeacherResponse }
+     * 
+     */
+    public GetClassesByTeacherResponse createGetClassesByTeacherResponse() {
+        return new GetClassesByTeacherResponse();
+    }
+
+    /**
      * Create an instance of {@link AddPropertyResponse }
      * 
      */
@@ -368,6 +410,30 @@ public class ObjectFactory {
      */
     public AddScores createAddScores() {
         return new AddScores();
+    }
+
+    /**
+     * Create an instance of {@link AddStudentsList }
+     * 
+     */
+    public AddStudentsList createAddStudentsList() {
+        return new AddStudentsList();
+    }
+
+    /**
+     * Create an instance of {@link AddStudentsListResponse }
+     * 
+     */
+    public AddStudentsListResponse createAddStudentsListResponse() {
+        return new AddStudentsListResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetClassesByTeacher }
+     * 
+     */
+    public GetClassesByTeacher createGetClassesByTeacher() {
+        return new GetClassesByTeacher();
     }
 
     /**
@@ -467,14 +533,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetScoresByClassResponse }
-     * 
-     */
-    public GetScoresByClassResponse createGetScoresByClassResponse() {
-        return new GetScoresByClassResponse();
-    }
-
-    /**
      * Create an instance of {@link UpdateSubject }
      * 
      */
@@ -504,6 +562,14 @@ public class ObjectFactory {
      */
     public RemoveSubjectResponse createRemoveSubjectResponse() {
         return new RemoveSubjectResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetTeacherByNameResponse }
+     * 
+     */
+    public GetTeacherByNameResponse createGetTeacherByNameResponse() {
+        return new GetTeacherByNameResponse();
     }
 
     /**
@@ -552,14 +618,6 @@ public class ObjectFactory {
      */
     public GetSubjectsResponse createGetSubjectsResponse() {
         return new GetSubjectsResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetStudentResponse }
-     * 
-     */
-    public GetStudentResponse createGetStudentResponse() {
-        return new GetStudentResponse();
     }
 
     /**
@@ -667,6 +725,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetStudents }
+     * 
+     */
+    public GetStudents createGetStudents() {
+        return new GetStudents();
+    }
+
+    /**
      * Create an instance of {@link AddSubjectResponse }
      * 
      */
@@ -731,6 +797,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetScoresByStudentAndSubject }
+     * 
+     */
+    public GetScoresByStudentAndSubject createGetScoresByStudentAndSubject() {
+        return new GetScoresByStudentAndSubject();
+    }
+
+    /**
      * Create an instance of {@link GetBulkByIdResponse }
      * 
      */
@@ -760,6 +834,14 @@ public class ObjectFactory {
      */
     public RemoveProperty createRemoveProperty() {
         return new RemoveProperty();
+    }
+
+    /**
+     * Create an instance of {@link GetScoresByStudentAndSubjectResponse }
+     * 
+     */
+    public GetScoresByStudentAndSubjectResponse createGetScoresByStudentAndSubjectResponse() {
+        return new GetScoresByStudentAndSubjectResponse();
     }
 
     /**
@@ -811,14 +893,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetStudent }
-     * 
-     */
-    public GetStudent createGetStudent() {
-        return new GetStudent();
-    }
-
-    /**
      * Create an instance of {@link GetSubjectsByBulkResponse }
      * 
      */
@@ -851,6 +925,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddScore }
+     * 
+     */
+    public AddScore createAddScore() {
+        return new AddScore();
+    }
+
+    /**
      * Create an instance of {@link AddBulkResponse }
      * 
      */
@@ -875,14 +957,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetScoresByClass }
-     * 
-     */
-    public GetScoresByClass createGetScoresByClass() {
-        return new GetScoresByClass();
-    }
-
-    /**
      * Create an instance of {@link GetSubjectByIdResponse }
      * 
      */
@@ -904,6 +978,22 @@ public class ObjectFactory {
      */
     public UpdateStudent createUpdateStudent() {
         return new UpdateStudent();
+    }
+
+    /**
+     * Create an instance of {@link AddScoreResponse }
+     * 
+     */
+    public AddScoreResponse createAddScoreResponse() {
+        return new AddScoreResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetScoresBySubjectAndClassResponse }
+     * 
+     */
+    public GetScoresBySubjectAndClassResponse createGetScoresBySubjectAndClassResponse() {
+        return new GetScoresBySubjectAndClassResponse();
     }
 
     /**
@@ -1014,6 +1104,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetStudents }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getStudents")
+    public JAXBElement<GetStudents> createGetStudents(GetStudents value) {
+        return new JAXBElement<GetStudents>(_GetStudents_QNAME, GetStudents.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AdminLogin }{@code >}}
      * 
      */
@@ -1068,12 +1167,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetScoresByStudentAndSubject }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getScoresByStudentAndSubject")
+    public JAXBElement<GetScoresByStudentAndSubject> createGetScoresByStudentAndSubject(GetScoresByStudentAndSubject value) {
+        return new JAXBElement<GetScoresByStudentAndSubject>(_GetScoresByStudentAndSubject_QNAME, GetScoresByStudentAndSubject.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RemoveScoresResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "removeScoresResponse")
     public JAXBElement<RemoveScoresResponse> createRemoveScoresResponse(RemoveScoresResponse value) {
         return new JAXBElement<RemoveScoresResponse>(_RemoveScoresResponse_QNAME, RemoveScoresResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetScoresByStudentAndSubjectResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getScoresByStudentAndSubjectResponse")
+    public JAXBElement<GetScoresByStudentAndSubjectResponse> createGetScoresByStudentAndSubjectResponse(GetScoresByStudentAndSubjectResponse value) {
+        return new JAXBElement<GetScoresByStudentAndSubjectResponse>(_GetScoresByStudentAndSubjectResponse_QNAME, GetScoresByStudentAndSubjectResponse.class, null, value);
     }
 
     /**
@@ -1212,15 +1329,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetScoresByClass }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getScoresByClass")
-    public JAXBElement<GetScoresByClass> createGetScoresByClass(GetScoresByClass value) {
-        return new JAXBElement<GetScoresByClass>(_GetScoresByClass_QNAME, GetScoresByClass.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBulkById }{@code >}}
      * 
      */
@@ -1245,6 +1353,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "updateTeacherResponse")
     public JAXBElement<UpdateTeacherResponse> createUpdateTeacherResponse(UpdateTeacherResponse value) {
         return new JAXBElement<UpdateTeacherResponse>(_UpdateTeacherResponse_QNAME, UpdateTeacherResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetScoresBySubjectAndClassResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getScoresBySubjectAndClassResponse")
+    public JAXBElement<GetScoresBySubjectAndClassResponse> createGetScoresBySubjectAndClassResponse(GetScoresBySubjectAndClassResponse value) {
+        return new JAXBElement<GetScoresBySubjectAndClassResponse>(_GetScoresBySubjectAndClassResponse_QNAME, GetScoresBySubjectAndClassResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddScoreResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "addScoreResponse")
+    public JAXBElement<AddScoreResponse> createAddScoreResponse(AddScoreResponse value) {
+        return new JAXBElement<AddScoreResponse>(_AddScoreResponse_QNAME, AddScoreResponse.class, null, value);
     }
 
     /**
@@ -1347,15 +1473,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetStudent }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getStudent")
-    public JAXBElement<GetStudent> createGetStudent(GetStudent value) {
-        return new JAXBElement<GetStudent>(_GetStudent_QNAME, GetStudent.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetPropertyValueByKey }{@code >}}
      * 
      */
@@ -1380,6 +1497,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "updatePropertyResponse")
     public JAXBElement<UpdatePropertyResponse> createUpdatePropertyResponse(UpdatePropertyResponse value) {
         return new JAXBElement<UpdatePropertyResponse>(_UpdatePropertyResponse_QNAME, UpdatePropertyResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddScore }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "addScore")
+    public JAXBElement<AddScore> createAddScore(AddScore value) {
+        return new JAXBElement<AddScore>(_AddScore_QNAME, AddScore.class, null, value);
     }
 
     /**
@@ -1446,6 +1572,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetStudentsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getStudentsResponse")
+    public JAXBElement<GetStudentsResponse> createGetStudentsResponse(GetStudentsResponse value) {
+        return new JAXBElement<GetStudentsResponse>(_GetStudentsResponse_QNAME, GetStudentsResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetTeacherByIdResponse }{@code >}}
      * 
      */
@@ -1479,6 +1614,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "updateAdmin")
     public JAXBElement<UpdateAdmin> createUpdateAdmin(UpdateAdmin value) {
         return new JAXBElement<UpdateAdmin>(_UpdateAdmin_QNAME, UpdateAdmin.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetScoresBySubjectAndClass }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getScoresBySubjectAndClass")
+    public JAXBElement<GetScoresBySubjectAndClass> createGetScoresBySubjectAndClass(GetScoresBySubjectAndClass value) {
+        return new JAXBElement<GetScoresBySubjectAndClass>(_GetScoresBySubjectAndClass_QNAME, GetScoresBySubjectAndClass.class, null, value);
     }
 
     /**
@@ -1527,6 +1671,24 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetClassesByTeacherResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getClassesByTeacherResponse")
+    public JAXBElement<GetClassesByTeacherResponse> createGetClassesByTeacherResponse(GetClassesByTeacherResponse value) {
+        return new JAXBElement<GetClassesByTeacherResponse>(_GetClassesByTeacherResponse_QNAME, GetClassesByTeacherResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTeacherByName }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getTeacherByName")
+    public JAXBElement<GetTeacherByName> createGetTeacherByName(GetTeacherByName value) {
+        return new JAXBElement<GetTeacherByName>(_GetTeacherByName_QNAME, GetTeacherByName.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetStudentsByNameResponse }{@code >}}
      * 
      */
@@ -1563,12 +1725,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddStudentsListResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "addStudentsListResponse")
+    public JAXBElement<AddStudentsListResponse> createAddStudentsListResponse(AddStudentsListResponse value) {
+        return new JAXBElement<AddStudentsListResponse>(_AddStudentsListResponse_QNAME, AddStudentsListResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddScores }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "addScores")
     public JAXBElement<AddScores> createAddScores(AddScores value) {
         return new JAXBElement<AddScores>(_AddScores_QNAME, AddScores.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddStudentsList }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "addStudentsList")
+    public JAXBElement<AddStudentsList> createAddStudentsList(AddStudentsList value) {
+        return new JAXBElement<AddStudentsList>(_AddStudentsList_QNAME, AddStudentsList.class, null, value);
     }
 
     /**
@@ -1707,6 +1887,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTeacherByNameResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getTeacherByNameResponse")
+    public JAXBElement<GetTeacherByNameResponse> createGetTeacherByNameResponse(GetTeacherByNameResponse value) {
+        return new JAXBElement<GetTeacherByNameResponse>(_GetTeacherByNameResponse_QNAME, GetTeacherByNameResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RemoveClassResponse }{@code >}}
      * 
      */
@@ -1749,15 +1938,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "addClassResponse")
     public JAXBElement<AddClassResponse> createAddClassResponse(AddClassResponse value) {
         return new JAXBElement<AddClassResponse>(_AddClassResponse_QNAME, AddClassResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetStudentResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getStudentResponse")
-    public JAXBElement<GetStudentResponse> createGetStudentResponse(GetStudentResponse value) {
-        return new JAXBElement<GetStudentResponse>(_GetStudentResponse_QNAME, GetStudentResponse.class, null, value);
     }
 
     /**
@@ -1821,6 +2001,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getAdminsResponse")
     public JAXBElement<GetAdminsResponse> createGetAdminsResponse(GetAdminsResponse value) {
         return new JAXBElement<GetAdminsResponse>(_GetAdminsResponse_QNAME, GetAdminsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetClassesByTeacher }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getClassesByTeacher")
+    public JAXBElement<GetClassesByTeacher> createGetClassesByTeacher(GetClassesByTeacher value) {
+        return new JAXBElement<GetClassesByTeacher>(_GetClassesByTeacher_QNAME, GetClassesByTeacher.class, null, value);
     }
 
     /**
@@ -1920,15 +2109,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "updateSubject")
     public JAXBElement<UpdateSubject> createUpdateSubject(UpdateSubject value) {
         return new JAXBElement<UpdateSubject>(_UpdateSubject_QNAME, UpdateSubject.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetScoresByClassResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.marksmana.com/", name = "getScoresByClassResponse")
-    public JAXBElement<GetScoresByClassResponse> createGetScoresByClassResponse(GetScoresByClassResponse value) {
-        return new JAXBElement<GetScoresByClassResponse>(_GetScoresByClassResponse_QNAME, GetScoresByClassResponse.class, null, value);
     }
 
     /**

@@ -57,219 +57,33 @@ public interface ApplicationWebService {
 
     /**
      * 
-     * @param classId
-     * @return
-     *     returns java.util.List<com.client.service.Student>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getStudentsByClass", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByClass")
-    @ResponseWrapper(localName = "getStudentsByClassResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByClassResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentsByClassRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentsByClassResponse")
-    public List<Student> getStudentsByClass(
-        @WebParam(name = "classId", targetNamespace = "")
-        int classId);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.client.service.Student>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudent")
-    @ResponseWrapper(localName = "getStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentResponse")
-    public List<Student> getStudent();
-
-    /**
-     * 
-     * @param student
+     * @param score
      * @return
      *     returns int
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddStudent")
-    @ResponseWrapper(localName = "addStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddStudentResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/addStudentResponse")
-    public int addStudent(
-        @WebParam(name = "student", targetNamespace = "")
-        Student student);
+    @RequestWrapper(localName = "addScore", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddScore")
+    @ResponseWrapper(localName = "addScoreResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddScoreResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addScoreRequest", output = "http://ws.marksmana.com/ApplicationWebService/addScoreResponse")
+    public int addScore(
+        @WebParam(name = "score", targetNamespace = "")
+        Score score);
 
     /**
      * 
-     * @param student
+     * @param scores
      * @return
-     *     returns int
+     *     returns java.util.List<com.client.service.Score>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "updateStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateStudent")
-    @ResponseWrapper(localName = "updateStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateStudentResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/updateStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/updateStudentResponse")
-    public int updateStudent(
-        @WebParam(name = "student", targetNamespace = "")
-        Student student);
-
-    /**
-     * 
-     * @param id
-     * @return
-     *     returns com.client.service.Student
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getStudentById", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentById")
-    @ResponseWrapper(localName = "getStudentByIdResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentByIdResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentByIdRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentByIdResponse")
-    public Student getStudentById(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
-
-    /**
-     * 
-     * @param name
-     * @return
-     *     returns java.util.List<com.client.service.Student>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getStudentsByName", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByName")
-    @ResponseWrapper(localName = "getStudentsByNameResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByNameResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentsByNameRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentsByNameResponse")
-    public List<Student> getStudentsByName(
-        @WebParam(name = "name", targetNamespace = "")
-        String name);
-
-    /**
-     * 
-     * @param id
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "removeStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveStudent")
-    @ResponseWrapper(localName = "removeStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveStudentResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/removeStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/removeStudentResponse")
-    public int removeStudent(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.client.service.Teacher>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getTeachers", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeachers")
-    @ResponseWrapper(localName = "getTeachersResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeachersResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getTeachersRequest", output = "http://ws.marksmana.com/ApplicationWebService/getTeachersResponse")
-    public List<Teacher> getTeachers();
-
-    /**
-     * 
-     * @param id
-     * @return
-     *     returns com.client.service.Teacher
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getTeacherById", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeacherById")
-    @ResponseWrapper(localName = "getTeacherByIdResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeacherByIdResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getTeacherByIdRequest", output = "http://ws.marksmana.com/ApplicationWebService/getTeacherByIdResponse")
-    public Teacher getTeacherById(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
-
-    /**
-     * 
-     * @param teacher
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddTeacher")
-    @ResponseWrapper(localName = "addTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddTeacherResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/addTeacherResponse")
-    public int addTeacher(
-        @WebParam(name = "teacher", targetNamespace = "")
-        Teacher teacher);
-
-    /**
-     * 
-     * @param teacher
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "updateTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateTeacher")
-    @ResponseWrapper(localName = "updateTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateTeacherResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/updateTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/updateTeacherResponse")
-    public int updateTeacher(
-        @WebParam(name = "teacher", targetNamespace = "")
-        Teacher teacher);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.client.service.Subject>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getSubjects", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjects")
-    @ResponseWrapper(localName = "getSubjectsResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectsRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectsResponse")
-    public List<Subject> getSubjects();
-
-    /**
-     * 
-     * @param id
-     * @return
-     *     returns com.client.service.Subject
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getSubjectById", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectById")
-    @ResponseWrapper(localName = "getSubjectByIdResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectByIdResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectByIdRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectByIdResponse")
-    public Subject getSubjectById(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
-
-    /**
-     * 
-     * @param teacherId
-     * @return
-     *     returns java.util.List<com.client.service.Subject>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getSubjectsByTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByTeacher")
-    @ResponseWrapper(localName = "getSubjectsByTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByTeacherResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByTeacherResponse")
-    public List<Subject> getSubjectsByTeacher(
-        @WebParam(name = "teacherId", targetNamespace = "")
-        int teacherId);
-
-    /**
-     * 
-     * @param bulkId
-     * @return
-     *     returns java.util.List<com.client.service.Subject>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getSubjectsByBulk", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByBulk")
-    @ResponseWrapper(localName = "getSubjectsByBulkResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByBulkResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByBulkRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByBulkResponse")
-    public List<Subject> getSubjectsByBulk(
-        @WebParam(name = "bulkId", targetNamespace = "")
-        int bulkId);
+    @RequestWrapper(localName = "addScores", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddScores")
+    @ResponseWrapper(localName = "addScoresResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddScoresResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addScoresRequest", output = "http://ws.marksmana.com/ApplicationWebService/addScoresResponse")
+    public List<Score> addScores(
+        @WebParam(name = "scores", targetNamespace = "")
+        List<Score> scores);
 
     /**
      * 
@@ -363,6 +177,21 @@ public interface ApplicationWebService {
         int studentId,
         @WebParam(name = "remark", targetNamespace = "")
         String remark);
+
+    /**
+     * 
+     * @param teacher
+     * @return
+     *     returns java.util.List<com.client.service.Clazz>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getClassesByTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetClassesByTeacher")
+    @ResponseWrapper(localName = "getClassesByTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetClassesByTeacherResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getClassesByTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/getClassesByTeacherResponse")
+    public List<Clazz> getClassesByTeacher(
+        @WebParam(name = "teacher", targetNamespace = "")
+        Teacher teacher);
 
     /**
      * 
@@ -498,6 +327,303 @@ public interface ApplicationWebService {
 
     /**
      * 
+     * @param id
+     * @return
+     *     returns com.client.service.Student
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getStudentById", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentById")
+    @ResponseWrapper(localName = "getStudentByIdResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentByIdResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentByIdRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentByIdResponse")
+    public Student getStudentById(
+        @WebParam(name = "id", targetNamespace = "")
+        int id);
+
+    /**
+     * 
+     * @param studentList
+     * @return
+     *     returns java.util.List<com.client.service.Student>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addStudentsList", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddStudentsList")
+    @ResponseWrapper(localName = "addStudentsListResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddStudentsListResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addStudentsListRequest", output = "http://ws.marksmana.com/ApplicationWebService/addStudentsListResponse")
+    public List<Student> addStudentsList(
+        @WebParam(name = "studentList", targetNamespace = "")
+        List<Student> studentList);
+
+    /**
+     * 
+     * @param student
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updateStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateStudent")
+    @ResponseWrapper(localName = "updateStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateStudentResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/updateStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/updateStudentResponse")
+    public int updateStudent(
+        @WebParam(name = "student", targetNamespace = "")
+        Student student);
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "removeStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveStudent")
+    @ResponseWrapper(localName = "removeStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveStudentResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/removeStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/removeStudentResponse")
+    public int removeStudent(
+        @WebParam(name = "id", targetNamespace = "")
+        int id);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.client.service.Teacher>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getTeachers", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeachers")
+    @ResponseWrapper(localName = "getTeachersResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeachersResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getTeachersRequest", output = "http://ws.marksmana.com/ApplicationWebService/getTeachersResponse")
+    public List<Teacher> getTeachers();
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns com.client.service.Teacher
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getTeacherById", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeacherById")
+    @ResponseWrapper(localName = "getTeacherByIdResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeacherByIdResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getTeacherByIdRequest", output = "http://ws.marksmana.com/ApplicationWebService/getTeacherByIdResponse")
+    public Teacher getTeacherById(
+        @WebParam(name = "id", targetNamespace = "")
+        int id);
+
+    /**
+     * 
+     * @param name
+     * @return
+     *     returns java.util.List<com.client.service.Teacher>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getTeacherByName", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeacherByName")
+    @ResponseWrapper(localName = "getTeacherByNameResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetTeacherByNameResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getTeacherByNameRequest", output = "http://ws.marksmana.com/ApplicationWebService/getTeacherByNameResponse")
+    public List<Teacher> getTeacherByName(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
+     * @param teacher
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddTeacher")
+    @ResponseWrapper(localName = "addTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddTeacherResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/addTeacherResponse")
+    public int addTeacher(
+        @WebParam(name = "teacher", targetNamespace = "")
+        Teacher teacher);
+
+    /**
+     * 
+     * @param name
+     * @return
+     *     returns java.util.List<com.client.service.Student>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getStudentsByName", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByName")
+    @ResponseWrapper(localName = "getStudentsByNameResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByNameResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentsByNameRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentsByNameResponse")
+    public List<Student> getStudentsByName(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
+     * @param clazz
+     * @return
+     *     returns java.util.List<com.client.service.Student>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getStudentsByClass", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByClass")
+    @ResponseWrapper(localName = "getStudentsByClassResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsByClassResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentsByClassRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentsByClassResponse")
+    public List<Student> getStudentsByClass(
+        @WebParam(name = "clazz", targetNamespace = "")
+        Clazz clazz);
+
+    /**
+     * 
+     * @param student
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addStudent", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddStudent")
+    @ResponseWrapper(localName = "addStudentResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddStudentResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addStudentRequest", output = "http://ws.marksmana.com/ApplicationWebService/addStudentResponse")
+    public int addStudent(
+        @WebParam(name = "student", targetNamespace = "")
+        Student student);
+
+    /**
+     * 
+     * @param teacher
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updateTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateTeacher")
+    @ResponseWrapper(localName = "updateTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateTeacherResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/updateTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/updateTeacherResponse")
+    public int updateTeacher(
+        @WebParam(name = "teacher", targetNamespace = "")
+        Teacher teacher);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.client.service.Subject>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getSubjects", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjects")
+    @ResponseWrapper(localName = "getSubjectsResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectsRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectsResponse")
+    public List<Subject> getSubjects();
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns com.client.service.Subject
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getSubjectById", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectById")
+    @ResponseWrapper(localName = "getSubjectByIdResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectByIdResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectByIdRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectByIdResponse")
+    public Subject getSubjectById(
+        @WebParam(name = "id", targetNamespace = "")
+        int id);
+
+    /**
+     * 
+     * @param teacherId
+     * @return
+     *     returns java.util.List<com.client.service.Subject>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getSubjectsByTeacher", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByTeacher")
+    @ResponseWrapper(localName = "getSubjectsByTeacherResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByTeacherResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByTeacherRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByTeacherResponse")
+    public List<Subject> getSubjectsByTeacher(
+        @WebParam(name = "teacherId", targetNamespace = "")
+        int teacherId);
+
+    /**
+     * 
+     * @param bulkId
+     * @return
+     *     returns java.util.List<com.client.service.Subject>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getSubjectsByBulk", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByBulk")
+    @ResponseWrapper(localName = "getSubjectsByBulkResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetSubjectsByBulkResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByBulkRequest", output = "http://ws.marksmana.com/ApplicationWebService/getSubjectsByBulkResponse")
+    public List<Subject> getSubjectsByBulk(
+        @WebParam(name = "bulkId", targetNamespace = "")
+        int bulkId);
+
+    /**
+     * 
+     * @param subject
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddSubject")
+    @ResponseWrapper(localName = "addSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddSubjectResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/addSubjectResponse")
+    public int addSubject(
+        @WebParam(name = "subject", targetNamespace = "")
+        Subject subject);
+
+    /**
+     * 
+     * @param subject
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updateSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateSubject")
+    @ResponseWrapper(localName = "updateSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateSubjectResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/updateSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/updateSubjectResponse")
+    public int updateSubject(
+        @WebParam(name = "subject", targetNamespace = "")
+        Subject subject);
+
+    /**
+     * 
+     * @param subjectId
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "removeSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveSubject")
+    @ResponseWrapper(localName = "removeSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveSubjectResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/removeSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/removeSubjectResponse")
+    public int removeSubject(
+        @WebParam(name = "subjectId", targetNamespace = "")
+        int subjectId);
+
+    /**
+     * 
+     * @param password
+     * @param userId
+     * @return
+     *     returns com.client.service.Teacher
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "teacherLogin", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.TeacherLogin")
+    @ResponseWrapper(localName = "teacherLoginResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.TeacherLoginResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/teacherLoginRequest", output = "http://ws.marksmana.com/ApplicationWebService/teacherLoginResponse")
+    public Teacher teacherLogin(
+        @WebParam(name = "userId", targetNamespace = "")
+        String userId,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
+
+    /**
+     * 
      * @param currentAccount
      * @return
      *     returns java.util.List<com.client.service.Admin>
@@ -588,70 +714,19 @@ public interface ApplicationWebService {
 
     /**
      * 
-     * @param subject
      * @return
-     *     returns int
+     *     returns java.util.List<com.client.service.Student>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddSubject")
-    @ResponseWrapper(localName = "addSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddSubjectResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/addSubjectResponse")
-    public int addSubject(
-        @WebParam(name = "subject", targetNamespace = "")
-        Subject subject);
+    @RequestWrapper(localName = "getStudents", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudents")
+    @ResponseWrapper(localName = "getStudentsResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetStudentsResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getStudentsRequest", output = "http://ws.marksmana.com/ApplicationWebService/getStudentsResponse")
+    public List<Student> getStudents();
 
     /**
      * 
      * @param subject
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "updateSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateSubject")
-    @ResponseWrapper(localName = "updateSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.UpdateSubjectResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/updateSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/updateSubjectResponse")
-    public int updateSubject(
-        @WebParam(name = "subject", targetNamespace = "")
-        Subject subject);
-
-    /**
-     * 
-     * @param subjectId
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "removeSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveSubject")
-    @ResponseWrapper(localName = "removeSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.RemoveSubjectResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/removeSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/removeSubjectResponse")
-    public int removeSubject(
-        @WebParam(name = "subjectId", targetNamespace = "")
-        int subjectId);
-
-    /**
-     * 
-     * @param password
-     * @param userId
-     * @return
-     *     returns com.client.service.Teacher
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "teacherLogin", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.TeacherLogin")
-    @ResponseWrapper(localName = "teacherLoginResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.TeacherLoginResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/teacherLoginRequest", output = "http://ws.marksmana.com/ApplicationWebService/teacherLoginResponse")
-    public Teacher teacherLogin(
-        @WebParam(name = "userId", targetNamespace = "")
-        String userId,
-        @WebParam(name = "password", targetNamespace = "")
-        String password);
-
-    /**
-     * 
-     * @param subjectId
      * @return
      *     returns java.util.List<com.client.service.Score>
      */
@@ -661,38 +736,44 @@ public interface ApplicationWebService {
     @ResponseWrapper(localName = "getScoresBySubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresBySubjectResponse")
     @Action(input = "http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectResponse")
     public List<Score> getScoresBySubject(
-        @WebParam(name = "subjectId", targetNamespace = "")
-        int subjectId);
+        @WebParam(name = "subject", targetNamespace = "")
+        Subject subject);
 
     /**
      * 
-     * @param classId
+     * @param student
+     * @param subject
      * @return
      *     returns java.util.List<com.client.service.Score>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getScoresByClass", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresByClass")
-    @ResponseWrapper(localName = "getScoresByClassResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresByClassResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getScoresByClassRequest", output = "http://ws.marksmana.com/ApplicationWebService/getScoresByClassResponse")
-    public List<Score> getScoresByClass(
-        @WebParam(name = "classId", targetNamespace = "")
-        int classId);
+    @RequestWrapper(localName = "getScoresByStudentAndSubject", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresByStudentAndSubject")
+    @ResponseWrapper(localName = "getScoresByStudentAndSubjectResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresByStudentAndSubjectResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getScoresByStudentAndSubjectRequest", output = "http://ws.marksmana.com/ApplicationWebService/getScoresByStudentAndSubjectResponse")
+    public List<Score> getScoresByStudentAndSubject(
+        @WebParam(name = "student", targetNamespace = "")
+        Student student,
+        @WebParam(name = "subject", targetNamespace = "")
+        Subject subject);
 
     /**
      * 
-     * @param scores
+     * @param subject
+     * @param clazz
      * @return
      *     returns java.util.List<com.client.service.Score>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addScores", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddScores")
-    @ResponseWrapper(localName = "addScoresResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.AddScoresResponse")
-    @Action(input = "http://ws.marksmana.com/ApplicationWebService/addScoresRequest", output = "http://ws.marksmana.com/ApplicationWebService/addScoresResponse")
-    public List<Score> addScores(
-        @WebParam(name = "scores", targetNamespace = "")
-        List<Score> scores);
+    @RequestWrapper(localName = "getScoresBySubjectAndClass", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresBySubjectAndClass")
+    @ResponseWrapper(localName = "getScoresBySubjectAndClassResponse", targetNamespace = "http://ws.marksmana.com/", className = "com.client.service.GetScoresBySubjectAndClassResponse")
+    @Action(input = "http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectAndClassRequest", output = "http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectAndClassResponse")
+    public List<Score> getScoresBySubjectAndClass(
+        @WebParam(name = "subject", targetNamespace = "")
+        Subject subject,
+        @WebParam(name = "clazz", targetNamespace = "")
+        Clazz clazz);
 
     /**
      * 

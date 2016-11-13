@@ -17,100 +17,101 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnAdd" alignment="0" pref="103" max="32767" attributes="0"/>
+                  <Component id="btnAddClass" alignment="0" pref="103" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="113" max="32767" attributes="0"/>
-                      <Component id="btnAddEdit" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblName" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblChairman" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cboBulk" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtChairman" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnChon" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblName" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblChairman" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cboBulk" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cboTeacher" alignment="0" pref="363" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="txtName" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="lblNote" min="-2" pref="61" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblNote" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnRemoveInfo" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnAddInfo" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnSum" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnSub" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btnAdd" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cboBulk" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblChairman" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnChon" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtChairman" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblNote" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="101" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnAddClass" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnSum" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSub" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cboBulk" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblChairman" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cboTeacher" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblNote" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnAddInfo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnRemoveInfo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAddEdit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -125,7 +126,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="ListClass">
+        <Component class="javax.swing.JList" name="lstClass">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="3">
@@ -154,11 +155,9 @@
     <Component class="javax.swing.JComboBox" name="cboBulk">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Kh&#x1ed1;i 10"/>
-            <StringItem index="1" value="Kh&#x1ed1;i 11"/>
-            <StringItem index="2" value="Kh&#x1ed1;i 12"/>
-            <StringItem index="3" value=" "/>
+          <StringArray count="2">
+            <StringItem index="0" value="-- Kh&#x1ed1;i --"/>
+            <StringItem index="1" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -178,11 +177,6 @@
         <Property name="text" type="java.lang.String" value="Ghi ch&#xfa;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnChon">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -190,48 +184,76 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblMonHoc">
+        <Component class="javax.swing.JTable" name="tblInfo">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="5">
-                <Column editable="false" title="Th&#xf4;ng tin" type="java.lang.String"/>
-                <Column editable="false" title="Gi&#xe1; tr&#x1ecb;" type="java.lang.String"/>
+                <Column editable="true" title="Th&#xf4;ng tin" type="java.lang.String"/>
+                <Column editable="true" title="Gi&#xe1; tr&#x1ecb;" type="java.lang.String"/>
               </Table>
             </Property>
-            <Property name="showHorizontalLines" type="boolean" value="false"/>
-            <Property name="showVerticalLines" type="boolean" value="false"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblInfoMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtChairman">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSum">
+    <Component class="javax.swing.JButton" name="btnAddInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAdd">
+    <Component class="javax.swing.JButton" name="btnAddClass">
       <Properties>
         <Property name="text" type="java.lang.String" value="Th&#xea;m m&#x1edb;i"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddClassActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSub">
+    <Component class="javax.swing.JButton" name="btnRemoveInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveInfoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
         <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAddEdit">
+    <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Th&#xea;m/S&#x1eed;a"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="L&#x1b0;u thay &#x111;&#x1ed5;i"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cboTeacher">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="-- Ch&#x1ee7; nhi&#x1ec7;m --"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+      <Properties>
+        <Property name="orientation" type="int" value="1"/>
       </Properties>
     </Component>
   </SubComponents>

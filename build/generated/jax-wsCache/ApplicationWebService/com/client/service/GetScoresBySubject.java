@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="subjectId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="subject" type="{http://ws.marksmana.com/}subject" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,26 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getScoresBySubject", propOrder = {
-    "subjectId"
+    "subject"
 })
 public class GetScoresBySubject {
 
-    protected int subjectId;
+    protected Subject subject;
 
     /**
-     * Gets the value of the subjectId property.
+     * Gets the value of the subject property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Subject }
+     *     
      */
-    public int getSubjectId() {
-        return subjectId;
+    public Subject getSubject() {
+        return subject;
     }
 
     /**
-     * Sets the value of the subjectId property.
+     * Sets the value of the subject property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Subject }
+     *     
      */
-    public void setSubjectId(int value) {
-        this.subjectId = value;
+    public void setSubject(Subject value) {
+        this.subject = value;
     }
 
 }
