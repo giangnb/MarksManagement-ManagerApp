@@ -63,7 +63,7 @@ public class LoginScreen extends JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("<html>QUẢN LÝ ĐIỂM<br/><b>Dành cho <u>Quản lý</u></b></html>");
+        jLabel1.setText("<html><center>QUẢN LÝ ĐIỂM<br/><b>Dành cho <u>Quản lý</u></b></center></html>");
 
         lblSchoolName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSchoolName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

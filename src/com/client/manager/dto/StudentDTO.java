@@ -18,6 +18,7 @@ public class StudentDTO {
     private Student s;
 
     public StudentDTO() {
+        s = new Student();
     }
 
     public StudentDTO(Student s) {
