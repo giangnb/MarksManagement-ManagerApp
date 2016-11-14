@@ -23,6 +23,7 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
      */
     public SchoolInfoFrame() {
         initComponents();
+        btnRemoveInfo.setEnabled(false);
         initData();
     }
 
@@ -80,11 +81,26 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
                 "Thông tin", "Dữ liệu"
             }
         ));
+        tblInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInfoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblInfo);
 
         btnAddInfo.setText("+");
+        btnAddInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddInfoActionPerformed(evt);
+            }
+        });
 
         btnRemoveInfo.setText("-");
+        btnRemoveInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveInfoActionPerformed(evt);
+            }
+        });
 
         lblContact.setText("Liên hệ:");
 
@@ -189,6 +205,25 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
+        // TODO add your handling code here:
+        mInfo.addRow(new String[]{"",""});
+    }//GEN-LAST:event_btnAddInfoActionPerformed
+
+    private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
+        // TODO add your handling code here:
+        if (tblInfo.getSelectedRow()>=0) {
+            btnRemoveInfo.setEnabled(true);
+        } else {
+            btnRemoveInfo.setEnabled(false);
+        }
+    }//GEN-LAST:event_tblInfoMouseClicked
+
+    private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
+        // TODO add your handling code here:
+        mInfo.removeRow(tblInfo.getSelectedRow());
+    }//GEN-LAST:event_btnRemoveInfoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

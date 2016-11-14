@@ -6,7 +6,6 @@ import com.client.service.Clazz;
 import com.client.service.Student;
 import com.client.service.Subject;
 import com.client.service.Teacher;
-import com.client.manager.Application;
 import com.client.service.Admin;
 import com.client.service.Properties;
 import java.io.Serializable;

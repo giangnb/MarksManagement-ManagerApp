@@ -5,11 +5,20 @@
  */
 package com.client.manager.views.classes;
 
+import com.client.manager.constants.WebMethods;
+import com.client.manager.constants.WindowUtility;
+import com.client.manager.dto.BulkDTO;
+import com.client.manager.dto.ClazzDTO;
 import com.client.manager.dto.TeacherDTO;
+import com.client.manager.views.LoadingScreen;
+import com.client.service.Bulk;
 import com.client.service.Clazz;
 import com.client.service.Teacher;
+import com.marksmana.info.SingleInformation;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -19,19 +28,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Phương Nam
  */
 public class ClassFrame extends javax.swing.JPanel {
-    private Clazz clazz;
+
+    private ClazzDTO clazz;
     private List<TeacherDTO> teachersList = new ArrayList<>();
+    private List<ClazzDTO> clazzList = new ArrayList<>();
+    private List<BulkDTO> bulkList = new ArrayList<>();
     private Teacher teacher;
     private DefaultTableModel mInfo;
     private DefaultComboBoxModel mBulk, mTeacher;
     private DefaultListModel mClass;
-    
+
     /**
      * Creates new form ClassFrame
      */
     public ClassFrame() {
         initComponents();
-        
+        initData();
         resetForm();
     }
 
@@ -66,6 +78,11 @@ public class ClassFrame extends javax.swing.JPanel {
             String[] strings = { "Item1", "Item2", " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        lstClass.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstClassValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(lstClass);
 
@@ -130,9 +147,19 @@ public class ClassFrame extends javax.swing.JPanel {
         });
 
         btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Lưu thay đổi");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         cboTeacher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chủ nhiệm --" }));
 
@@ -221,7 +248,7 @@ public class ClassFrame extends javax.swing.JPanel {
 
     private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
         // TODO add your handling code here:
-        if (tblInfo.getSelectedRow()>=0) {
+        if (tblInfo.getSelectedRow() >= 0) {
             btnRemoveInfo.setEnabled(true);
         } else {
             btnRemoveInfo.setEnabled(false);
@@ -232,17 +259,48 @@ public class ClassFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         AddClassFrame.showDialog(null);
         // Reload class list
+        initData();
     }//GEN-LAST:event_btnAddClassActionPerformed
 
     private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
         // TODO add your handling code here:
         mInfo.removeRow(tblInfo.getSelectedRow());
+        btnRemoveInfo.setEnabled(false);
     }//GEN-LAST:event_btnRemoveInfoActionPerformed
 
     private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
         // TODO add your handling code here:
-        mInfo.addRow(new String[]{"",""});
+        mInfo.addRow(new String[]{"", ""});
     }//GEN-LAST:event_btnAddInfoActionPerformed
+
+    private void lstClassValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstClassValueChanged
+        // TODO add your handling code here:
+        if (lstClass.getSelectedIndex() < 0) {
+            return;
+        }
+        clazz = (ClazzDTO) mClass.getElementAt(lstClass.getSelectedIndex());
+        loadForm();
+    }//GEN-LAST:event_lstClassValueChanged
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        if (clazz.getId()!=1) {
+            // Delete class
+            int result = WebMethods.removeClass(clazz.getId());
+            if (result>0) {
+                initData();
+                resetForm();
+            } else {
+                WindowUtility.showMessage(this, "Lỗi", "Có lỗi xảy ra khi xóa lớp học.", WindowUtility.ERROR);
+            }
+        } else {
+            WindowUtility.showMessage(this, "Xóa lớp học", "Không thể lớp học lưu trữ!", WindowUtility.WARNING);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -272,5 +330,65 @@ public class ClassFrame extends javax.swing.JPanel {
         txtName.setText("");
         btnSave.setEnabled(false);
         btnDelete.setEnabled(false);
+    }
+
+    private void initData() {
+        mClass = new DefaultListModel();
+        lstClass.setModel(mClass);
+        mBulk = (DefaultComboBoxModel) cboBulk.getModel();
+        mBulk.removeAllElements();
+        mTeacher = (DefaultComboBoxModel) cboTeacher.getModel();
+        mTeacher.removeAllElements();
+
+        new Thread(() -> { // Lambda expression
+            LoadingScreen load = new LoadingScreen("Đang tải...");
+            load.setVisible(true);
+            // Load class
+            List<Clazz> classes = WebMethods.getClasses();
+            for (Clazz c : classes) {
+                mClass.addElement(new ClazzDTO(c));
+                clazzList.add(new ClazzDTO(c));
+            }
+            // Load bulk
+            List<Bulk> bulks = WebMethods.getBulks();
+            for (Bulk b : bulks) {
+                mBulk.addElement(new BulkDTO(b));
+                bulkList.add(new BulkDTO(b));
+            }
+            // Load Teacher
+            List<Teacher> teachers = WebMethods.getTeachers();
+            for (Teacher t : teachers) {
+                mTeacher.addElement(new TeacherDTO(t));
+                teachersList.add(new TeacherDTO(t));
+            }
+            // end
+            load.dispose();
+        }).start();
+    }
+
+    private void loadForm() {
+        mInfo.setRowCount(0);
+        txtName.setText(clazz.getName());
+        for (int i = 0; i < bulkList.size(); i++) {
+            if (bulkList.get(i).getId()==clazz.getBulkId().getId()) {
+                cboBulk.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < teachersList.size(); i++) {
+            if (teachersList.get(i).getId()==clazz.getTeacherId().getId()) {
+                cboTeacher.setSelectedIndex(i);
+                break;
+            }
+        }
+        try {
+            for (SingleInformation si : clazz.getInfo()) {
+                mInfo.addRow(new String[]{si.getKey(), si.getValue()});
+            }
+        } catch (Exception ex) {
+            // ignore
+        }
+        btnSave.setEnabled(true);
+        btnDelete.setEnabled(true);
     }
 }
