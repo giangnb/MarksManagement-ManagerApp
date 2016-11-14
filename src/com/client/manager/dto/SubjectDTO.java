@@ -17,6 +17,7 @@ public class SubjectDTO {
     private Subject s;
 
     public SubjectDTO() {
+        s = new Subject();
     }
 
     public SubjectDTO(Subject s) {

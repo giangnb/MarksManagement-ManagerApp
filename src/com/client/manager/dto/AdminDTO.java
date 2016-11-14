@@ -17,6 +17,7 @@ public class AdminDTO {
     private Admin a;
 
     public AdminDTO() {
+        a = new Admin();
     }
 
     public AdminDTO(Admin a) {

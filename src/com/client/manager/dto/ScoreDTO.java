@@ -18,6 +18,7 @@ public class ScoreDTO {
     private Score s;
 
     public ScoreDTO() {
+        s = new Score();
     }
 
     public ScoreDTO(Score s) {

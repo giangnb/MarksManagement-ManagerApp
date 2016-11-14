@@ -5,17 +5,25 @@
  */
 package com.client.manager.views.system;
 
+import com.client.manager.Application;
+import com.marksmana.info.Information;
+import com.marksmana.info.SingleInformation;
+import com.marksmana.utils.Json;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HuongUD
  */
 public class SchoolInfoFrame extends javax.swing.JPanel {
+    private DefaultTableModel mInfo;
 
     /**
      * Creates new form SchoolInfoFrame
      */
     public SchoolInfoFrame() {
         initComponents();
+        initData();
     }
 
     /**
@@ -35,16 +43,16 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
         txtSemester = new javax.swing.JTextField();
         lblInfo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnAdd = new javax.swing.JButton();
-        btnSub = new javax.swing.JButton();
+        tblInfo = new javax.swing.JTable();
+        btnAddInfo = new javax.swing.JButton();
+        btnRemoveInfo = new javax.swing.JButton();
         lblContact = new javax.swing.JLabel();
         lblQTHT = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtQTHT = new javax.swing.JTextPane();
+        txtAdmin = new javax.swing.JTextPane();
         lblQL = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtQL = new javax.swing.JTextPane();
+        txtManager = new javax.swing.JTextPane();
         btnApply = new javax.swing.JButton();
 
         lblName.setText("Tên đơn vị:");
@@ -61,7 +69,7 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
 
         lblInfo.setText("Thông tin khác:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -72,23 +80,24 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
                 "Thông tin", "Dữ liệu"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblInfo);
 
-        btnAdd.setText("+");
+        btnAddInfo.setText("+");
 
-        btnSub.setText("-");
+        btnRemoveInfo.setText("-");
 
         lblContact.setText("Liên hệ:");
 
         lblQTHT.setText("Quản trị hệ thống");
 
-        jScrollPane2.setViewportView(txtQTHT);
+        jScrollPane2.setViewportView(txtAdmin);
 
         lblQL.setText("Quản lý");
 
-        jScrollPane3.setViewportView(txtQL);
+        jScrollPane3.setViewportView(txtManager);
 
-        btnApply.setText("Áp dụng");
+        btnApply.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnApply.setText("Lưu thay đổi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,8 +123,8 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnSub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(btnRemoveInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAddInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(lblContact))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +162,9 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAdd)
+                        .addComponent(btnAddInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSub))
+                        .addComponent(btnRemoveInfo))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -183,13 +192,12 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAddInfo;
     private javax.swing.JButton btnApply;
-    private javax.swing.JButton btnSub;
+    private javax.swing.JButton btnRemoveInfo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblContact;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblName;
@@ -197,10 +205,29 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
     private javax.swing.JLabel lblQTHT;
     private javax.swing.JLabel lblSemester;
     private javax.swing.JLabel lblYear;
+    private javax.swing.JTable tblInfo;
+    private javax.swing.JTextPane txtAdmin;
+    private javax.swing.JTextPane txtManager;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextPane txtQL;
-    private javax.swing.JTextPane txtQTHT;
     private javax.swing.JTextField txtSemester;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
+
+    private void initData() {
+        mInfo = (DefaultTableModel) tblInfo.getModel();
+        mInfo.setRowCount(0);
+        try {
+            txtName.setText(Application.PROP.get("school_name").toString());
+            txtYear.setText(Application.PROP.get("school_year").toString());
+            txtSemester.setText(Application.PROP.get("semester").toString());
+            txtAdmin.setText(Application.PROP.get("admin_contact").toString());
+            txtManager.setText(Application.PROP.get("manager_contact").toString());
+            Information i = Json.DeserializeObject(Application.PROP.get("school_info").toString(), Information.class);
+            for (SingleInformation si : i) {
+                mInfo.addRow(new String[]{si.getKey(), si.getValue()});
+            }
+        } catch (Exception ex) {
+            // ignore
+        }
+    }
 }

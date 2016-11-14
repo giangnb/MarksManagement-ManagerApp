@@ -5,12 +5,9 @@
  */
 package com.client.manager.dto;
 
-import com.client.service.Clazz;
-import com.client.service.Subject;
 import com.client.service.Teacher;
 import com.marksmana.info.Information;
 import com.marksmana.utils.Json;
-import java.util.List;
 
 /**
  *
@@ -34,15 +31,7 @@ public class TeacherDTO {
     public void setTeacher(Teacher t) {
         this.t = t;
     }
-
-    public List<Clazz> getClazzList() {
-        return t.getClazzList();
-    }
-
-    public void addToClazzList(Clazz clazz) throws NullPointerException{
-        t.getClazzList().add(clazz);
-    }
-
+    
     public Integer getId() {
         return t.getId();
     }
@@ -70,14 +59,6 @@ public class TeacherDTO {
 
     public void setPass(String pass) {
         t.setPass(pass);
-    }
-
-    public List<Subject> getSubjectList() {
-        return t.getSubjectList();
-    }
-
-    public void addToSubjectList(Subject subject) throws NullPointerException{
-        t.getSubjectList().add(subject);
     }
 
     public String getUsername() {

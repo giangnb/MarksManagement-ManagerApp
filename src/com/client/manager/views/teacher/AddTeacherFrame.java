@@ -6,12 +6,15 @@
 package com.client.manager.views.teacher;
 
 import com.client.manager.constants.WindowSize;
-import com.client.manager.views.classes.AddClassFrame;
+import com.client.manager.dto.TeacherDTO;
+import com.client.manager.views.LoadingScreen;
 import com.client.service.Clazz;
 import com.marksmana.info.Information;
+import com.marksmana.info.SingleInformation;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,20 +23,29 @@ import javax.swing.JFrame;
 public class AddTeacherFrame extends javax.swing.JPanel {
 
     private List<Clazz> clazz;
+    private DefaultTableModel mClass, mInfo;
     private Information info = new Information();
+    private TeacherDTO t;
 
     /**
      * Creates new form AddTeacherFrame
      */
-    public AddTeacherFrame() {
+    private AddTeacherFrame() {
         initComponents();
+        initData();
+    }
+    
+    public AddTeacherFrame(TeacherDTO t) {
+        this.t = t;
+        initComponents();
+        btnAddTeacher.setText("Lưu thay đổi");
         initData();
     }
     
     public AddTeacherFrame(List<Clazz> clazz) {
         this.clazz = clazz;
         initComponents();
-        initCombo();
+        initClasses();
     }
     
     public static void showDialog(JFrame owner) {
@@ -54,10 +66,28 @@ public class AddTeacherFrame extends javax.swing.JPanel {
         dia.setVisible(true);
     }
     
+    public static void showDialog(JFrame owner, TeacherDTO teacher) {
+        JDialog dia = new JDialog(owner, "Sửa giáo viên", true);
+        dia.setSize(WindowSize.SMALL_WINDOW.getDimension());
+        dia.setResizable(false);
+        dia.setLocationRelativeTo(owner);
+        dia.add(new AddTeacherFrame());
+        dia.setVisible(true);
+    }
+    
     private void initData() {
         new Thread(() -> {
-            // do something
-            initCombo();
+            LoadingScreen load = new LoadingScreen("Đang tải...");
+            load.setVisible(true);
+            // init models
+            mInfo = (DefaultTableModel) tblInfo.getModel();
+            mInfo.setRowCount(0);
+            mClass = (DefaultTableModel) tblClass.getModel();
+            initClasses();
+            // get info to form
+            getTeacherInfo();
+            // end
+            load.dispose();
         }).start();
     }
 
@@ -74,7 +104,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblHead = new javax.swing.JTable();
+        tblClass = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblInfo = new javax.swing.JTable();
@@ -86,10 +116,18 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
         jLabel1.setText("Họ tên:");
 
+        txtName.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtNameInputMethodTextChanged(evt);
+            }
+        });
+
         jLabel2.setText("Lớp chủ nhiệm:");
 
-        tblHead.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tblHead.setModel(new javax.swing.table.DefaultTableModel(
+        tblClass.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tblClass.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -115,7 +153,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblHead);
+        jScrollPane1.setViewportView(tblClass);
 
         jLabel3.setText("Thông tin:");
 
@@ -212,6 +250,18 @@ public class AddTeacherFrame extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtNameInputMethodTextChanged
+        // TODO add your handling code here:
+        String[] str = txtName.getText().trim().split(" ");
+        if (str.length>=2) {
+            String username = str[str.length-1].toLowerCase();
+            for (int i = str.length-2; i >= 0; i--) {
+                username += str[i].toLowerCase().toCharArray()[0];
+            }
+            txtUsername.setText(username);
+        }
+    }//GEN-LAST:event_txtNameInputMethodTextChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddInfo;
@@ -223,12 +273,26 @@ public class AddTeacherFrame extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblHead;
+    private javax.swing.JTable tblClass;
     private javax.swing.JTable tblInfo;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-    private void initCombo() {
+    private void initClasses() {
+    }
+    
+    private void getTeacherInfo() {
+        if (t!=null) {
+            txtName.setName(t.getName());
+            txtUsername.setText(t.getUsername());
+            try {
+                for (SingleInformation si : t.getInfo()) {
+                    mInfo.addRow(new String[] {si.getKey(), si.getValue()});
+                }
+            } catch (Exception ex) {
+                // ignore
+            }
+        }
     }
 }

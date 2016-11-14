@@ -5,17 +5,25 @@
  */
 package com.client.manager.views.teacher;
 
+import com.client.manager.dto.TeacherDTO;
+import com.client.manager.views.LoadingScreen;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author pxduc
  */
 public class TeacherInfoFrame extends javax.swing.JPanel {
+    private java.util.List<TeacherDTO> teachers = new java.util.ArrayList<>();
+    private DefaultTableModel mTeacher;
 
     /**
      * Creates new form JPanelTeacher
      */
     public TeacherInfoFrame() {
         initComponents();
+        btnChangeInfo.setEnabled(false);
+        initTable();
     }
 
     /**
@@ -35,13 +43,25 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTeacherInfo = new javax.swing.JTable();
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel1.setText("Tìm kiếm");
 
         btnSearch.setText("Tìm");
 
+        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setText("Thêm mới");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnChangeInfo.setText("Sửa thông tin");
+        btnChangeInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeInfoActionPerformed(evt);
+            }
+        });
 
         tblTeacherInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,6 +82,11 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        tblTeacherInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTeacherInfoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTeacherInfo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -71,7 +96,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -97,10 +122,35 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
                     .addComponent(btnAdd)
                     .addComponent(btnChangeInfo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        AddTeacherFrame.showDialog(null);
+        // Reload teachers list
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tblTeacherInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTeacherInfoMouseClicked
+        // TODO add your handling code here:
+        if (tblTeacherInfo.getSelectedRow()>=0) {
+            btnChangeInfo.setEnabled(true);
+        } else {
+            btnChangeInfo.setEnabled(false);
+        }
+    }//GEN-LAST:event_tblTeacherInfoMouseClicked
+
+    private void btnChangeInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoActionPerformed
+        // TODO add your handling code here:
+        try {
+            TeacherDTO t = teachers.get(tblTeacherInfo.getSelectedRow());
+            AddTeacherFrame.showDialog(null, t);
+        } catch (Exception ex) {
+            // ignore
+        }
+    }//GEN-LAST:event_btnChangeInfoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -112,4 +162,19 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
     private javax.swing.JTable tblTeacherInfo;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void initTable() {
+        mTeacher = (DefaultTableModel) tblTeacherInfo.getModel();
+        mTeacher.setRowCount(0);
+        new Thread(()->{
+            LoadingScreen load = new LoadingScreen("Đang tải...");
+            load.setVisible(true);
+            // load teachers
+            // ...here...
+            // then add teachers to table
+            // ...here...
+            //end
+            load.dispose();
+        }).start();
+    }
 }

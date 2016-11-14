@@ -39,8 +39,8 @@
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="lblInfo" min="-2" pref="94" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnSub" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnAdd" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnRemoveInfo" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnAddInfo" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="lblContact" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -93,9 +93,9 @@
                   <Group type="102" attributes="0">
                       <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAddInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSub" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRemoveInfo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
@@ -162,7 +162,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblInfo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="4">
@@ -191,12 +191,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnAdd">
+    <Component class="javax.swing.JButton" name="btnAddInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSub">
+    <Component class="javax.swing.JButton" name="btnRemoveInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
       </Properties>
@@ -218,7 +218,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="txtQTHT">
+        <Component class="javax.swing.JTextPane" name="txtAdmin">
         </Component>
       </SubComponents>
     </Container>
@@ -234,13 +234,16 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="txtQL">
+        <Component class="javax.swing.JTextPane" name="txtManager">
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="btnApply">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc1;p d&#x1ee5;ng"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="L&#x1b0;u thay &#x111;&#x1ed5;i"/>
       </Properties>
     </Component>
   </SubComponents>

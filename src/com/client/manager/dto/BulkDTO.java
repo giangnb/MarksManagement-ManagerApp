@@ -17,6 +17,7 @@ public class BulkDTO {
     private Bulk b;
 
     public BulkDTO() {
+        b = new Bulk();
     }
 
     public BulkDTO(Bulk b) {

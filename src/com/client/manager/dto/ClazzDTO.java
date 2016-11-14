@@ -19,6 +19,7 @@ public class ClazzDTO {
     private Clazz c;
 
     public ClazzDTO() {
+        c = new Clazz();
     }
 
     public ClazzDTO(Clazz c) {

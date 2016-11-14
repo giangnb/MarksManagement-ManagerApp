@@ -31,7 +31,8 @@ public class ClassFrame extends javax.swing.JPanel {
      */
     public ClassFrame() {
         initComponents();
-        btnRemoveInfo.setEnabled(false);
+        
+        resetForm();
     }
 
     /**
@@ -108,6 +109,11 @@ public class ClassFrame extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblInfo);
 
         btnAddInfo.setText("+");
+        btnAddInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddInfoActionPerformed(evt);
+            }
+        });
 
         btnAddClass.setText("Thêm mới");
         btnAddClass.addActionListener(new java.awt.event.ActionListener() {
@@ -225,12 +231,18 @@ public class ClassFrame extends javax.swing.JPanel {
     private void btnAddClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClassActionPerformed
         // TODO add your handling code here:
         AddClassFrame.showDialog(null);
+        // Reload class list
     }//GEN-LAST:event_btnAddClassActionPerformed
 
     private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
         // TODO add your handling code here:
-        
+        mInfo.removeRow(tblInfo.getSelectedRow());
     }//GEN-LAST:event_btnRemoveInfoActionPerformed
+
+    private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
+        // TODO add your handling code here:
+        mInfo.addRow(new String[]{"",""});
+    }//GEN-LAST:event_btnAddInfoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -252,4 +264,13 @@ public class ClassFrame extends javax.swing.JPanel {
     private javax.swing.JTable tblInfo;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    private void resetForm() {
+        mInfo = (DefaultTableModel) tblInfo.getModel();
+        mInfo.setRowCount(0);
+        btnRemoveInfo.setEnabled(false);
+        txtName.setText("");
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(false);
+    }
 }
