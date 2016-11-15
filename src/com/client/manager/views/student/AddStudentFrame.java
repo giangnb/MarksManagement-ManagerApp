@@ -70,20 +70,20 @@ public class AddStudentFrame extends javax.swing.JPanel {
         dia.setLocationRelativeTo(owner);
         int mode = WindowUtility.showConfirm(owner, "Thêm học sinh", "Số lượng học sinh bạn muốn thêm:", new String[]{"Một học sinh", "Nhiều học sinh"});
         dia.add(new AddStudentFrame(mode));
-        if (mode>0) {
+        if (mode > 0) {
             dia.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             dia.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                int ch = WindowUtility.showConfirm(dia, "Đóng cửa sổ", "Bạn có thực sự muốn hủy bỏ việc thêm học sinh?", new String[]{"Không", "Có"});
-                if (ch==1) {
-                    dia.dispose();
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e);
+                    int ch = WindowUtility.showConfirm(dia, "Đóng cửa sổ", "Bạn có thực sự muốn hủy bỏ việc thêm học sinh?", new String[]{"Không", "Có"});
+                    if (ch == 1) {
+                        dia.dispose();
+                    }
                 }
-            }
-        });
+            });
         } else {
-            dia.setSize(new Dimension(dia.getSize().width,(int)(dia.getSize().height/1.5)));
+            dia.setSize(new Dimension(dia.getSize().width, (int) (dia.getSize().height / 1.5)));
             dia.setResizable(false);
         }
         dia.setVisible(true);
@@ -233,6 +233,11 @@ public class AddStudentFrame extends javax.swing.JPanel {
         });
 
         btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -359,12 +364,15 @@ public class AddStudentFrame extends javax.swing.JPanel {
 
     private void btnAddToListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToListActionPerformed
         // TODO add your handling code here:
+        tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
         StudentDTO s = new StudentDTO();
         s.setClassId(clazz);
         s.setName(txtName.getText());
         Information i = new Information();
         for (int j = 0; j < tblInfo.getRowCount(); j++) {
-            i.add(new SingleInformation(mInfo.getValueAt(j, 0).toString(), mInfo.getValueAt(j, 1).toString()));
+            if (mInfo.getValueAt(j, 0).toString().length()>0) {
+                i.add(new SingleInformation(mInfo.getValueAt(j, 0).toString(), mInfo.getValueAt(j, 1).toString()));
+            }
         }
         try {
             s.setInfo(i);
@@ -392,6 +400,16 @@ public class AddStudentFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         resetForm();
     }//GEN-LAST:event_btnCancelChangeActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        if (tblStudents.getSelectedRow() >= 0) {
+            StudentDTO stu = students.get(tblStudents.getSelectedRow());
+            students.remove(stu);
+            refreshStudentTable();
+        }
+        resetForm();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -455,6 +473,7 @@ public class AddStudentFrame extends javax.swing.JPanel {
         btnAddToList.setText("Thêm vào danh sách");
         btnCancelChange.setVisible(false);
         btnDelete.setVisible(false);
+        
     }
 
     private void refreshStudentTable() {
