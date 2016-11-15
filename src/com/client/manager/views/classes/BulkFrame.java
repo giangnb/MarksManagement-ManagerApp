@@ -5,17 +5,21 @@
  */
 package com.client.manager.views.classes;
 
+import com.client.service.Bulk;
+
 /**
  *
  * @author Phương Nam
  */
 public class BulkFrame extends javax.swing.JPanel {
+    private Bulk bulk;
 
     /**
      * Creates new form BulkFrame
      */
     public BulkFrame() {
         initComponents();
+        
     }
 
     /**
@@ -42,6 +46,11 @@ public class BulkFrame extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
 
         btnAdd.setText("Thêm mới");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         ListBulk.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Khối 10", "Khối 11", "Khối 12" };
@@ -164,6 +173,10 @@ public class BulkFrame extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -61,6 +61,8 @@ public class MainScreen extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -118,6 +120,15 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+        jMenu1.add(jSeparator5);
+
+        jMenuItem15.setText("Môn học");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem15);
 
         jMenuBar1.add(jMenu1);
 
@@ -384,6 +395,11 @@ public class MainScreen extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, msg.toString(), "Giới thiệu", JOptionPane.DEFAULT_OPTION, new ImageIcon(Application.ICON));
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        setViewPort(new ClassBulkFrame(2));
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem chkApp;
     private javax.swing.JCheckBoxMenuItem chkWeb;
@@ -401,6 +417,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -413,6 +430,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JMenu mnuStudentList;
     static final javax.swing.JPanel pnlViewPort = new javax.swing.JPanel();
     private javax.swing.JScrollPane scrViewPort;

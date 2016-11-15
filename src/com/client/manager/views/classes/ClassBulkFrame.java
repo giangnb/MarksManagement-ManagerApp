@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
  */
 public class ClassBulkFrame extends javax.swing.JPanel {
 
-    private static JScrollPane scr1 = null, scr2 = null;
+    private static JScrollPane scr1 = null, scr2 = null, scr3 = null;
 
     /**
      * Creates new form ClassBulkFrame
@@ -33,34 +33,60 @@ public class ClassBulkFrame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
         tabMain.setToolTipText("");
         tabMain.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel1.setText("Tải lại");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        scr1=null;
+        scr2=null;
+        scr3=null;
+        initTabs(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void initTabs(int index) {
         new Thread(() -> {
             LoadingScreen load = new LoadingScreen("Xin chờ...");
             load.setVisible(true);
 
-            if (scr1 == null || scr2 == null) {
+            if (scr1 == null || scr2 == null || scr3 ==null) {
                 scr1 = new JScrollPane(new BulkFrame());
                 scr2 = new JScrollPane(new ClassFrame());
+                scr3 = new JScrollPane(new SubjectFrame());
             }
             
             tabMain.removeAll();
             tabMain.add("Khối", scr1);
             tabMain.add("Lớp học", scr2);
+            tabMain.add("Môn học", scr3);
             tabMain.setSelectedIndex(index);
 
             load.dispose();
@@ -69,6 +95,7 @@ public class ClassBulkFrame extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     public static final javax.swing.JTabbedPane tabMain = new javax.swing.JTabbedPane();
     // End of variables declaration//GEN-END:variables
 }
