@@ -23,12 +23,6 @@ public class WebMethods implements Serializable{
         return port.addAdmin(adminAccount);
     }
 
-    public static int addBulk(com.client.service.Bulk bulk) {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.addBulk(bulk);
-    }
-
     public static int addClass(com.client.service.Clazz _class) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
@@ -238,12 +232,6 @@ public class WebMethods implements Serializable{
         return port.updateAdmin(adminAccount);
     }
 
-    public static int updateBulk(com.client.service.Bulk bulk) {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.updateBulk(bulk);
-    }
-
     public static int updateClass(com.client.service.Clazz _class) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
@@ -302,6 +290,18 @@ public class WebMethods implements Serializable{
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
         return port.addStudentsList(studentList);
+    }
+
+    private static int addBulk(com.client.service.Bulk bulk, java.util.List<com.client.service.Subject> subjectList) {
+        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
+        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
+        return port.addBulk(bulk, subjectList);
+    }
+
+    private static int updateBulk(com.client.service.Bulk bulk, java.util.List<com.client.service.Subject> subjectList) {
+        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
+        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
+        return port.updateBulk(bulk, subjectList);
     }
     
 }

@@ -16,6 +16,54 @@
 <message name="getPropertyByKeyResponse">
 <part name="parameters" element="tns:getPropertyByKeyResponse" />
 </message>
+<message name="addAdmin">
+<part name="parameters" element="tns:addAdmin" />
+</message>
+<message name="addAdminResponse">
+<part name="parameters" element="tns:addAdminResponse" />
+</message>
+<message name="updateAdmin">
+<part name="parameters" element="tns:updateAdmin" />
+</message>
+<message name="updateAdminResponse">
+<part name="parameters" element="tns:updateAdminResponse" />
+</message>
+<message name="removeAdmin">
+<part name="parameters" element="tns:removeAdmin" />
+</message>
+<message name="removeAdminResponse">
+<part name="parameters" element="tns:removeAdminResponse" />
+</message>
+<message name="getPropertyValueByKey">
+<part name="parameters" element="tns:getPropertyValueByKey" />
+</message>
+<message name="getPropertyValueByKeyResponse">
+<part name="parameters" element="tns:getPropertyValueByKeyResponse" />
+</message>
+<message name="updateProperty">
+<part name="parameters" element="tns:updateProperty" />
+</message>
+<message name="updatePropertyResponse">
+<part name="parameters" element="tns:updatePropertyResponse" />
+</message>
+<message name="getScoresBySubject">
+<part name="parameters" element="tns:getScoresBySubject" />
+</message>
+<message name="getScoresBySubjectResponse">
+<part name="parameters" element="tns:getScoresBySubjectResponse" />
+</message>
+<message name="getScoresByStudentAndSubject">
+<part name="parameters" element="tns:getScoresByStudentAndSubject" />
+</message>
+<message name="getScoresByStudentAndSubjectResponse">
+<part name="parameters" element="tns:getScoresByStudentAndSubjectResponse" />
+</message>
+<message name="getScoresBySubjectAndClass">
+<part name="parameters" element="tns:getScoresBySubjectAndClass" />
+</message>
+<message name="getScoresBySubjectAndClassResponse">
+<part name="parameters" element="tns:getScoresBySubjectAndClassResponse" />
+</message>
 <message name="addScore">
 <part name="parameters" element="tns:addScore" />
 </message>
@@ -45,6 +93,54 @@
 </message>
 <message name="removeScoresResponse">
 <part name="parameters" element="tns:removeScoresResponse" />
+</message>
+<message name="addStudentsList">
+<part name="parameters" element="tns:addStudentsList" />
+</message>
+<message name="addStudentsListResponse">
+<part name="parameters" element="tns:addStudentsListResponse" />
+</message>
+<message name="updateStudent">
+<part name="parameters" element="tns:updateStudent" />
+</message>
+<message name="updateStudentResponse">
+<part name="parameters" element="tns:updateStudentResponse" />
+</message>
+<message name="removeStudent">
+<part name="parameters" element="tns:removeStudent" />
+</message>
+<message name="removeStudentResponse">
+<part name="parameters" element="tns:removeStudentResponse" />
+</message>
+<message name="getTeachers">
+<part name="parameters" element="tns:getTeachers" />
+</message>
+<message name="getTeachersResponse">
+<part name="parameters" element="tns:getTeachersResponse" />
+</message>
+<message name="getTeacherById">
+<part name="parameters" element="tns:getTeacherById" />
+</message>
+<message name="getTeacherByIdResponse">
+<part name="parameters" element="tns:getTeacherByIdResponse" />
+</message>
+<message name="getTeacherByName">
+<part name="parameters" element="tns:getTeacherByName" />
+</message>
+<message name="getTeacherByNameResponse">
+<part name="parameters" element="tns:getTeacherByNameResponse" />
+</message>
+<message name="addTeacher">
+<part name="parameters" element="tns:addTeacher" />
+</message>
+<message name="addTeacherResponse">
+<part name="parameters" element="tns:addTeacherResponse" />
+</message>
+<message name="updateTeacher">
+<part name="parameters" element="tns:updateTeacher" />
+</message>
+<message name="updateTeacherResponse">
+<part name="parameters" element="tns:updateTeacherResponse" />
 </message>
 <message name="archiveToLog">
 <part name="parameters" element="tns:archiveToLog" />
@@ -124,53 +220,29 @@
 <message name="adminLoginResponse">
 <part name="parameters" element="tns:adminLoginResponse" />
 </message>
+<message name="getAdmins">
+<part name="parameters" element="tns:getAdmins" />
+</message>
+<message name="getAdminsResponse">
+<part name="parameters" element="tns:getAdminsResponse" />
+</message>
+<message name="getStudents">
+<part name="parameters" element="tns:getStudents" />
+</message>
+<message name="getStudentsResponse">
+<part name="parameters" element="tns:getStudentsResponse" />
+</message>
 <message name="getStudentById">
 <part name="parameters" element="tns:getStudentById" />
 </message>
 <message name="getStudentByIdResponse">
 <part name="parameters" element="tns:getStudentByIdResponse" />
 </message>
-<message name="addStudentsList">
-<part name="parameters" element="tns:addStudentsList" />
+<message name="addStudent">
+<part name="parameters" element="tns:addStudent" />
 </message>
-<message name="addStudentsListResponse">
-<part name="parameters" element="tns:addStudentsListResponse" />
-</message>
-<message name="updateStudent">
-<part name="parameters" element="tns:updateStudent" />
-</message>
-<message name="updateStudentResponse">
-<part name="parameters" element="tns:updateStudentResponse" />
-</message>
-<message name="removeStudent">
-<part name="parameters" element="tns:removeStudent" />
-</message>
-<message name="removeStudentResponse">
-<part name="parameters" element="tns:removeStudentResponse" />
-</message>
-<message name="getTeachers">
-<part name="parameters" element="tns:getTeachers" />
-</message>
-<message name="getTeachersResponse">
-<part name="parameters" element="tns:getTeachersResponse" />
-</message>
-<message name="getTeacherById">
-<part name="parameters" element="tns:getTeacherById" />
-</message>
-<message name="getTeacherByIdResponse">
-<part name="parameters" element="tns:getTeacherByIdResponse" />
-</message>
-<message name="getTeacherByName">
-<part name="parameters" element="tns:getTeacherByName" />
-</message>
-<message name="getTeacherByNameResponse">
-<part name="parameters" element="tns:getTeacherByNameResponse" />
-</message>
-<message name="addTeacher">
-<part name="parameters" element="tns:addTeacher" />
-</message>
-<message name="addTeacherResponse">
-<part name="parameters" element="tns:addTeacherResponse" />
+<message name="addStudentResponse">
+<part name="parameters" element="tns:addStudentResponse" />
 </message>
 <message name="getStudentsByName">
 <part name="parameters" element="tns:getStudentsByName" />
@@ -183,18 +255,6 @@
 </message>
 <message name="getStudentsByClassResponse">
 <part name="parameters" element="tns:getStudentsByClassResponse" />
-</message>
-<message name="addStudent">
-<part name="parameters" element="tns:addStudent" />
-</message>
-<message name="addStudentResponse">
-<part name="parameters" element="tns:addStudentResponse" />
-</message>
-<message name="updateTeacher">
-<part name="parameters" element="tns:updateTeacher" />
-</message>
-<message name="updateTeacherResponse">
-<part name="parameters" element="tns:updateTeacherResponse" />
 </message>
 <message name="getSubjects">
 <part name="parameters" element="tns:getSubjects" />
@@ -244,66 +304,6 @@
 <message name="teacherLoginResponse">
 <part name="parameters" element="tns:teacherLoginResponse" />
 </message>
-<message name="getAdmins">
-<part name="parameters" element="tns:getAdmins" />
-</message>
-<message name="getAdminsResponse">
-<part name="parameters" element="tns:getAdminsResponse" />
-</message>
-<message name="addAdmin">
-<part name="parameters" element="tns:addAdmin" />
-</message>
-<message name="addAdminResponse">
-<part name="parameters" element="tns:addAdminResponse" />
-</message>
-<message name="updateAdmin">
-<part name="parameters" element="tns:updateAdmin" />
-</message>
-<message name="updateAdminResponse">
-<part name="parameters" element="tns:updateAdminResponse" />
-</message>
-<message name="removeAdmin">
-<part name="parameters" element="tns:removeAdmin" />
-</message>
-<message name="removeAdminResponse">
-<part name="parameters" element="tns:removeAdminResponse" />
-</message>
-<message name="getPropertyValueByKey">
-<part name="parameters" element="tns:getPropertyValueByKey" />
-</message>
-<message name="getPropertyValueByKeyResponse">
-<part name="parameters" element="tns:getPropertyValueByKeyResponse" />
-</message>
-<message name="updateProperty">
-<part name="parameters" element="tns:updateProperty" />
-</message>
-<message name="updatePropertyResponse">
-<part name="parameters" element="tns:updatePropertyResponse" />
-</message>
-<message name="getStudents">
-<part name="parameters" element="tns:getStudents" />
-</message>
-<message name="getStudentsResponse">
-<part name="parameters" element="tns:getStudentsResponse" />
-</message>
-<message name="getScoresBySubject">
-<part name="parameters" element="tns:getScoresBySubject" />
-</message>
-<message name="getScoresBySubjectResponse">
-<part name="parameters" element="tns:getScoresBySubjectResponse" />
-</message>
-<message name="getScoresByStudentAndSubject">
-<part name="parameters" element="tns:getScoresByStudentAndSubject" />
-</message>
-<message name="getScoresByStudentAndSubjectResponse">
-<part name="parameters" element="tns:getScoresByStudentAndSubjectResponse" />
-</message>
-<message name="getScoresBySubjectAndClass">
-<part name="parameters" element="tns:getScoresBySubjectAndClass" />
-</message>
-<message name="getScoresBySubjectAndClassResponse">
-<part name="parameters" element="tns:getScoresBySubjectAndClassResponse" />
-</message>
 <message name="removeProperty">
 <part name="parameters" element="tns:removeProperty" />
 </message>
@@ -337,6 +337,38 @@
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getPropertyByKeyRequest" message="tns:getPropertyByKey" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getPropertyByKeyResponse" message="tns:getPropertyByKeyResponse" />
 </operation>
+<operation name="addAdmin">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addAdminRequest" message="tns:addAdmin" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addAdminResponse" message="tns:addAdminResponse" />
+</operation>
+<operation name="updateAdmin">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateAdminRequest" message="tns:updateAdmin" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateAdminResponse" message="tns:updateAdminResponse" />
+</operation>
+<operation name="removeAdmin">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeAdminRequest" message="tns:removeAdmin" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeAdminResponse" message="tns:removeAdminResponse" />
+</operation>
+<operation name="getPropertyValueByKey">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getPropertyValueByKeyRequest" message="tns:getPropertyValueByKey" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getPropertyValueByKeyResponse" message="tns:getPropertyValueByKeyResponse" />
+</operation>
+<operation name="updateProperty">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updatePropertyRequest" message="tns:updateProperty" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updatePropertyResponse" message="tns:updatePropertyResponse" />
+</operation>
+<operation name="getScoresBySubject">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectRequest" message="tns:getScoresBySubject" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectResponse" message="tns:getScoresBySubjectResponse" />
+</operation>
+<operation name="getScoresByStudentAndSubject">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresByStudentAndSubjectRequest" message="tns:getScoresByStudentAndSubject" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresByStudentAndSubjectResponse" message="tns:getScoresByStudentAndSubjectResponse" />
+</operation>
+<operation name="getScoresBySubjectAndClass">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectAndClassRequest" message="tns:getScoresBySubjectAndClass" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectAndClassResponse" message="tns:getScoresBySubjectAndClassResponse" />
+</operation>
 <operation name="addScore">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addScoreRequest" message="tns:addScore" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addScoreResponse" message="tns:addScoreResponse" />
@@ -356,6 +388,38 @@
 <operation name="removeScores">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeScoresRequest" message="tns:removeScores" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeScoresResponse" message="tns:removeScoresResponse" />
+</operation>
+<operation name="addStudentsList">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentsListRequest" message="tns:addStudentsList" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentsListResponse" message="tns:addStudentsListResponse" />
+</operation>
+<operation name="updateStudent">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateStudentRequest" message="tns:updateStudent" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateStudentResponse" message="tns:updateStudentResponse" />
+</operation>
+<operation name="removeStudent">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeStudentRequest" message="tns:removeStudent" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeStudentResponse" message="tns:removeStudentResponse" />
+</operation>
+<operation name="getTeachers">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeachersRequest" message="tns:getTeachers" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeachersResponse" message="tns:getTeachersResponse" />
+</operation>
+<operation name="getTeacherById">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByIdRequest" message="tns:getTeacherById" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByIdResponse" message="tns:getTeacherByIdResponse" />
+</operation>
+<operation name="getTeacherByName">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByNameRequest" message="tns:getTeacherByName" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByNameResponse" message="tns:getTeacherByNameResponse" />
+</operation>
+<operation name="addTeacher">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addTeacherRequest" message="tns:addTeacher" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addTeacherResponse" message="tns:addTeacherResponse" />
+</operation>
+<operation name="updateTeacher">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateTeacherRequest" message="tns:updateTeacher" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateTeacherResponse" message="tns:updateTeacherResponse" />
 </operation>
 <operation name="archiveToLog">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/archiveToLogRequest" message="tns:archiveToLog" />
@@ -409,37 +473,21 @@
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/adminLoginRequest" message="tns:adminLogin" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/adminLoginResponse" message="tns:adminLoginResponse" />
 </operation>
+<operation name="getAdmins">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getAdminsRequest" message="tns:getAdmins" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getAdminsResponse" message="tns:getAdminsResponse" />
+</operation>
+<operation name="getStudents">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsRequest" message="tns:getStudents" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsResponse" message="tns:getStudentsResponse" />
+</operation>
 <operation name="getStudentById">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentByIdRequest" message="tns:getStudentById" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentByIdResponse" message="tns:getStudentByIdResponse" />
 </operation>
-<operation name="addStudentsList">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentsListRequest" message="tns:addStudentsList" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentsListResponse" message="tns:addStudentsListResponse" />
-</operation>
-<operation name="updateStudent">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateStudentRequest" message="tns:updateStudent" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateStudentResponse" message="tns:updateStudentResponse" />
-</operation>
-<operation name="removeStudent">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeStudentRequest" message="tns:removeStudent" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeStudentResponse" message="tns:removeStudentResponse" />
-</operation>
-<operation name="getTeachers">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeachersRequest" message="tns:getTeachers" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeachersResponse" message="tns:getTeachersResponse" />
-</operation>
-<operation name="getTeacherById">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByIdRequest" message="tns:getTeacherById" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByIdResponse" message="tns:getTeacherByIdResponse" />
-</operation>
-<operation name="getTeacherByName">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByNameRequest" message="tns:getTeacherByName" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getTeacherByNameResponse" message="tns:getTeacherByNameResponse" />
-</operation>
-<operation name="addTeacher">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addTeacherRequest" message="tns:addTeacher" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addTeacherResponse" message="tns:addTeacherResponse" />
+<operation name="addStudent">
+<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentRequest" message="tns:addStudent" />
+<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentResponse" message="tns:addStudentResponse" />
 </operation>
 <operation name="getStudentsByName">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsByNameRequest" message="tns:getStudentsByName" />
@@ -448,14 +496,6 @@
 <operation name="getStudentsByClass">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsByClassRequest" message="tns:getStudentsByClass" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsByClassResponse" message="tns:getStudentsByClassResponse" />
-</operation>
-<operation name="addStudent">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentRequest" message="tns:addStudent" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addStudentResponse" message="tns:addStudentResponse" />
-</operation>
-<operation name="updateTeacher">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateTeacherRequest" message="tns:updateTeacher" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateTeacherResponse" message="tns:updateTeacherResponse" />
 </operation>
 <operation name="getSubjects">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getSubjectsRequest" message="tns:getSubjects" />
@@ -489,46 +529,6 @@
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/teacherLoginRequest" message="tns:teacherLogin" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/teacherLoginResponse" message="tns:teacherLoginResponse" />
 </operation>
-<operation name="getAdmins">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getAdminsRequest" message="tns:getAdmins" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getAdminsResponse" message="tns:getAdminsResponse" />
-</operation>
-<operation name="addAdmin">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/addAdminRequest" message="tns:addAdmin" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/addAdminResponse" message="tns:addAdminResponse" />
-</operation>
-<operation name="updateAdmin">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateAdminRequest" message="tns:updateAdmin" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updateAdminResponse" message="tns:updateAdminResponse" />
-</operation>
-<operation name="removeAdmin">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeAdminRequest" message="tns:removeAdmin" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/removeAdminResponse" message="tns:removeAdminResponse" />
-</operation>
-<operation name="getPropertyValueByKey">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getPropertyValueByKeyRequest" message="tns:getPropertyValueByKey" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getPropertyValueByKeyResponse" message="tns:getPropertyValueByKeyResponse" />
-</operation>
-<operation name="updateProperty">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/updatePropertyRequest" message="tns:updateProperty" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/updatePropertyResponse" message="tns:updatePropertyResponse" />
-</operation>
-<operation name="getStudents">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsRequest" message="tns:getStudents" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getStudentsResponse" message="tns:getStudentsResponse" />
-</operation>
-<operation name="getScoresBySubject">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectRequest" message="tns:getScoresBySubject" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectResponse" message="tns:getScoresBySubjectResponse" />
-</operation>
-<operation name="getScoresByStudentAndSubject">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresByStudentAndSubjectRequest" message="tns:getScoresByStudentAndSubject" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresByStudentAndSubjectResponse" message="tns:getScoresByStudentAndSubjectResponse" />
-</operation>
-<operation name="getScoresBySubjectAndClass">
-<input wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectAndClassRequest" message="tns:getScoresBySubjectAndClass" />
-<output wsam:Action="http://ws.marksmana.com/ApplicationWebService/getScoresBySubjectAndClassResponse" message="tns:getScoresBySubjectAndClassResponse" />
-</operation>
 <operation name="removeProperty">
 <input wsam:Action="http://ws.marksmana.com/ApplicationWebService/removePropertyRequest" message="tns:removeProperty" />
 <output wsam:Action="http://ws.marksmana.com/ApplicationWebService/removePropertyResponse" message="tns:removePropertyResponse" />
@@ -558,6 +558,78 @@
 </output>
 </operation>
 <operation name="getPropertyByKey">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="addAdmin">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="updateAdmin">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="removeAdmin">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getPropertyValueByKey">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="updateProperty">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getScoresBySubject">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getScoresByStudentAndSubject">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getScoresBySubjectAndClass">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -603,6 +675,78 @@
 </output>
 </operation>
 <operation name="removeScores">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="addStudentsList">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="updateStudent">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="removeStudent">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getTeachers">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getTeacherById">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getTeacherByName">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="addTeacher">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="updateTeacher">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -728,6 +872,24 @@
 <soap:body use="literal" />
 </output>
 </operation>
+<operation name="getAdmins">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getStudents">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
 <operation name="getStudentById">
 <soap:operation soapAction="" />
 <input>
@@ -737,61 +899,7 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="addStudentsList">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="updateStudent">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="removeStudent">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getTeachers">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getTeacherById">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getTeacherByName">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="addTeacher">
+<operation name="addStudent">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -810,24 +918,6 @@
 </output>
 </operation>
 <operation name="getStudentsByClass">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="addStudent">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="updateTeacher">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -900,96 +990,6 @@
 </output>
 </operation>
 <operation name="teacherLogin">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getAdmins">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="addAdmin">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="updateAdmin">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="removeAdmin">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getPropertyValueByKey">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="updateProperty">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getStudents">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getScoresBySubject">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getScoresByStudentAndSubject">
-<soap:operation soapAction="" />
-<input>
-<soap:body use="literal" />
-</input>
-<output>
-<soap:body use="literal" />
-</output>
-</operation>
-<operation name="getScoresBySubjectAndClass">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
