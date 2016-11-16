@@ -59,12 +59,6 @@ public class WebMethods implements Serializable{
         return port.addTeacher(teacher);
     }
 
-    public static Admin adminLogin(java.lang.String credential) {
-        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
-        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
-        return port.adminLogin(credential);
-    }
-
     public static void archiveToLog(int classId) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
@@ -292,16 +286,22 @@ public class WebMethods implements Serializable{
         return port.addStudentsList(studentList);
     }
 
-    private static int addBulk(com.client.service.Bulk bulk, java.util.List<com.client.service.Subject> subjectList) {
+    public static int addBulk(com.client.service.Bulk bulk, java.util.List<com.client.service.Subject> subjectList) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
         return port.addBulk(bulk, subjectList);
     }
 
-    private static int updateBulk(com.client.service.Bulk bulk, java.util.List<com.client.service.Subject> subjectList) {
+    public static int updateBulk(com.client.service.Bulk bulk, java.util.List<com.client.service.Subject> subjectList) {
         com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
         com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
         return port.updateBulk(bulk, subjectList);
+    }
+
+    public static Admin adminLogin(java.lang.String user, java.lang.String pass) {
+        com.client.service.ApplicationWebService_Service service = new com.client.service.ApplicationWebService_Service();
+        com.client.service.ApplicationWebService port = service.getApplicationWebServicePort();
+        return port.adminLogin(user, pass);
     }
     
 }

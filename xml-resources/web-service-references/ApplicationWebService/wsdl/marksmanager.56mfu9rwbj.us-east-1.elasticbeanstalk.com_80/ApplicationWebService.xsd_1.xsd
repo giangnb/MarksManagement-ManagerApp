@@ -232,15 +232,19 @@
 
 <xs:element name="updateTeacherResponse" type="tns:updateTeacherResponse" />
 
-<xs:complexType name="getScoresBySubjectAndClass">
+<xs:complexType name="getStudents">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="getStudentsResponse">
 <xs:sequence>
-<xs:element name="subject" type="tns:subject" minOccurs="0" />
-<xs:element name="clazz" type="tns:clazz" minOccurs="0" />
+<xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="subject">
+<xs:complexType name="student">
 <xs:sequence>
+<xs:element name="classId" type="tns:clazz" minOccurs="0" />
 <xs:element name="id" type="xs:int" minOccurs="0" />
 <xs:element name="info" type="xs:string" minOccurs="0" />
 <xs:element name="name" type="xs:string" minOccurs="0" />
@@ -266,6 +270,14 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="subject">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="info" type="xs:string" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="teacher">
 <xs:sequence>
 <xs:element name="id" type="xs:int" minOccurs="0" />
@@ -273,6 +285,13 @@
 <xs:element name="name" type="xs:string" minOccurs="0" />
 <xs:element name="pass" type="xs:string" minOccurs="0" />
 <xs:element name="username" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getScoresBySubjectAndClass">
+<xs:sequence>
+<xs:element name="subject" type="tns:subject" minOccurs="0" />
+<xs:element name="clazz" type="tns:clazz" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
@@ -293,25 +312,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="student">
-<xs:sequence>
-<xs:element name="classId" type="tns:clazz" minOccurs="0" />
-<xs:element name="id" type="xs:int" minOccurs="0" />
-<xs:element name="info" type="xs:string" minOccurs="0" />
-<xs:element name="name" type="xs:string" minOccurs="0" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getStudents">
-<xs:sequence />
-</xs:complexType>
-
-<xs:complexType name="getStudentsResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded" />
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getProperties">
 <xs:sequence />
 </xs:complexType>
@@ -329,16 +329,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getTeachers">
-<xs:sequence />
-</xs:complexType>
-
-<xs:complexType name="getTeachersResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:teacher" minOccurs="0" maxOccurs="unbounded" />
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="removeClass">
 <xs:sequence>
 <xs:element name="id" type="xs:int" />
@@ -348,6 +338,16 @@
 <xs:complexType name="removeClassResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getTeachers">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="getTeachersResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:teacher" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
 
@@ -373,6 +373,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="archiveToLog">
+<xs:sequence>
+<xs:element name="classId" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="archiveToLogResponse">
+<xs:sequence />
+</xs:complexType>
+
 <xs:complexType name="getTeacherById">
 <xs:sequence>
 <xs:element name="id" type="xs:int" />
@@ -385,16 +395,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="archiveToLog">
-<xs:sequence>
-<xs:element name="classId" type="xs:int" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="archiveToLogResponse">
-<xs:sequence />
-</xs:complexType>
-
 <xs:complexType name="getAdmins">
 <xs:sequence>
 <xs:element name="currentAccount" type="tns:admin" minOccurs="0" />
@@ -404,18 +404,6 @@
 <xs:complexType name="getAdminsResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:admin" minOccurs="0" maxOccurs="unbounded" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getScoresBySubject">
-<xs:sequence>
-<xs:element name="subject" type="tns:subject" minOccurs="0" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getScoresBySubjectResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:score" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
 
@@ -434,13 +422,26 @@
 
 <xs:complexType name="adminLogin">
 <xs:sequence>
-<xs:element name="credential" type="xs:string" minOccurs="0" />
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="pass" type="xs:string" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="adminLoginResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:admin" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getScoresBySubject">
+<xs:sequence>
+<xs:element name="subject" type="tns:subject" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getScoresBySubjectResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:score" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
 

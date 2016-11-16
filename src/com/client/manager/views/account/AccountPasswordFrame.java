@@ -105,7 +105,6 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         oldPass = new String(txtOldPassword.getPassword());
         newPass = new String(txtNewPassword.getPassword());
         rePass = new String(txtRetypePassword.getPassword());
-        String cred = Application.ACCOUNT.getId() + "::" + oldPass.replace("::", ":/:");
         
         
 //        if (newPass.length() < 6) {
@@ -113,7 +112,9 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
 //        } else 
             if (!newPass.equals(rePass)) {
             JOptionPane.showConfirmDialog(this, "Sai mật khẩu xác nhận", "Lỗi!", JOptionPane.DEFAULT_OPTION);
-        } else if (WebMethods.adminLogin(cred) == null) {
+        } else if(oldPass.equals(newPass)) {
+            JOptionPane.showConfirmDialog(this, "Mật khẩu mới phải khác mật khẩu cũ", "Lỗi!", JOptionPane.DEFAULT_OPTION);
+        } else if (WebMethods.adminLogin(Application.ACCOUNT.getId(), oldPass) == null) {
             JOptionPane.showConfirmDialog(this, "Mật khẩu cũ không đúng", "Lỗi!", JOptionPane.DEFAULT_OPTION);
         } else {
 //            Application.ACCOUNT.setPass(newPass);

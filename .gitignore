@@ -61,19 +61,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-nbproject/ant-deploy.xml
-nbproject/build-impl.xml
-nbproject/genfiles.properties
-nbproject/*
 nbproject
 /dist/
 dist/*
 /build/
 build/*
-errors.log
-currentaccount.dat
-nbproject/project.properties
-nbproject/private/private.xml
-nbproject/project.properties
-nbproject/private/private.xml
-nbproject/private/*
+/nbproject/
+nbproject/*
