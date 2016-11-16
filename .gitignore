@@ -68,3 +68,10 @@ dist/*
 build/*
 /nbproject/
 nbproject/*
+repo/nbproject/private/private.xml
+repo/nbproject/jaxws-build.xml
+repo/nbproject/private/private.properties
+nbproject/private/private.xml
+nbproject/jaxws-build.xml
+nbproject/private/private.properties
+build/built-jar.properties
