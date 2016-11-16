@@ -5,6 +5,14 @@
  */
 package com.client.manager.views.account;
 
+import com.client.manager.Application;
+import com.client.manager.constants.WebMethods;
+import com.client.manager.dto.AdminDTO;
+import com.client.manager.views.LoadingScreen;
+import com.client.service.Admin;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +21,16 @@ import javax.swing.JOptionPane;
  */
 public class AdminAccountFrame extends javax.swing.JPanel {
 
+    private List<AdminDTO> admins = new ArrayList<>();
+    private DefaultListModel mList;
+
     /**
      * Creates new form AdminAccountFrame
      */
     public AdminAccountFrame() {
         initComponents();
+
+        initList();
     }
 
     /**
@@ -42,7 +55,7 @@ public class AdminAccountFrame extends javax.swing.JPanel {
         btnAddEdit = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProperties = new javax.swing.JTable();
         txtPassword = new javax.swing.JTextField();
 
         btnAddNew.setText("Thêm mới");
@@ -79,12 +92,12 @@ public class AdminAccountFrame extends javax.swing.JPanel {
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProperties.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {"Teacher",  new Boolean(false)},
+                {"Class", null},
+                {"Student", null},
+                {"Admin", null}
             },
             new String [] {
                 "Quyền", ""
@@ -105,9 +118,9 @@ public class AdminAccountFrame extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jScrollPane3.setViewportView(tblProperties);
+        if (tblProperties.getColumnModel().getColumnCount() > 0) {
+            tblProperties.getColumnModel().getColumn(0).setResizable(false);
         }
 
         txtPassword.setEditable(false);
@@ -193,12 +206,13 @@ public class AdminAccountFrame extends javax.swing.JPanel {
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
-        
+
+
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
         // TODO add your handling code here:
-        if (txtUser.getText().length()>5) {
+        if (txtUser.getText().length() > 5) {
             // Dung
         } else {
             // sai
@@ -216,13 +230,29 @@ public class AdminAccountFrame extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblProperties;
     private javax.swing.JLabel lblUser;
     private javax.swing.JList<String> lstAddNew;
+    private javax.swing.JTable tblProperties;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    private void initList() {
+        mList = new DefaultListModel();
+        lstAddNew.setModel(mList);
+        new Thread(() -> {
+            LoadingScreen load = new LoadingScreen("Đang tải...");
+            load.setVisible(true);
+            List<Admin> list = WebMethods.getAdmins(Application.ACCOUNT);
+            for (Admin a : list) {
+                admins.add(new AdminDTO(a));
+                mList.addElement(new AdminDTO(a));
+            }
+            load.dispose();
+        }).start();
+
+    }
 
 }

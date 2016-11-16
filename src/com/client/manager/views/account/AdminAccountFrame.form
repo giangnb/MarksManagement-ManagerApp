@@ -216,12 +216,22 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblProperties">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="4">
-                <Column editable="false" title="Quy&#x1ec1;n" type="java.lang.String"/>
-                <Column editable="true" title="" type="java.lang.Boolean"/>
+                <Column editable="false" title="Quy&#x1ec1;n" type="java.lang.String">
+                  <Data value="Teacher"/>
+                  <Data value="Class"/>
+                  <Data value="Student"/>
+                  <Data value="Admin"/>
+                </Column>
+                <Column editable="true" title="" type="java.lang.Boolean">
+                  <Data value="false"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

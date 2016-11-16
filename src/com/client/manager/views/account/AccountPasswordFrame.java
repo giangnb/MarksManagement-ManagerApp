@@ -5,6 +5,13 @@
  */
 package com.client.manager.views.account;
 
+import com.client.manager.Application;
+import com.client.manager.constants.WebMethods;
+import com.client.manager.dto.AdminDTO;
+import com.client.service.Admin;
+import javax.jws.WebMethod;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LeDat
@@ -95,21 +102,23 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
         // TODO add your handling code here:
         String oldPass, newPass, rePass;
-        oldPass  =new String(txtOldPassword.getPassword());
-        newPass=new String(txtNewPassword.getPassword());
-        rePass=new String(txtRetypePassword.getPassword());
-        boolean isValid = true;
-        if (newPass.length()<5) {
-            isValid = false;
-        }
-        if (!newPass.equals(rePass)) {
-            isValid = false;
-        }
+        oldPass = new String(txtOldPassword.getPassword());
+        newPass = new String(txtNewPassword.getPassword());
+        rePass = new String(txtRetypePassword.getPassword());
+        String cred = Application.ACCOUNT.getId() + "::" + oldPass.replace("::", ":/:");
         
-        if (!isValid) {
-            // TB loi
+        
+//        if (newPass.length() < 6) {
+//            JOptionPane.showConfirmDialog(this, "Mậu khẩu tối thiểu 6 kí tự", "Lỗi!", JOptionPane.DEFAULT_OPTION);
+//        } else 
+            if (!newPass.equals(rePass)) {
+            JOptionPane.showConfirmDialog(this, "Sai mật khẩu xác nhận", "Lỗi!", JOptionPane.DEFAULT_OPTION);
+        } else if (WebMethods.adminLogin(cred) == null) {
+            JOptionPane.showConfirmDialog(this, "Mật khẩu cũ không đúng", "Lỗi!", JOptionPane.DEFAULT_OPTION);
         } else {
-            // ...
+//            Application.ACCOUNT.setPass(newPass);
+//            WebMethods.updateAdmin(Application.ACCOUNT);
+            JOptionPane.showConfirmDialog(this, "Đổi mật khẩu thành công", "Thông báo", JOptionPane.DEFAULT_OPTION);
         }
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
