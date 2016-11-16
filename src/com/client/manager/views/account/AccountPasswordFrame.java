@@ -107,18 +107,18 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         rePass = new String(txtRetypePassword.getPassword());
         
         
-//        if (newPass.length() < 6) {
-//            JOptionPane.showConfirmDialog(this, "Mậu khẩu tối thiểu 6 kí tự", "Lỗi!", JOptionPane.DEFAULT_OPTION);
-//        } else 
-            if (!newPass.equals(rePass)) {
+
+        if (!newPass.equals(rePass)) {
             JOptionPane.showConfirmDialog(this, "Sai mật khẩu xác nhận", "Lỗi!", JOptionPane.DEFAULT_OPTION);
+        } else if (newPass.length() < 5) {
+            JOptionPane.showConfirmDialog(this, "Mậu khẩu tối thiểu 5 kí tự", "Lỗi!", JOptionPane.DEFAULT_OPTION);
         } else if(oldPass.equals(newPass)) {
             JOptionPane.showConfirmDialog(this, "Mật khẩu mới phải khác mật khẩu cũ", "Lỗi!", JOptionPane.DEFAULT_OPTION);
         } else if (WebMethods.adminLogin(Application.ACCOUNT.getId(), oldPass) == null) {
             JOptionPane.showConfirmDialog(this, "Mật khẩu cũ không đúng", "Lỗi!", JOptionPane.DEFAULT_OPTION);
         } else {
-//            Application.ACCOUNT.setPass(newPass);
-//            WebMethods.updateAdmin(Application.ACCOUNT);
+            Application.ACCOUNT.setPass(newPass);
+            WebMethods.updateAdmin(Application.ACCOUNT);
             JOptionPane.showConfirmDialog(this, "Đổi mật khẩu thành công", "Thông báo", JOptionPane.DEFAULT_OPTION);
         }
     }//GEN-LAST:event_btnChangePasswordActionPerformed
