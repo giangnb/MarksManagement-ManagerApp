@@ -16,7 +16,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="credential" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="user" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pass" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +28,60 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "adminLogin", propOrder = {
-    "credential"
+    "user",
+    "pass"
 })
 public class AdminLogin {
 
-    protected String credential;
+    protected String user;
+    protected String pass;
 
     /**
-     * Gets the value of the credential property.
+     * Gets the value of the user property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCredential() {
-        return credential;
+    public String getUser() {
+        return user;
     }
 
     /**
-     * Sets the value of the credential property.
+     * Sets the value of the user property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCredential(String value) {
-        this.credential = value;
+    public void setUser(String value) {
+        this.user = value;
+    }
+
+    /**
+     * Gets the value of the pass property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPass() {
+        return pass;
+    }
+
+    /**
+     * Sets the value of the pass property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPass(String value) {
+        this.pass = value;
     }
 
 }

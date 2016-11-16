@@ -52,7 +52,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblInfo" min="-2" pref="96" max="-2" attributes="0"/>
-                                  <Component id="btnSub" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="btnRemoveInfo" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" pref="465" max="32767" attributes="0"/>
@@ -108,7 +108,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSub" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRemoveInfo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" pref="90" max="32767" attributes="0"/>
               </Group>
@@ -180,11 +180,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSub">
+    <Component class="javax.swing.JButton" name="btnRemoveInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveInfoActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

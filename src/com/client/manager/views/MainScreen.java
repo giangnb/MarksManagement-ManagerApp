@@ -15,6 +15,7 @@ import com.client.manager.views.account.AdminAccountFrame;
 import com.client.manager.views.classes.AddClassFrame;
 import com.client.manager.views.classes.ClassBulkFrame;
 import com.client.manager.views.student.AddStudentFrame;
+import com.client.manager.views.student.StudentFrame;
 import com.client.manager.views.system.SchoolInfoFrame;
 import com.client.manager.views.system.SystemInfoFrame;
 import com.client.manager.views.system.TeacherAccountFrame;
@@ -69,7 +70,7 @@ public class MainScreen extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        mnuStudentList = new javax.swing.JMenu();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         chkWeb = new javax.swing.JCheckBoxMenuItem();
@@ -82,6 +83,8 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -163,8 +166,13 @@ public class MainScreen extends javax.swing.JFrame {
 
         jMenu3.setText("Học sinh");
 
-        mnuStudentList.setText("Danh sách học sinh");
-        jMenu3.add(mnuStudentList);
+        jMenuItem17.setText("Danh sách học sinh");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem17);
 
         jMenuItem7.setText("Thêm học sinh");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -239,6 +247,16 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem12);
+        jMenu6.add(jSeparator6);
+
+        jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem16.setText("Đăng xuất");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem16);
 
         jMenuBar1.add(jMenu6);
 
@@ -400,6 +418,22 @@ public class MainScreen extends javax.swing.JFrame {
         setViewPort(new ClassBulkFrame(2));
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        int ch = WindowUtility.showConfirm(this, "Đăng xuất", "Bạn có thực sự muốn đăng xuất?", new String[]{"Đăng xuất", "Không"});
+        if (ch==0) {
+            Application.ACCOUNT=null;
+            this.setVisible(false);
+            new LoginScreen().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        //setViewPort(new StudentFrame());
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem chkApp;
     private javax.swing.JCheckBoxMenuItem chkWeb;
@@ -418,6 +452,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -431,7 +467,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
-    private javax.swing.JMenu mnuStudentList;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     static final javax.swing.JPanel pnlViewPort = new javax.swing.JPanel();
     private javax.swing.JScrollPane scrViewPort;
     // End of variables declaration//GEN-END:variables

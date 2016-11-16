@@ -7,17 +7,8 @@ package com.client.manager.views;
 
 import com.client.manager.Application;
 import com.client.manager.constants.WebMethods;
-import com.client.manager.constants.WindowUtility;
-import com.marksmana.info.Information;
-import com.marksmana.utils.Json;
-import java.io.File;
-import java.io.IOException;
-import static java.lang.System.exit;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
-import java.util.concurrent.Callable;
+import com.client.service.Admin;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -207,20 +198,23 @@ public class LoginScreen extends JFrame {
         txtPass.setEnabled(true);
     }
 
-    private Callable loginProcess() {
+    private void loginProcess() {
         // Validate
         String user = txtUser.getText();
-        String pass = new String(txtPass.getPassword()).replace("::", ":/:");
+        String pass = new String(txtPass.getPassword());
         if (user.length() < 5 || pass.length() < 5) {
             lblErrors.setText("Dữ liệu không hợp lệ");
         } else {
             // Authenticate
             try {
-                Application.ACCOUNT = WebMethods.adminLogin(user+"::"+pass);
+                Admin a = WebMethods.adminLogin(user, pass);
+                Application.ACCOUNT = a;
                 if (Application.ACCOUNT != null) {
                     JFrame frmMain = new MainScreen();
                     this.setVisible(false);
                     frmMain.setVisible(true);
+                    this.dispose();
+                    return;
                 }
                 lblErrors.setText("Sai thông tin");
                 txtPass.setText("");
@@ -231,6 +225,5 @@ public class LoginScreen extends JFrame {
 
         // Re-enable form
         enableForm();
-        return null;
     }
 }
