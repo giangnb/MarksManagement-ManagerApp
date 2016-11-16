@@ -5,17 +5,26 @@
  */
 package com.client.manager.views.system;
 
+import com.client.manager.Application;
+import com.marksmana.info.Information;
+import com.marksmana.info.SingleInformation;
+import com.marksmana.utils.Json;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HuongUD
  */
 public class SystemInfoFrame extends javax.swing.JPanel {
 
+    private DefaultTableModel mInfo;
+
     /**
      * Creates new form SystemInfoFrame
      */
     public SystemInfoFrame() {
         initComponents();
+        btnRemoveInfo.setEnabled(false);
     }
 
     /**
@@ -37,7 +46,7 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         spin = new javax.swing.JSpinner();
         lblInfo = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        btnSub = new javax.swing.JButton();
+        btnRemoveInfo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblInfo = new javax.swing.JTable();
         btnApply = new javax.swing.JButton();
@@ -77,8 +86,18 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         lblInfo.setText("Thông tin khác:");
 
         btnAdd.setText("+");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
-        btnSub.setText("-");
+        btnRemoveInfo.setText("-");
+        btnRemoveInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveInfoActionPerformed(evt);
+            }
+        });
 
         tblInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,7 +165,7 @@ public class SystemInfoFrame extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnAdd)
                                     .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSub, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnRemoveInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
@@ -187,7 +206,7 @@ public class SystemInfoFrame extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSub))
+                        .addComponent(btnRemoveInfo))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnApply)
@@ -225,6 +244,24 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnApplyActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        mInfo.addRow(new String[]{"", ""});
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
+        // TODO add your handling code here:
+        mInfo.removeRow(tblInfo.getSelectedRow());
+        btnRemoveInfo.setEnabled(false);
+    }//GEN-LAST:event_btnRemoveInfoActionPerformed
+    private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+        if (tblInfo.getSelectedRow() >= 0) {
+            btnRemoveInfo.setEnabled(true);
+        } else {
+            btnRemoveInfo.setEnabled(false);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -232,7 +269,7 @@ public class SystemInfoFrame extends javax.swing.JPanel {
     private javax.swing.JButton btnApplyy;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnHelpp;
-    private javax.swing.JButton btnSub;
+    private javax.swing.JButton btnRemoveInfo;
     private javax.swing.JCheckBox chbPMGV;
     private javax.swing.JCheckBox chbWebsite;
     private javax.swing.JScrollPane jScrollPane1;
@@ -247,4 +284,5 @@ public class SystemInfoFrame extends javax.swing.JPanel {
     private javax.swing.JTextField txtDateFormat;
     private javax.swing.JTextField txtDayFormat;
     // End of variables declaration//GEN-END:variables
+
 }
