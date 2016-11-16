@@ -431,7 +431,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        //setViewPort(new StudentFrame());
+        setViewPort(new StudentFrame());
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
