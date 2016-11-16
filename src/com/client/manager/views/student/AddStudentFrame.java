@@ -12,6 +12,7 @@ import com.client.manager.dto.ClazzDTO;
 import com.client.manager.dto.StudentDTO;
 import com.client.manager.views.LoadingScreen;
 import com.client.service.Clazz;
+import com.client.service.Student;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import java.awt.Dimension;
@@ -313,6 +314,36 @@ public class AddStudentFrame extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        switch (mode) {
+            case 0:
+                StudentDTO student = new StudentDTO();
+                returnStudentDTO(student);
+                if (WebMethods.addStudent(student.getStudent()) == 0){
+                    WindowUtility.showMessage(this, "Lỗi", "Thêm học sinh lỗi", WindowUtility.ERROR);
+                }else{
+                    WindowUtility.showMessage(this, "Thành công", "Thêm học sinh thành công", WindowUtility.DEFAULT);
+                    resetForm();
+                }
+                break;
+            case 1:
+                List<Student> studentObject = new ArrayList<>();
+                if (students.size() > 0) {
+                    for (StudentDTO s : students) {
+                        studentObject.add(s.getStudent());
+                    }
+                }
+                students = new ArrayList<>();
+                List<Student> errors = WebMethods.addStudentsList(studentObject);
+                if (errors.size() > 0) {
+                    for (Student er : errors) {
+                        students.add(new StudentDTO(er));
+                    }
+                    WindowUtility.showMessage(this, "Lỗi", "Danh sách bị lỗi", WindowUtility.ERROR);
+                }
+                refreshStudentTable();
+                resetForm();
+                break;
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
@@ -326,6 +357,7 @@ public class AddStudentFrame extends javax.swing.JPanel {
 
     private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
         // TODO add your handling code here:
+        tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
         if (tblInfo.getSelectedRow() >= 0) {
             mInfo.removeRow(tblInfo.getSelectedRow());
             btnRemoveInfo.setEnabled(false);
@@ -366,18 +398,7 @@ public class AddStudentFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
         StudentDTO s = new StudentDTO();
-        s.setClassId(clazz);
-        s.setName(txtName.getText());
-        Information i = new Information();
-        for (int j = 0; j < tblInfo.getRowCount(); j++) {
-            if (mInfo.getValueAt(j, 0).toString().length()>0) {
-                i.add(new SingleInformation(mInfo.getValueAt(j, 0).toString(), mInfo.getValueAt(j, 1).toString()));
-            }
-        }
-        try {
-            s.setInfo(i);
-        } catch (Exception ex) {
-        }
+        returnStudentDTO(s);
         if (currentSelection >= 0) {
             // replace on table
             students.remove(currentSelection);
@@ -386,6 +407,7 @@ public class AddStudentFrame extends javax.swing.JPanel {
             // add new
             students.add(s);
         }
+
         refreshStudentTable();
         resetForm();
     }//GEN-LAST:event_btnAddToListActionPerformed
@@ -473,7 +495,7 @@ public class AddStudentFrame extends javax.swing.JPanel {
         btnAddToList.setText("Thêm vào danh sách");
         btnCancelChange.setVisible(false);
         btnDelete.setVisible(false);
-        
+
     }
 
     private void refreshStudentTable() {
@@ -495,6 +517,21 @@ public class AddStudentFrame extends javax.swing.JPanel {
         } else {
             btnSubmit.setEnabled(false);
             btnSubmit.setText("Thêm học sinh");
+        }
+    }
+
+    private void returnStudentDTO(StudentDTO s) {
+        s.setClassId(clazz);
+        s.setName(txtName.getText());
+        Information i = new Information();
+        for (int j = 0; j < tblInfo.getRowCount(); j++) {
+            if (mInfo.getValueAt(j, 0).toString().length() > 0) {
+                i.add(new SingleInformation(mInfo.getValueAt(j, 0).toString(), mInfo.getValueAt(j, 1).toString()));
+            }
+        }
+        try {
+            s.setInfo(i);
+        } catch (Exception ex) {
         }
     }
 }
