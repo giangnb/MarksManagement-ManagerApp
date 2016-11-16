@@ -94,11 +94,14 @@
             <Property name="text" type="java.lang.String" value="H&#x1ecd;c sinh"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="mnuStudentList">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch h&#x1ecd;c sinh"/>
               </Properties>
-            </Menu>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem17ActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m h&#x1ecd;c sinh"/>
