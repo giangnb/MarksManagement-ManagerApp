@@ -16,6 +16,8 @@ import com.client.service.Student;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -95,7 +97,12 @@ public class AddStudentFrame extends javax.swing.JPanel {
         dia.setSize(WindowSize.NORMAL_WINDOW.getDimension());
         dia.setResizable(true);
         dia.setLocationRelativeTo(owner);
-        int mode = WindowUtility.showConfirm(owner, "Thêm học sinh", "Số lượng học sinh bạn muốn thêm:", new String[]{"Một học sinh", "Nhiều học sinh"});
+        int mode = -1;
+        mode = WindowUtility.showConfirm(owner, "Thêm học sinh", "Số lượng học sinh bạn muốn thêm:", new String[]{"Một học sinh", "Nhiều học sinh"});
+        if (mode < 0) {
+            dia.dispose();
+            return;
+        }
         dia.add(new AddStudentFrame(mode, clazz));
         dia.setVisible(true);
     }
@@ -318,9 +325,9 @@ public class AddStudentFrame extends javax.swing.JPanel {
             case 0:
                 StudentDTO student = new StudentDTO();
                 returnStudentDTO(student);
-                if (WebMethods.addStudent(student.getStudent()) == 0){
+                if (WebMethods.addStudent(student.getStudent()) == 0) {
                     WindowUtility.showMessage(this, "Lỗi", "Thêm học sinh lỗi", WindowUtility.ERROR);
-                }else{
+                } else {
                     WindowUtility.showMessage(this, "Thành công", "Thêm học sinh thành công", WindowUtility.DEFAULT);
                     resetForm();
                 }
@@ -414,8 +421,12 @@ public class AddStudentFrame extends javax.swing.JPanel {
 
     private void cboClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboClassActionPerformed
         // TODO add your handling code here:
-        ClazzDTO dto = (ClazzDTO) mCombo.getElementAt(cboClass.getSelectedIndex());
-        clazz = dto.getClazz();
+        try {
+            ClazzDTO dto = (ClazzDTO) mCombo.getElementAt(cboClass.getSelectedIndex());
+            clazz = dto.getClazz();
+        } catch (Exception ex) {
+            // ignore
+        }
     }//GEN-LAST:event_cboClassActionPerformed
 
     private void btnCancelChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelChangeActionPerformed

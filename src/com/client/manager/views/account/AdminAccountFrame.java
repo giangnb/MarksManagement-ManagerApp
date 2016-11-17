@@ -6,7 +6,10 @@
 package com.client.manager.views.account;
 
 import com.client.manager.Application;
+import com.client.manager.constants.ConfirmOption;
+import com.client.manager.constants.PasswordUtility;
 import com.client.manager.constants.WebMethods;
+import com.client.manager.constants.WindowUtility;
 import com.client.manager.dto.AdminDTO;
 import com.client.manager.views.LoadingScreen;
 import com.client.service.Admin;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +27,7 @@ public class AdminAccountFrame extends javax.swing.JPanel {
 
     private List<AdminDTO> admins = new ArrayList<>();
     private DefaultListModel mList;
+    private AdminDTO current;
 
     /**
      * Creates new form AdminAccountFrame
@@ -56,14 +61,24 @@ public class AdminAccountFrame extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblProperties = new javax.swing.JTable();
-        txtPassword = new javax.swing.JTextField();
+        txtPass = new javax.swing.JTextField();
 
         btnAddNew.setText("Thêm mới");
+        btnAddNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNewActionPerformed(evt);
+            }
+        });
 
         lstAddNew.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "567", "7", "8", "9", "0", "1", "2", "3", "4", "4", "5", " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        lstAddNew.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstAddNewValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(lstAddNew);
 
@@ -78,12 +93,22 @@ public class AdminAccountFrame extends javax.swing.JPanel {
         });
 
         btnReset.setText("Đặt lại");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         lblProperties.setText("Quyền:");
 
         btnClear.setText("Xóa");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
-        btnAddEdit.setText("Thêm / Sửa");
+        btnAddEdit.setText("Sửa");
         btnAddEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddEditActionPerformed(evt);
@@ -123,7 +148,8 @@ public class AdminAccountFrame extends javax.swing.JPanel {
             tblProperties.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        txtPassword.setEditable(false);
+        txtPass.setEditable(false);
+        txtPass.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,22 +172,15 @@ public class AdminAccountFrame extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 252, Short.MAX_VALUE)
-                                .addComponent(btnAddEdit))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnReset)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(22, 22, 22))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(btnReset)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                    .addComponent(txtPass)
+                    .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUser))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAddEdit)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,11 +201,11 @@ public class AdminAccountFrame extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtPass)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnReset)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,13 +231,95 @@ public class AdminAccountFrame extends javax.swing.JPanel {
 
     private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
         // TODO add your handling code here:
+        if (current == null) {
+            return;
+        }
         if (txtUser.getText().length() > 5) {
             // Dung
+            if (txtPass.getText().length() > 0) {
+                ConfirmOption conf = WindowUtility.showConfirm(this, "Đổi mật khẩu", "Bạn có thực sự muốn đổi mật khẩu cho tài khoản này?");
+                // I'm sorry!
+                if (conf.equals(ConfirmOption.YES)) {
+                    current.setPass(txtPass.getText());
+                }
+            }
+            current.setId(txtUser.getText());
+            String prohibit = "";
+            DefaultTableModel mProps = (DefaultTableModel) tblProperties.getModel();
+            for (int i = 0; i < tblProperties.getRowCount(); i++) {
+                if (!(boolean) mProps.getValueAt(i, 1)) {
+                    prohibit += mProps.getValueAt(i, 0).toString().toLowerCase() + ",";
+                }
+            }
+            current.setProhibited(prohibit.split(","));
+            int result = 0;
+            result = WebMethods.updateAdmin(current.getAdmin());
+            if (result > 0) {
+                initList();
+            } else {
+                WindowUtility.showMessage(this, "Lỗi", "Không thể cập nhật thông tin người dùng. Vui lòng thử lại!", WindowUtility.ERROR);
+            }
+            current = null;
+            resetForm();
         } else {
             // sai
             JOptionPane.showMessageDialog(this, "Tên tài khoản ít nhất 5 kí tự.", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnAddEditActionPerformed
+
+    private void lstAddNewValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstAddNewValueChanged
+        // TODO add your handling code here:
+        try {
+            current = (AdminDTO) mList.get(lstAddNew.getSelectedIndex());
+            txtUser.setText(current.getId());
+            String[] prohibit = current.getProhibited();
+            DefaultTableModel mProps = (DefaultTableModel) tblProperties.getModel();
+            for (int i = 0; i < tblProperties.getRowCount(); i++) {
+                mProps.setValueAt(true, i, 1);
+                for (String p : prohibit) {
+                    if (mProps.getValueAt(i, 0).toString().toLowerCase().equals(p.toLowerCase())) {
+                        mProps.setValueAt(false, i, 1);
+                        break;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            // ignore
+            current = null;
+            //ex.printStackTrace();
+        }
+    }//GEN-LAST:event_lstAddNewValueChanged
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtPass.setText(PasswordUtility.genreatePassword(8, PasswordUtility.MEDIUM));
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnAddNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewActionPerformed
+        // TODO add your handling code here:
+        String userId = WindowUtility.showInputPrompt(this, "Quản lý mới", "Nhập tên tài khoản quản lý mới:");
+        if (userId != null) {
+            if (userId.length() >= 5) {
+                Admin a = new Admin();
+                a.setId(userId);
+                a.setPass("");
+                a.setProhibited("admin");
+                a.setLastChange(new java.util.Date().getTime());
+                a.setLastLogin(0);
+                WebMethods.addAdmin(a);
+                initList();
+                resetForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Tên tài khoản ít nhất 5 kí tự.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnAddNewActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        // xoa di
+        resetForm();
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -235,7 +336,7 @@ public class AdminAccountFrame extends javax.swing.JPanel {
     private javax.swing.JLabel lblUser;
     private javax.swing.JList<String> lstAddNew;
     private javax.swing.JTable tblProperties;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 
@@ -253,6 +354,15 @@ public class AdminAccountFrame extends javax.swing.JPanel {
             load.dispose();
         }).start();
 
+    }
+
+    private void resetForm() {
+        txtUser.setText("");
+        txtPass.setText("");
+        DefaultTableModel mProps = (DefaultTableModel) tblProperties.getModel();
+        for (int i = 0; i < tblProperties.getRowCount(); i++) {
+            mProps.setValueAt(Boolean.FALSE,i,1);
+        }
     }
 
 }
