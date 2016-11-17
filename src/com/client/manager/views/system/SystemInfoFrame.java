@@ -6,6 +6,8 @@
 package com.client.manager.views.system;
 
 import com.client.manager.Application;
+import com.client.manager.constants.WebMethods;
+import com.client.service.Properties;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import com.marksmana.utils.Json;
@@ -24,7 +26,7 @@ public class SystemInfoFrame extends javax.swing.JPanel {
      */
     public SystemInfoFrame() {
         initComponents();
-        btnRemoveInfo.setEnabled(false);
+        initData();
     }
 
     /**
@@ -39,21 +41,16 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         lblDateFormat = new javax.swing.JLabel();
         txtDateFormat = new javax.swing.JTextField();
         btnHelp = new javax.swing.JButton();
-        lblDayFormat = new javax.swing.JLabel();
-        txtDayFormat = new javax.swing.JTextField();
+        lblTimeFormat = new javax.swing.JLabel();
+        txtTimeFormat = new javax.swing.JTextField();
         btnHelpp = new javax.swing.JButton();
-        lblHSCN = new javax.swing.JLabel();
-        spin = new javax.swing.JSpinner();
-        lblInfo = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
-        btnRemoveInfo = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblInfo = new javax.swing.JTable();
+        lblHighestCoefficient = new javax.swing.JLabel();
+        snrHighestCoefficient = new javax.swing.JSpinner();
         btnApply = new javax.swing.JButton();
         spr = new javax.swing.JSeparator();
-        lblTTHT = new javax.swing.JLabel();
-        chbWebsite = new javax.swing.JCheckBox();
-        chbPMGV = new javax.swing.JCheckBox();
+        lblSystemStatus = new javax.swing.JLabel();
+        cbxWebStatus = new javax.swing.JCheckBox();
+        cbxAppStatus = new javax.swing.JCheckBox();
         btnApplyy = new javax.swing.JButton();
 
         lblDateFormat.setText("Định dạng ngày:");
@@ -66,11 +63,11 @@ public class SystemInfoFrame extends javax.swing.JPanel {
 
         btnHelp.setText("?");
 
-        lblDayFormat.setText("Định dạng giờ:");
+        lblTimeFormat.setText("Định dạng giờ:");
 
-        txtDayFormat.addActionListener(new java.awt.event.ActionListener() {
+        txtTimeFormat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDayFormatActionPerformed(evt);
+                txtTimeFormatActionPerformed(evt);
             }
         });
 
@@ -81,36 +78,9 @@ public class SystemInfoFrame extends javax.swing.JPanel {
             }
         });
 
-        lblHSCN.setText("Hệ số cao nhất");
+        lblHighestCoefficient.setText("Hệ số cao nhất");
 
-        lblInfo.setText("Thông tin khác:");
-
-        btnAdd.setText("+");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
-        btnRemoveInfo.setText("-");
-        btnRemoveInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveInfoActionPerformed(evt);
-            }
-        });
-
-        tblInfo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Thông tin", "Dữ liệu"
-            }
-        ));
-        jScrollPane1.setViewportView(tblInfo);
+        snrHighestCoefficient.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
 
         btnApply.setText("Áp dụng");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
@@ -119,14 +89,19 @@ public class SystemInfoFrame extends javax.swing.JPanel {
             }
         });
 
-        lblTTHT.setText("Tình trạng hệ thống");
+        lblSystemStatus.setText("Tình trạng hệ thống");
 
-        chbWebsite.setText("Website");
-
-        chbPMGV.setText("Phần mềm giáo viên");
-        chbPMGV.addActionListener(new java.awt.event.ActionListener() {
+        cbxWebStatus.setText("Website");
+        cbxWebStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chbPMGVActionPerformed(evt);
+                cbxWebStatusActionPerformed(evt);
+            }
+        });
+
+        cbxAppStatus.setText("Phần mềm giáo viên");
+        cbxAppStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxAppStatusActionPerformed(evt);
             }
         });
 
@@ -137,49 +112,38 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblHighestCoefficient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTimeFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDateFormat, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spr, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblHSCN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblDayFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblDateFormat, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(snrHighestCoefficient, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(spin, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDateFormat)
-                                            .addComponent(txtDayFormat))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnHelpp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(chbWebsite)
-                                .addComponent(lblTTHT))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAdd)
-                                    .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRemoveInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))))
+                                    .addComponent(txtDateFormat)
+                                    .addComponent(txtTimeFormat))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnHelpp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(spr, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cbxWebStatus)
+                                .addComponent(lblSystemStatus))
+                            .addComponent(btnApplyy)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnApplyy))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(188, 188, 188)
-                                .addComponent(chbPMGV)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(178, 178, 178)
+                                .addComponent(cbxAppStatus)))
+                        .addGap(0, 272, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,35 +156,25 @@ public class SystemInfoFrame extends javax.swing.JPanel {
                     .addComponent(btnHelp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDayFormat)
-                    .addComponent(txtDayFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTimeFormat)
+                    .addComponent(txtTimeFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHelpp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHSCN)
-                    .addComponent(spin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblInfo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemoveInfo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnApply)
+                    .addComponent(lblHighestCoefficient)
+                    .addComponent(snrHighestCoefficient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnApply))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spr, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTTHT)
+                .addComponent(lblSystemStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chbWebsite)
-                    .addComponent(chbPMGV))
+                    .addComponent(cbxWebStatus)
+                    .addComponent(cbxAppStatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnApplyy)
-                .addContainerGap())
+                .addContainerGap(138, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,61 +182,76 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateFormatActionPerformed
 
-    private void txtDayFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDayFormatActionPerformed
+    private void txtTimeFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeFormatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDayFormatActionPerformed
+    }//GEN-LAST:event_txtTimeFormatActionPerformed
 
     private void btnHelppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelppActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHelppActionPerformed
 
-    private void chbPMGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbPMGVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chbPMGVActionPerformed
+    private void cbxAppStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAppStatusActionPerformed
+        if (cbxAppStatus.isSelected()) {
+            
+        } else {
+        }
+    }//GEN-LAST:event_cbxAppStatusActionPerformed
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
         // TODO add your handling code here:
+        String dateFmt = txtDateFormat.getText();
+        String timeFmt = txtTimeFormat.getText();
+        String highCoeff = snrHighestCoefficient.getValue().toString();
+        Properties p = new Properties();
+        p.setKey("date_format");
+        p.setValue(dateFmt);
+        p.setKey("time_format");
+        p.setValue(timeFmt);
+        p.setKey("coeff");
+        p.setValue(highCoeff);
+
+        WebMethods.updateProperty(p);
     }//GEN-LAST:event_btnApplyActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void cbxWebStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxWebStatusActionPerformed
         // TODO add your handling code here:
-        mInfo.addRow(new String[]{"", ""});
-    }//GEN-LAST:event_btnAddActionPerformed
+        if (cbxWebStatus.isSelected()) {
 
-    private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
-        // TODO add your handling code here:
-        mInfo.removeRow(tblInfo.getSelectedRow());
-        btnRemoveInfo.setEnabled(false);
-    }//GEN-LAST:event_btnRemoveInfoActionPerformed
-    private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (tblInfo.getSelectedRow() >= 0) {
-            btnRemoveInfo.setEnabled(true);
+            // do something...
         } else {
-            btnRemoveInfo.setEnabled(false);
+
+            // do something else...
         }
-    }
+    }//GEN-LAST:event_cbxWebStatusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnApply;
     private javax.swing.JButton btnApplyy;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnHelpp;
-    private javax.swing.JButton btnRemoveInfo;
-    private javax.swing.JCheckBox chbPMGV;
-    private javax.swing.JCheckBox chbWebsite;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox cbxAppStatus;
+    private javax.swing.JCheckBox cbxWebStatus;
     private javax.swing.JLabel lblDateFormat;
-    private javax.swing.JLabel lblDayFormat;
-    private javax.swing.JLabel lblHSCN;
-    private javax.swing.JLabel lblInfo;
-    private javax.swing.JLabel lblTTHT;
-    private javax.swing.JSpinner spin;
+    private javax.swing.JLabel lblHighestCoefficient;
+    private javax.swing.JLabel lblSystemStatus;
+    private javax.swing.JLabel lblTimeFormat;
+    private javax.swing.JSpinner snrHighestCoefficient;
     private javax.swing.JSeparator spr;
-    private javax.swing.JTable tblInfo;
     private javax.swing.JTextField txtDateFormat;
-    private javax.swing.JTextField txtDayFormat;
+    private javax.swing.JTextField txtTimeFormat;
     // End of variables declaration//GEN-END:variables
+
+    private void initData() {
+
+        try {
+            txtDateFormat.setText(Application.PROP.get("date_format").toString());
+            txtTimeFormat.setText(Application.PROP.get("time_format").toString());
+            
+//            cbxWebStatus.setSelected(Application.PROP.get("web_status"));
+//            cbxAppStatus.setSelected(Application.PROP.get("app_status"));
+        } catch (Exception e) {
+        }
+    }
 
 }

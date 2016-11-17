@@ -17,67 +17,51 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lblHighestCoefficient" max="32767" attributes="0"/>
+                          <Component id="lblTimeFormat" max="32767" attributes="0"/>
+                          <Component id="lblDateFormat" pref="96" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="spr" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lblHSCN" max="32767" attributes="0"/>
-                                  <Component id="lblDayFormat" max="32767" attributes="0"/>
-                                  <Component id="lblDateFormat" pref="96" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <Component id="snrHighestCoefficient" min="-2" pref="104" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnApply" min="-2" pref="73" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="spin" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtDateFormat" max="32767" attributes="0"/>
-                                          <Component id="txtDayFormat" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnHelpp" min="-2" pref="48" max="-2" attributes="0"/>
-                                          <Component id="btnHelp" min="-2" pref="48" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="txtDateFormat" max="32767" attributes="0"/>
+                                  <Component id="txtTimeFormat" max="32767" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="chbWebsite" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTTHT" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblInfo" min="-2" pref="96" max="-2" attributes="0"/>
-                                  <Component id="btnRemoveInfo" min="-2" pref="41" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnHelpp" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnHelp" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" pref="465" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <Component id="spr" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnApplyy" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="cbxWebStatus" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSystemStatus" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="btnApplyy" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
-                              <Component id="chbPMGV" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
+                              <Component id="cbxAppStatus" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnApply" min="-2" pref="73" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="272" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,40 +76,28 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDayFormat" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDayFormat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTimeFormat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTimeFormat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnHelpp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblHSCN" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="spin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHighestCoefficient" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="snrHighestCoefficient" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnApply" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnRemoveInfo" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane1" pref="90" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Component id="btnApply" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="spr" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="lblTTHT" min="-2" max="-2" attributes="0"/>
+              <Component id="lblSystemStatus" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="chbWebsite" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chbPMGV" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbxWebStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbxAppStatus" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="btnApplyy" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="138" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,14 +118,14 @@
         <Property name="text" type="java.lang.String" value="?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblDayFormat">
+    <Component class="javax.swing.JLabel" name="lblTimeFormat">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;nh d&#x1ea1;ng gi&#x1edd;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDayFormat">
+    <Component class="javax.swing.JTextField" name="txtTimeFormat">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDayFormatActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTimeFormatActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnHelpp">
@@ -164,70 +136,18 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHelppActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblHSCN">
+    <Component class="javax.swing.JLabel" name="lblHighestCoefficient">
       <Properties>
         <Property name="text" type="java.lang.String" value="H&#x1ec7; s&#x1ed1; cao nh&#x1ea5;t"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="spin">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblInfo">
+    <Component class="javax.swing.JSpinner" name="snrHighestCoefficient">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin kh&#xe1;c:"/>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="1" maximum="3" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAdd">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="+"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnRemoveInfo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="-"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveInfoActionPerformed"/>
-      </Events>
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTable" name="tblInfo">
-          <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="4">
-                <Column editable="true" title="Th&#xf4;ng tin" type="java.lang.Object"/>
-                <Column editable="true" title="D&#x1eef; li&#x1ec7;u" type="java.lang.Object"/>
-              </Table>
-            </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
-            </Property>
-            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-            </Property>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="btnApply">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc1;p d&#x1ee5;ng"/>
@@ -238,22 +158,25 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="spr">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTTHT">
+    <Component class="javax.swing.JLabel" name="lblSystemStatus">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xec;nh tr&#x1ea1;ng h&#x1ec7; th&#x1ed1;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="chbWebsite">
+    <Component class="javax.swing.JCheckBox" name="cbxWebStatus">
       <Properties>
         <Property name="text" type="java.lang.String" value="Website"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxWebStatusActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="chbPMGV">
+    <Component class="javax.swing.JCheckBox" name="cbxAppStatus">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n m&#x1ec1;m gi&#xe1;o vi&#xea;n"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbPMGVActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxAppStatusActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnApplyy">

@@ -6,6 +6,8 @@
 package com.client.manager.views.system;
 
 import com.client.manager.Application;
+import com.client.manager.constants.WebMethods;
+import com.client.service.Properties;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import com.marksmana.utils.Json;
@@ -114,6 +116,11 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
 
         btnApply.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnApply.setText("Lưu thay đổi");
+        btnApply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApplyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -224,6 +231,23 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         mInfo.removeRow(tblInfo.getSelectedRow());
     }//GEN-LAST:event_btnRemoveInfoActionPerformed
+
+    private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        String year = txtYear.getText();
+        String semester = txtSemester.getText();
+        
+        Properties p = new Properties();
+        p.setKey("school_name");
+        p.setValue(name);
+        p.setKey("school_year");
+        p.setValue(year);
+        p.setKey("semester");
+        p.setValue(semester);
+        
+        WebMethods.updateProperty(p);
+    }//GEN-LAST:event_btnApplyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
