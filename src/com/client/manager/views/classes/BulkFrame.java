@@ -5,21 +5,34 @@
  */
 package com.client.manager.views.classes;
 
+import com.client.manager.constants.WebMethods;
+import com.client.manager.dto.BulkDTO;
+import com.client.manager.dto.SubjectDTO;
+import com.client.manager.views.LoadingScreen;
 import com.client.service.Bulk;
+import com.client.service.Subject;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Phương Nam
  */
 public class BulkFrame extends javax.swing.JPanel {
-    private Bulk bulk;
-
+    private List<BulkDTO> bulkList = new ArrayList<>();
+    private List<SubjectDTO> subjects = new ArrayList<>();
+    private DefaultListModel mBulk;
+    private DefaultListModel mSubjects;
+    
     /**
      * Creates new form BulkFrame
      */
     public BulkFrame() {
         initComponents();
-        
+        initData();
     }
 
     /**
@@ -52,11 +65,6 @@ public class BulkFrame extends javax.swing.JPanel {
             }
         });
 
-        ListBulk.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Khối 10", "Khối 11", "Khối 12" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(ListBulk);
 
         lblName.setText("Tên:");
@@ -66,7 +74,7 @@ public class BulkFrame extends javax.swing.JPanel {
         tblSubject.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblSubject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
+                { new Boolean(false), null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -80,7 +88,7 @@ public class BulkFrame extends javax.swing.JPanel {
                 java.lang.Boolean.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -98,9 +106,19 @@ public class BulkFrame extends javax.swing.JPanel {
         lblNote.setText("Ghi chú:");
 
         btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnAddEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAddEdit.setText("Lưu thay đổi");
+        btnAddEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEditActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -111,8 +129,8 @@ public class BulkFrame extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(14, 14, 14)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -133,7 +151,7 @@ public class BulkFrame extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnDelete)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                                         .addComponent(btnAddEdit))
                                     .addComponent(txtGhiChu)))
                             .addGroup(layout.createSequentialGroup()
@@ -176,7 +194,16 @@ public class BulkFrame extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -194,4 +221,37 @@ public class BulkFrame extends javax.swing.JPanel {
     private javax.swing.JTextField txtGhiChu;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+
+    private void initData() {
+         mBulk = new DefaultListModel();
+        ListBulk.setModel(mBulk);
+        new Thread(() -> {
+            
+            // load khối
+            List<Bulk> bulks = WebMethods.getBulks();
+            for (Bulk b : bulks) {
+                mBulk.addElement(new BulkDTO(b));
+            }
+            
+            //load môn học
+             List<Subject> subjects = WebMethods.getSubjects();
+            for (Subject s : subjects) {
+                mSubjects.addElement( new SubjectDTO(s));
+                
+           }
+            
+            }).start();
+        
+        
+            
+           
+           
+        
+
+    }
+
+    
+
+
 }

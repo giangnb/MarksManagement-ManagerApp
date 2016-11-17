@@ -61,17 +61,19 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+nbproject/ant-deploy.xml
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+nbproject/*
 nbproject
 /dist/
 dist/*
 /build/
 build/*
-/nbproject/
-nbproject/*
-repo/nbproject/private/private.xml
-repo/nbproject/jaxws-build.xml
-repo/nbproject/private/private.properties
+errors.log
+currentaccount.dat
+nbproject/project.properties
 nbproject/private/private.xml
-nbproject/jaxws-build.xml
-nbproject/private/private.properties
-build/built-jar.properties
+nbproject/project.properties
+nbproject/private/private.xml
+nbproject/private/*

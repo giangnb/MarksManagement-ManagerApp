@@ -5,10 +5,15 @@
  */
 package com.client.manager.views.classes;
 
+import com.client.manager.constants.WebMethods;
 import com.client.manager.constants.WindowSize;
+import com.client.manager.dto.BulkDTO;
+import com.client.manager.dto.TeacherDTO;
 import com.client.service.Bulk;
 import com.client.service.Teacher;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -18,7 +23,10 @@ import javax.swing.JFrame;
  */
 public class AddClassFrame extends javax.swing.JPanel {
     private List<Bulk> bulk;
+    private List<BulkDTO> bulkList = new ArrayList<>();
     private List<Teacher> teacher;
+    private List<TeacherDTO> teachersList = new ArrayList<>();
+    private DefaultComboBoxModel mBulk, mTeacher;
 
     /**
      * Creates new form AddClassFrame
@@ -54,7 +62,26 @@ public class AddClassFrame extends javax.swing.JPanel {
     }
     
     private void initData() {
+        mBulk = (DefaultComboBoxModel) cboBulk.getModel();
+        mBulk.removeAllElements();
+        mTeacher = (DefaultComboBoxModel) cboTeacher.getModel();
+        mTeacher.removeAllElements();
+        
         new Thread(()->{
+        // Load bulk
+            List<Bulk> bulks = WebMethods.getBulks();
+            for (Bulk b : bulks) {
+                mBulk.addElement(new BulkDTO(b));
+                bulkList.add(new BulkDTO(b));
+            }
+            // Load Teacher
+            List<Teacher> teachers = WebMethods.getTeachers();
+            for (Teacher t : teachers) {
+                mTeacher.addElement(new TeacherDTO(t));
+                teachersList.add(new TeacherDTO(t));
+            }    
+            
+            
         }).start();
     }
 
@@ -77,16 +104,37 @@ public class AddClassFrame extends javax.swing.JPanel {
 
         jLabel1.setText("Tên lớp:");
 
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Khối:");
 
         jLabel3.setText("GV chủ nhiệm:");
 
         cboBulk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboBulk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboBulkActionPerformed(evt);
+            }
+        });
 
         cboTeacher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTeacherActionPerformed(evt);
+            }
+        });
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAdd.setText("Thêm lớp");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,6 +180,27 @@ public class AddClassFrame extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboBulkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBulkActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cboBulkActionPerformed
+
+    private void cboTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTeacherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboTeacherActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        AddClassFrame c = new AddClassFrame(bulk, teacher);
+        
+        
+         
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
