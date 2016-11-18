@@ -22,9 +22,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txtSearch" min="-2" pref="132" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btlSearch" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="SearchResetPass" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnBlock" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnResetPass" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblSearch" min="-2" max="-2" attributes="0"/>
@@ -44,8 +46,9 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btlSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="SearchResetPass" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnResetPass" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBlock" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="275" max="32767" attributes="0"/>
@@ -55,15 +58,22 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btlSearch">
+    <Component class="javax.swing.JButton" name="btnSearch">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xec;m"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="SearchResetPass">
+    <Component class="javax.swing.JButton" name="btnResetPass">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t l&#x1ea1;i m&#x1ead;t kh&#x1ea9;u"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetPassActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -75,19 +85,19 @@
         <Component class="javax.swing.JTable" name="tblInfo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
+              <Table columnCount="3" rowCount="4">
                 <Column editable="true" title="MS" type="java.lang.Object"/>
                 <Column editable="true" title="H&#x1ecd; t&#xea;n" type="java.lang.Object"/>
                 <Column editable="true" title="T&#xe0;i kho&#x1ea3;n" type="java.lang.Object"/>
-                <Column editable="true" title="&#x110;&#x103;ng nh&#x1ead;p cu&#x1ed1;i" type="java.lang.Object"/>
-                <Column editable="true" title="&#x110;&#x1ed5;i MK cu&#x1ed1;i" type="java.lang.Object"/>
-                <Column editable="true" title="Ch&#x1eb7;n t&#xe0;i kho&#x1ea3;n" type="java.lang.Boolean"/>
               </Table>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblInfoMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -99,6 +109,15 @@
     <Component class="javax.swing.JTextField" name="txtSearch">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearchActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBlock">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ch&#x1eb7;n t&#xe0;i kho&#x1ea3;n"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBlockActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
