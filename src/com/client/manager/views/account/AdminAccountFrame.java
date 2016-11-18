@@ -108,7 +108,8 @@ public class AdminAccountFrame extends javax.swing.JPanel {
             }
         });
 
-        btnAddEdit.setText("Sửa");
+        btnAddEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAddEdit.setText("Lưu thay đổi");
         btnAddEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddEditActionPerformed(evt);
@@ -208,25 +209,23 @@ public class AdminAccountFrame extends javax.swing.JPanel {
                                         .addComponent(txtPass)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnReset)
+                                .addGap(7, 7, 7)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addComponent(lblProperties, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btnClear)
+                                            .addComponent(btnAddEdit)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnClear)
-                                    .addComponent(btnAddEdit))))))
+                                        .addComponent(lblProperties, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
-
-
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
@@ -317,7 +316,18 @@ public class AdminAccountFrame extends javax.swing.JPanel {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-        // xoa di
+        ConfirmOption conf = WindowUtility.showConfirm(this, "Xóa tài khoản", "Bạn thực sự muốn xóa tài khoản quản lý?");
+        if (conf.equals(ConfirmOption.YES)) {
+            String captcha = PasswordUtility.genreatePassword((int) Math.round(Math.random() * 12), PasswordUtility.STRONG);
+            captcha += " ";
+            captcha += PasswordUtility.genreatePassword((int) Math.round(Math.random() * 12), PasswordUtility.STRONG);
+            String input = WindowUtility.showInputPrompt(this, "Xác nhận", "Hãy xác nhận việc xóa tài khoản bằng việc nhập lại chuỗi kí tự sau:\n" + captcha);
+            if (input != null) {
+                if (input.equals(captcha)) {
+                    WebMethods.removeAdmin(current.getId());
+                }
+            }
+        }
         resetForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -361,7 +371,7 @@ public class AdminAccountFrame extends javax.swing.JPanel {
         txtPass.setText("");
         DefaultTableModel mProps = (DefaultTableModel) tblProperties.getModel();
         for (int i = 0; i < tblProperties.getRowCount(); i++) {
-            mProps.setValueAt(Boolean.FALSE,i,1);
+            mProps.setValueAt(Boolean.FALSE, i, 1);
         }
     }
 

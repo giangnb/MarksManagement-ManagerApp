@@ -240,7 +240,9 @@ public class SubjectFrame extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        tblInfo.getCellEditor().cancelCellEditing();
+        if (tblInfo.getSelectedRow()>=0) {
+            tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).cancelCellEditing();
+        }
         int result = WebMethods.updateSubject(sub.getSubject());
         if (result <= 0) {
             WindowUtility.showMessage(this, "Sửa môn học", "Không thể sửa môn học. Hãy thử lại.", WindowUtility.ERROR);

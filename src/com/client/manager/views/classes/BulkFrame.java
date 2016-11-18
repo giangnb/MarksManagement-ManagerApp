@@ -22,16 +22,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Phương Nam
  */
 public class BulkFrame extends javax.swing.JPanel {
+
     private List<BulkDTO> bulkList = new ArrayList<>();
     private List<SubjectDTO> subjects = new ArrayList<>();
+    private BulkDTO current;
     private DefaultListModel mBulk;
-    private DefaultListModel mSubjects;
-    
+    private DefaultTableModel mSubjects;
+
     /**
      * Creates new form BulkFrame
      */
     public BulkFrame() {
         initComponents();
+        mSubjects = (DefaultTableModel) tblSubject.getModel();
+        mSubjects.setRowCount(0);
+        mBulk = new DefaultListModel();
+        lstBulk.setModel(mBulk);
         initData();
     }
 
@@ -46,16 +52,16 @@ public class BulkFrame extends javax.swing.JPanel {
 
         btnAdd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListBulk = new javax.swing.JList<>();
+        lstBulk = new javax.swing.JList<>();
         lblName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lblSubject = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSubject = new javax.swing.JTable();
         lblNote = new javax.swing.JLabel();
-        txtGhiChu = new javax.swing.JTextField();
+        txtInfo = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
-        btnAddEdit = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         btnAdd.setText("Thêm mới");
@@ -65,7 +71,12 @@ public class BulkFrame extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setViewportView(ListBulk);
+        lstBulk.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstBulkValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(lstBulk);
 
         lblName.setText("Tên:");
 
@@ -112,11 +123,11 @@ public class BulkFrame extends javax.swing.JPanel {
             }
         });
 
-        btnAddEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnAddEdit.setText("Lưu thay đổi");
-        btnAddEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setText("Lưu thay đổi");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddEditActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -152,8 +163,8 @@ public class BulkFrame extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnDelete)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                                        .addComponent(btnAddEdit))
-                                    .addComponent(txtGhiChu)))
+                                        .addComponent(btnSave))
+                                    .addComponent(txtInfo)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
@@ -182,11 +193,11 @@ public class BulkFrame extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblNote)
-                                    .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnDelete)
-                                    .addComponent(btnAddEdit)))))
+                                    .addComponent(btnSave)))))
                     .addComponent(jSeparator1))
                 .addContainerGap())
         );
@@ -194,64 +205,63 @@ public class BulkFrame extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddEditActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void lstBulkValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstBulkValueChanged
+        // TODO add your handling code here:
+        current = (BulkDTO) mBulk.getElementAt(lstBulk.getSelectedIndex());
+        txtName.setText(current.getName());
+        txtInfo.setText(current.getInfo());
+        for (Subject s : current.getSubjectList()) {
+            for (int i = 0; i < tblSubject.getRowCount(); i++) {
+                mSubjects.setValueAt(false, i, 0);
+                if (s.getName().equals(mSubjects.getValueAt(i, 1).toString())) {
+                    mSubjects.setValueAt(true, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_lstBulkValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ListBulk;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNote;
     private javax.swing.JLabel lblSubject;
+    private javax.swing.JList<String> lstBulk;
     private javax.swing.JTable tblSubject;
-    private javax.swing.JTextField txtGhiChu;
+    private javax.swing.JTextField txtInfo;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
-
     private void initData() {
-         mBulk = new DefaultListModel();
-        ListBulk.setModel(mBulk);
         new Thread(() -> {
-            
+
             // load khối
             List<Bulk> bulks = WebMethods.getBulks();
             for (Bulk b : bulks) {
                 mBulk.addElement(new BulkDTO(b));
             }
-            
+
             //load môn học
-             List<Subject> subjects = WebMethods.getSubjects();
-            for (Subject s : subjects) {
-                mSubjects.addElement( new SubjectDTO(s));
-                
-           }
-            
-            }).start();
-        
-        
-            
-           
-           
-        
-
+            List<Subject> results = WebMethods.getSubjects();
+            for (Subject s : results) {
+                subjects.add(new SubjectDTO(s));
+                mSubjects.addRow(new Object[]{false, s.getName()});
+            }
+        }).start();
     }
-
-    
-
-
 }

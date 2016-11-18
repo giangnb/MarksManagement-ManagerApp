@@ -27,12 +27,15 @@
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="snrHighestCoefficient" min="-2" pref="104" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnApply" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="spnMinCoeff" min="-2" pref="68" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spnMaxCoeff" min="-2" pref="68" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="311" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtDateFormat" max="32767" attributes="0"/>
                                   <Component id="txtTimeFormat" max="32767" attributes="0"/>
@@ -45,20 +48,9 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="spr" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="cbxWebStatus" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblSystemStatus" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="btnApplyy" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-                              <Component id="cbxAppStatus" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="272" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnApplyUpper" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -83,21 +75,13 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblHighestCoefficient" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="snrHighestCoefficient" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnApply" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spnMinCoeff" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spnMaxCoeff" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="spr" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="lblSystemStatus" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cbxWebStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbxAppStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Component id="btnApplyy" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="138" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="btnApplyUpper" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="211" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="?"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHelpActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTimeFormat">
       <Properties>
@@ -138,50 +125,40 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblHighestCoefficient">
       <Properties>
-        <Property name="text" type="java.lang.String" value="H&#x1ec7; s&#x1ed1; cao nh&#x1ea5;t"/>
+        <Property name="text" type="java.lang.String" value="H&#x1ec7; s&#x1ed1;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="snrHighestCoefficient">
+    <Component class="javax.swing.JSpinner" name="spnMinCoeff">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="1" maximum="3" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnMinCoeffStateChanged"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnApply">
+    <Component class="javax.swing.JButton" name="btnApplyUpper">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc1;p d&#x1ee5;ng"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApplyActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApplyUpperActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSeparator" name="spr">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblSystemStatus">
+    <Component class="javax.swing.JSpinner" name="spnMaxCoeff">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#xec;nh tr&#x1ea1;ng h&#x1ec7; th&#x1ed1;ng"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="cbxWebStatus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Website"/>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="3" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxWebStatusActionPerformed"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnMaxCoeffStateChanged"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="cbxAppStatus">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n m&#x1ec1;m gi&#xe1;o vi&#xea;n"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxAppStatusActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnApplyy">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc1;p d&#x1ee5;ng"/>
+        <Property name="text" type="java.lang.String" value=" - "/>
       </Properties>
     </Component>
   </SubComponents>

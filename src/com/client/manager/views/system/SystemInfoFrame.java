@@ -7,10 +7,13 @@ package com.client.manager.views.system;
 
 import com.client.manager.Application;
 import com.client.manager.constants.WebMethods;
+import com.client.manager.constants.WindowUtility;
 import com.client.service.Properties;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import com.marksmana.utils.Json;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,12 +23,14 @@ import javax.swing.table.DefaultTableModel;
 public class SystemInfoFrame extends javax.swing.JPanel {
 
     private DefaultTableModel mInfo;
+    private SpinnerNumberModel mMinCoeff, mMaxCoeff;
 
     /**
      * Creates new form SystemInfoFrame
      */
     public SystemInfoFrame() {
         initComponents();
+        initSpinners();
         initData();
     }
 
@@ -45,13 +50,10 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         txtTimeFormat = new javax.swing.JTextField();
         btnHelpp = new javax.swing.JButton();
         lblHighestCoefficient = new javax.swing.JLabel();
-        snrHighestCoefficient = new javax.swing.JSpinner();
-        btnApply = new javax.swing.JButton();
-        spr = new javax.swing.JSeparator();
-        lblSystemStatus = new javax.swing.JLabel();
-        cbxWebStatus = new javax.swing.JCheckBox();
-        cbxAppStatus = new javax.swing.JCheckBox();
-        btnApplyy = new javax.swing.JButton();
+        spnMinCoeff = new javax.swing.JSpinner();
+        btnApplyUpper = new javax.swing.JButton();
+        spnMaxCoeff = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
 
         lblDateFormat.setText("Định dạng ngày:");
 
@@ -62,6 +64,11 @@ public class SystemInfoFrame extends javax.swing.JPanel {
         });
 
         btnHelp.setText("?");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
 
         lblTimeFormat.setText("Định dạng giờ:");
 
@@ -78,34 +85,30 @@ public class SystemInfoFrame extends javax.swing.JPanel {
             }
         });
 
-        lblHighestCoefficient.setText("Hệ số cao nhất");
+        lblHighestCoefficient.setText("Hệ số:");
 
-        snrHighestCoefficient.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
-
-        btnApply.setText("Áp dụng");
-        btnApply.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnApplyActionPerformed(evt);
+        spnMinCoeff.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
+        spnMinCoeff.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnMinCoeffStateChanged(evt);
             }
         });
 
-        lblSystemStatus.setText("Tình trạng hệ thống");
-
-        cbxWebStatus.setText("Website");
-        cbxWebStatus.addActionListener(new java.awt.event.ActionListener() {
+        btnApplyUpper.setText("Áp dụng");
+        btnApplyUpper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxWebStatusActionPerformed(evt);
+                btnApplyUpperActionPerformed(evt);
             }
         });
 
-        cbxAppStatus.setText("Phần mềm giáo viên");
-        cbxAppStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxAppStatusActionPerformed(evt);
+        spnMaxCoeff.setModel(new javax.swing.SpinnerNumberModel(3, null, null, 1));
+        spnMaxCoeff.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnMaxCoeffStateChanged(evt);
             }
         });
 
-        btnApplyy.setText("Áp dụng");
+        jLabel1.setText(" - ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,9 +125,12 @@ public class SystemInfoFrame extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(snrHighestCoefficient, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnMinCoeff, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spnMaxCoeff, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 311, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtDateFormat)
@@ -133,17 +139,9 @@ public class SystemInfoFrame extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnHelpp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(spr, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cbxWebStatus)
-                                .addComponent(lblSystemStatus))
-                            .addComponent(btnApplyy)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(178, 178, 178)
-                                .addComponent(cbxAppStatus)))
-                        .addGap(0, 272, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnApplyUpper, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -162,19 +160,12 @@ public class SystemInfoFrame extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHighestCoefficient)
-                    .addComponent(snrHighestCoefficient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnApply))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spr, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSystemStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxWebStatus)
-                    .addComponent(cbxAppStatus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnApplyy)
-                .addContainerGap(138, Short.MAX_VALUE))
+                    .addComponent(spnMinCoeff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxCoeff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(8, 8, 8)
+                .addComponent(btnApplyUpper)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -188,70 +179,110 @@ public class SystemInfoFrame extends javax.swing.JPanel {
 
     private void btnHelppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelppActionPerformed
         // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder("Đạnh dạng giờ:\n");
+        sb.append("\tH - giờ (0-24)\n");
+        sb.append("\tK - giờ (0-11)\n");
+        sb.append("\tm - phút (0-59)\n");
+        sb.append("\ts - giây (0-59)\n");
+        sb.append("\tS - mili giây (0-100)\n");
+        sb.append("\ta - kí hiệu AM/PM\n");
+        sb.append("\tz - múi giờ\n");
+        sb.append("\nVí dụ: KK:mm a -> 10:48 AM");
+        WindowUtility.showMessage(this, "Định dạng giờ", sb.toString(), WindowUtility.DEFAULT);
     }//GEN-LAST:event_btnHelppActionPerformed
 
-    private void cbxAppStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAppStatusActionPerformed
-        if (cbxAppStatus.isSelected()) {
-            
-        } else {
-        }
-    }//GEN-LAST:event_cbxAppStatusActionPerformed
-
-    private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
+    private void btnApplyUpperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyUpperActionPerformed
         // TODO add your handling code here:
         String dateFmt = txtDateFormat.getText();
         String timeFmt = txtTimeFormat.getText();
-        String highCoeff = snrHighestCoefficient.getValue().toString();
-        Properties p = new Properties();
-        p.setKey("date_format");
-        p.setValue(dateFmt);
-        p.setKey("time_format");
-        p.setValue(timeFmt);
-        p.setKey("coeff");
-        p.setValue(highCoeff);
-
-        WebMethods.updateProperty(p);
-    }//GEN-LAST:event_btnApplyActionPerformed
-
-    private void cbxWebStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxWebStatusActionPerformed
-        // TODO add your handling code here:
-        if (cbxWebStatus.isSelected()) {
-
-            // do something...
-        } else {
-
-            // do something else...
+        String maxCoeff = spnMaxCoeff.getValue().toString();
+        String minCoeff = spnMinCoeff.getValue().toString();
+        if (!(dateFmt.matches("([d|M|y|E|z]+\\W*)+") || timeFmt.matches("([H|K|m|s|S|a|z]+\\W*)+"))) {
+            WindowUtility.showMessage(this, "Lỗi dữ liệu", "Định dạng ngày và giờ không hợp lệ!", WindowUtility.ERROR);
+            return;
         }
-    }//GEN-LAST:event_cbxWebStatusActionPerformed
+        new Thread(() -> {
+            btnApplyUpper.setEnabled(false);
+            Properties p = new Properties();
+            p.setKey("date_format");
+            p.setValue(dateFmt);
+            Application.PROP.put("date_format", dateFmt);
+            WebMethods.updateProperty(p);
+            p.setKey("time_format");
+            p.setValue(timeFmt);
+            Application.PROP.put("time_format", timeFmt);
+            WebMethods.updateProperty(p);
+            p.setKey("min_coeff");
+            p.setValue(minCoeff);
+            Application.PROP.put("min_coeff", minCoeff);
+            WebMethods.updateProperty(p);
+            p.setKey("max_coeff");
+            p.setValue(maxCoeff);
+            Application.PROP.put("max_coeff", maxCoeff);
+            WebMethods.updateProperty(p);
+            btnApplyUpper.setEnabled(true);
+        }).start();
+    }//GEN-LAST:event_btnApplyUpperActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder("Đạnh dạng ngày:\n");
+        sb.append("\td - ngày\n");
+        sb.append("\tM - tháng (chữ số)\n");
+        sb.append("\tMMM - tháng (viết tắt)\n");
+        sb.append("\tyy - năm (2 chữ số)\n");
+        sb.append("\tyyyy - năm (4 chữ số)\n");
+        sb.append("\tE - thứ trong tuần\n");
+        sb.append("\tEEE - thứ trong tuần (viết tắt)\n");
+        sb.append("\tz - múi giờ\n");
+        sb.append("\nVí dụ: dd-MM-yy -> 25-01-16");
+        WindowUtility.showMessage(this, "Định dạng ngày", sb.toString(), WindowUtility.DEFAULT);
+    }//GEN-LAST:event_btnHelpActionPerformed
+
+    private void spnMinCoeffStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnMinCoeffStateChanged
+        // TODO add your handling code here:
+        refreshSpinners();
+    }//GEN-LAST:event_spnMinCoeffStateChanged
+
+    private void spnMaxCoeffStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnMaxCoeffStateChanged
+        // TODO add your handling code here:
+        refreshSpinners();
+    }//GEN-LAST:event_spnMaxCoeffStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnApply;
-    private javax.swing.JButton btnApplyy;
+    private javax.swing.JButton btnApplyUpper;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnHelpp;
-    private javax.swing.JCheckBox cbxAppStatus;
-    private javax.swing.JCheckBox cbxWebStatus;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblDateFormat;
     private javax.swing.JLabel lblHighestCoefficient;
-    private javax.swing.JLabel lblSystemStatus;
     private javax.swing.JLabel lblTimeFormat;
-    private javax.swing.JSpinner snrHighestCoefficient;
-    private javax.swing.JSeparator spr;
+    private javax.swing.JSpinner spnMaxCoeff;
+    private javax.swing.JSpinner spnMinCoeff;
     private javax.swing.JTextField txtDateFormat;
     private javax.swing.JTextField txtTimeFormat;
     // End of variables declaration//GEN-END:variables
 
     private void initData() {
-
         try {
             txtDateFormat.setText(Application.PROP.get("date_format").toString());
             txtTimeFormat.setText(Application.PROP.get("time_format").toString());
-            
-//            cbxWebStatus.setSelected(Application.PROP.get("web_status"));
-//            cbxAppStatus.setSelected(Application.PROP.get("app_status"));
         } catch (Exception e) {
         }
+    }
+
+    private void initSpinners() {
+        mMinCoeff = (SpinnerNumberModel) spnMinCoeff.getModel();
+        mMaxCoeff = (SpinnerNumberModel) spnMaxCoeff.getModel();
+        mMinCoeff.setValue(Application.PROP.get("min_coeff").toString());
+        mMinCoeff.setValue(Application.PROP.get("max_coeff").toString());
+        refreshSpinners();
+    }
+
+    private void refreshSpinners() {
+        mMinCoeff.setMaximum(mMaxCoeff.getNumber().intValue());
+        mMaxCoeff.setMinimum(mMinCoeff.getNumber().intValue());
     }
 
 }
