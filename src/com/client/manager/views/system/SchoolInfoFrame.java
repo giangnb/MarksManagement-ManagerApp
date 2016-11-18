@@ -11,6 +11,7 @@ import com.client.service.Properties;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import com.marksmana.utils.Json;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author HuongUD
  */
 public class SchoolInfoFrame extends javax.swing.JPanel {
+
     private DefaultTableModel mInfo;
 
     /**
@@ -215,12 +217,13 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
 
     private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
         // TODO add your handling code here:
-        mInfo.addRow(new String[]{"",""});
+        mInfo.addRow(new String[]{"", ""});
+        btnRemoveInfo.setEnabled(false);
     }//GEN-LAST:event_btnAddInfoActionPerformed
 
     private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
         // TODO add your handling code here:
-        if (tblInfo.getSelectedRow()>=0) {
+        if (tblInfo.getSelectedRow() >= 0) {
             btnRemoveInfo.setEnabled(true);
         } else {
             btnRemoveInfo.setEnabled(false);
@@ -230,6 +233,7 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
     private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
         // TODO add your handling code here:
         mInfo.removeRow(tblInfo.getSelectedRow());
+        btnRemoveInfo.setEnabled(false);
     }//GEN-LAST:event_btnRemoveInfoActionPerformed
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
@@ -237,16 +241,39 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
         String name = txtName.getText();
         String year = txtYear.getText();
         String semester = txtSemester.getText();
+        String admin = txtAdmin.getText();
+        String manager = txtManager.getText();
+
+        new Thread(() -> {
+            btnApply.setEnabled(false);
+            Properties p = new Properties();
+            p.setKey("school_name");
+            p.setValue(name);
+            WebMethods.updateProperty(p);
+            p.setKey("school_year");
+            p.setValue(year);
+            WebMethods.updateProperty(p);
+            p.setKey("semester");
+            p.setValue(semester);
+            WebMethods.updateProperty(p);
+            p.setKey("admin_contact");
+            p.setValue(admin);
+            WebMethods.updateProperty(p);
+            p.setKey("manager_contact");
+            p.setValue(manager);
+            WebMethods.updateProperty(p);
+
+            Information info = new Information();
+            for (int i = 0; i < tblInfo.getRowCount(); i++) {
+                info.add(new SingleInformation(mInfo.getValueAt(i, 0).toString(), mInfo.getValueAt(i, 1).toString()));
+            }
+            p.setKey("school_info");
+            p.setValue(info.toJson());
+            WebMethods.updateProperty(p);
+            btnApply.setEnabled(true);
+        }).start();
         
-        Properties p = new Properties();
-        p.setKey("school_name");
-        p.setValue(name);
-        p.setKey("school_year");
-        p.setValue(year);
-        p.setKey("semester");
-        p.setValue(semester);
-        
-        WebMethods.updateProperty(p);
+        JOptionPane.showMessageDialog(this, "Lưu thành công!");
     }//GEN-LAST:event_btnApplyActionPerformed
 
 
