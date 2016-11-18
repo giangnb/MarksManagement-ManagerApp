@@ -324,13 +324,19 @@ public class AddStudentFrame extends javax.swing.JPanel {
         switch (mode) {
             case 0:
                 StudentDTO student = new StudentDTO();
-                returnStudentDTO(student);
-                if (WebMethods.addStudent(student.getStudent()) == 0) {
-                    WindowUtility.showMessage(this, "Lỗi", "Thêm học sinh lỗi", WindowUtility.ERROR);
-                } else {
-                    WindowUtility.showMessage(this, "Thành công", "Thêm học sinh thành công", WindowUtility.DEFAULT);
-                    resetForm();
+                try {
+                    returnStudentDTO(student);
+                    if (WebMethods.addStudent(student.getStudent()) == 0) {
+                        WindowUtility.showMessage(this, "Lỗi", "Thêm học sinh lỗi", WindowUtility.ERROR);
+                    } else {
+                        WindowUtility.showMessage(this, "Thành công", "Thêm học sinh thành công", WindowUtility.DEFAULT);
+                        resetForm();
+                    }
+                } catch (Exception e) {
+                    WindowUtility.showMessage(this, "Lỗi", "Hãy nhập thông tin đầy đủ", WindowUtility.ERROR);
+                    return;
                 }
+
                 break;
             case 1:
                 List<Student> studentObject = new ArrayList<>();
@@ -533,7 +539,11 @@ public class AddStudentFrame extends javax.swing.JPanel {
 
     private void returnStudentDTO(StudentDTO s) {
         s.setClassId(clazz);
-        s.setName(txtName.getText());
+        if (txtName.getText().length() > 0) {
+            s.setName(txtName.getText());
+        } else {
+            txtName.requestFocus();
+        }
         Information i = new Information();
         for (int j = 0; j < tblInfo.getRowCount(); j++) {
             if (mInfo.getValueAt(j, 0).toString().length() > 0) {
