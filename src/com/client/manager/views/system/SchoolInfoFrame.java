@@ -271,9 +271,8 @@ public class SchoolInfoFrame extends javax.swing.JPanel {
             p.setValue(info.toJson());
             WebMethods.updateProperty(p);
             btnApply.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "Lưu thành công!");
         }).start();
-        
-        JOptionPane.showMessageDialog(this, "Lưu thành công!");
     }//GEN-LAST:event_btnApplyActionPerformed
 
 
