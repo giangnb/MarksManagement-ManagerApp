@@ -23,6 +23,7 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
      */
     public AccountPasswordFrame() {
         initComponents();
+        txtUserName.setText(Application.ACCOUNT.getId());
     }
 
     /**
@@ -41,6 +42,8 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         txtNewPassword = new javax.swing.JPasswordField();
         txtOldPassword = new javax.swing.JPasswordField();
         txtRetypePassword = new javax.swing.JPasswordField();
+        lblOldPassword1 = new javax.swing.JLabel();
+        txtUserName = new javax.swing.JPasswordField();
 
         lblOldPassword.setText("Mật khẩu hiện tại:");
 
@@ -48,12 +51,17 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
 
         lblRetypePassword.setText("Nhập lại mật khẩu:");
 
+        btnChangePassword.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnChangePassword.setText("Đổi mật khẩu");
         btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangePasswordActionPerformed(evt);
             }
         });
+
+        lblOldPassword1.setText("Tài khoản:");
+
+        txtUserName.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,12 +72,14 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblOldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblRetypePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                    .addComponent(lblRetypePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(lblOldPassword1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRetypePassword)
                     .addComponent(txtNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(txtOldPassword))
+                    .addComponent(txtOldPassword)
+                    .addComponent(txtUserName))
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -79,12 +89,18 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblOldPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(txtOldPassword)))
+                        .addComponent(txtOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,7 +109,7 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(btnChangePassword)
                 .addContainerGap())
         );
@@ -105,8 +121,6 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         oldPass = new String(txtOldPassword.getPassword());
         newPass = new String(txtNewPassword.getPassword());
         rePass = new String(txtRetypePassword.getPassword());
-        
-        
 
         if (!newPass.equals(rePass)) {
             JOptionPane.showConfirmDialog(this, "Sai mật khẩu xác nhận", "Lỗi!", JOptionPane.DEFAULT_OPTION);
@@ -121,6 +135,10 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
             WebMethods.updateAdmin(Application.ACCOUNT);
             JOptionPane.showConfirmDialog(this, "Đổi mật khẩu thành công", "Thông báo", JOptionPane.DEFAULT_OPTION);
         }
+        
+        txtOldPassword.setText("");
+        txtNewPassword.setText("");
+        txtRetypePassword.setText("");
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
 
@@ -128,9 +146,11 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
     private javax.swing.JButton btnChangePassword;
     private javax.swing.JLabel lblNewPassword;
     private javax.swing.JLabel lblOldPassword;
+    private javax.swing.JLabel lblOldPassword1;
     private javax.swing.JLabel lblRetypePassword;
     private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JPasswordField txtOldPassword;
     private javax.swing.JPasswordField txtRetypePassword;
+    private javax.swing.JPasswordField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

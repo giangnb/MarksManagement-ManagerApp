@@ -6,6 +6,7 @@
 package com.client.manager.views.classes;
 
 import com.client.manager.constants.WebMethods;
+import com.client.manager.constants.WindowUtility;
 import com.client.manager.dto.BulkDTO;
 import com.client.manager.dto.SubjectDTO;
 import com.client.manager.views.LoadingScreen;
@@ -99,7 +100,7 @@ public class BulkFrame extends javax.swing.JPanel {
                 java.lang.Boolean.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -117,6 +118,7 @@ public class BulkFrame extends javax.swing.JPanel {
         lblNote.setText("Ghi chú:");
 
         btnDelete.setText("Xóa");
+        btnDelete.setEnabled(false);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -125,6 +127,7 @@ public class BulkFrame extends javax.swing.JPanel {
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Lưu thay đổi");
+        btnSave.setEnabled(false);
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -205,10 +208,42 @@ public class BulkFrame extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        String name = WindowUtility.showInputPrompt(this, "Thêm khối", "Tên khối:");
+        if (name==null) {
+            return;
+        }
+        if (name.length() < 2) {
+            WindowUtility.showMessage(this, "Sửa thông tin khối", "Tên khối quá ngắn", WindowUtility.DEFAULT);
+            return;
+        }
+        Bulk b = new Bulk();
+        b.setName(name);
+        b.setInfo("");
+        WebMethods.addBulk(b, new ArrayList<Subject>());
+        initData();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        if (txtName.getText().length() < 2) {
+            WindowUtility.showMessage(this, "Sửa thông tin khối", "Tên khối quá ngắn", WindowUtility.DEFAULT);
+            return;
+        }
+        current.setName(txtName.getText());
+        current.setInfo(txtInfo.getText());
+        ArrayList<Subject> subList = new ArrayList<>();
+        for (int i = 0; i < tblSubject.getRowCount(); i++) {
+            if (mSubjects.getValueAt(i, 0).equals(Boolean.TRUE)) {
+                subList.add(subjects.get(i).getSubject());
+            }
+        }
+        new Thread(() -> {
+            LoadingScreen load = new LoadingScreen("Xin chờ...");
+            load.setVisible(true);
+            WebMethods.updateBulk(current.getBulk(), subList);
+            load.dispose();
+            initData();
+        }).start();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -217,16 +252,20 @@ public class BulkFrame extends javax.swing.JPanel {
 
     private void lstBulkValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstBulkValueChanged
         // TODO add your handling code here:
-        current = (BulkDTO) mBulk.getElementAt(lstBulk.getSelectedIndex());
-        txtName.setText(current.getName());
-        txtInfo.setText(current.getInfo());
-        for (Subject s : current.getSubjectList()) {
+        if (lstBulk.getSelectedIndex() >= 0) {
+            current = (BulkDTO) mBulk.getElementAt(lstBulk.getSelectedIndex());
+            txtName.setText(current.getName());
+            txtInfo.setText(current.getInfo());
             for (int i = 0; i < tblSubject.getRowCount(); i++) {
-                mSubjects.setValueAt(false, i, 0);
-                if (s.getName().equals(mSubjects.getValueAt(i, 1).toString())) {
-                    mSubjects.setValueAt(true, i, 0);
+                mSubjects.setValueAt(Boolean.FALSE, i, 0);
+                for (Subject s : current.getSubjectList()) {
+                    if (s.getName().equals(mSubjects.getValueAt(i, 1).toString())) {
+                        mSubjects.setValueAt(Boolean.TRUE, i, 0);
+                    }
                 }
             }
+            btnSave.setEnabled(true);
+            btnDelete.setEnabled(true);
         }
     }//GEN-LAST:event_lstBulkValueChanged
 
@@ -248,15 +287,18 @@ public class BulkFrame extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initData() {
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(false);
         new Thread(() -> {
-
-            // load khối
+            //load khối
+            mBulk.removeAllElements();
             List<Bulk> bulks = WebMethods.getBulks();
             for (Bulk b : bulks) {
                 mBulk.addElement(new BulkDTO(b));
             }
 
             //load môn học
+            mSubjects.setRowCount(0);
             List<Subject> results = WebMethods.getSubjects();
             for (Subject s : results) {
                 subjects.add(new SubjectDTO(s));

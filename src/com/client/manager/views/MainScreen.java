@@ -22,10 +22,18 @@ import com.client.manager.views.system.TeacherAccountFrame;
 import com.client.manager.views.teacher.AddTeacherFrame;
 import com.client.manager.views.teacher.TeacherInfoFrame;
 import com.client.service.Properties;
+import java.awt.CardLayout;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -263,6 +271,11 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu7.setText("Hỗ trợ");
 
         jMenuItem13.setText("Hướng dẫn sử dụng");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem13);
 
         jMenuItem14.setText("Giới thiệu");
@@ -434,6 +447,18 @@ public class MainScreen extends javax.swing.JFrame {
         setViewPort(new StudentFrame());
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        JDialog dia = new JDialog(this, "Hướng dẫn sử dụng", true);
+        JLabel lblHelp = new JLabel(readHelpFile());
+        JScrollPane scrHelp = new JScrollPane(lblHelp);
+        dia.setLayout(new CardLayout());
+        dia.getContentPane().add(scrHelp);
+        dia.setSize(WindowSize.SMALL_WINDOW.getDimension());
+        dia.setLocationRelativeTo(this);
+        dia.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem chkApp;
     private javax.swing.JCheckBoxMenuItem chkWeb;
@@ -489,5 +514,19 @@ public class MainScreen extends javax.swing.JFrame {
         pnlViewPort.revalidate();
         pnlViewPort.updateUI();
         pnlViewPort.setVisible(true);
+    }
+    
+    private String readHelpFile() {
+        String r="";
+        File f = new File("UserManual-Manager.html");
+        try {
+            if (!f.exists()) {
+                return r;
+            }
+            r = new String(Files.readAllBytes(f.toPath()));
+        } catch (IOException ex) {
+            // ignore
+        }
+        return r;
     }
 }
