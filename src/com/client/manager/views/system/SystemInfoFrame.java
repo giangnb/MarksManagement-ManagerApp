@@ -275,8 +275,8 @@ public class SystemInfoFrame extends javax.swing.JPanel {
     private void initSpinners() {
         mMinCoeff = (SpinnerNumberModel) spnMinCoeff.getModel();
         mMaxCoeff = (SpinnerNumberModel) spnMaxCoeff.getModel();
-        mMinCoeff.setValue(Application.PROP.get("min_coeff").toString());
-        mMinCoeff.setValue(Application.PROP.get("max_coeff").toString());
+        mMinCoeff.setValue(Integer.parseInt(Application.PROP.get("min_coeff").toString()));
+        mMaxCoeff.setValue(Integer.parseInt(Application.PROP.get("max_coeff").toString()));
         refreshSpinners();
     }
 

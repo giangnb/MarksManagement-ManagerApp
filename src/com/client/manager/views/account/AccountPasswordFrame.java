@@ -7,9 +7,6 @@ package com.client.manager.views.account;
 
 import com.client.manager.Application;
 import com.client.manager.constants.WebMethods;
-import com.client.manager.dto.AdminDTO;
-import com.client.service.Admin;
-import javax.jws.WebMethod;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +40,7 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         txtOldPassword = new javax.swing.JPasswordField();
         txtRetypePassword = new javax.swing.JPasswordField();
         lblOldPassword1 = new javax.swing.JLabel();
-        txtUserName = new javax.swing.JPasswordField();
+        txtUserName = new javax.swing.JTextField();
 
         lblOldPassword.setText("Mật khẩu hiện tại:");
 
@@ -62,6 +59,7 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
         lblOldPassword1.setText("Tài khoản:");
 
         txtUserName.setEditable(false);
+        txtUserName.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,11 +88,9 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOldPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,6 +147,6 @@ public class AccountPasswordFrame extends javax.swing.JPanel {
     private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JPasswordField txtOldPassword;
     private javax.swing.JPasswordField txtRetypePassword;
-    private javax.swing.JPasswordField txtUserName;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }
