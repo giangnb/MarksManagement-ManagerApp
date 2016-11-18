@@ -6,6 +6,7 @@
 package com.client.manager.dto;
 
 import com.client.service.Bulk;
+import com.client.service.Subject;
 import com.marksmana.info.Information;
 import com.marksmana.utils.Json;
 
@@ -40,12 +41,11 @@ public class BulkDTO {
         b.setId(id);
     }
 
-    public Information getInfo() throws Exception {
-        return Json.DeserializeObject(b.getInfo(), Information.class);
+    public String getInfo() {
+        return b.getInfo();
     }
 
-    public void setInfo(Information i) throws Exception {
-        String info = Json.SerializeObject(i);
+    public void setInfo(String info) {
         b.setInfo(info);
     }
 
@@ -55,6 +55,10 @@ public class BulkDTO {
 
     public void setName(String name) {
         b.setName(name);
+    }
+    
+    public java.util.List<Subject> getSubjectList() {
+        return b.getSubjectList();
     }
 
     @Override
