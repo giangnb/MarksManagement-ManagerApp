@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -51,6 +50,8 @@ public class MainScreen extends javax.swing.JFrame {
         setSize(WindowSize.WIDE_WINDOW.getDimension());
         setMinimumSize(WindowSize.TINY_WINDOW.getDimension());
         setLocationRelativeTo(null);
+        applyRealms();
+        setViewPort(new WelcomeFrame());
     }
 
     /**
@@ -65,30 +66,30 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         scrViewPort = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuClass = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuTeacher = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mnuStudent = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mnuAdmin = new javax.swing.JMenu();
         chkWeb = new javax.swing.JCheckBoxMenuItem();
         chkApp = new javax.swing.JCheckBoxMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        mniAdminAccount = new javax.swing.JMenuItem();
+        mniTeacherAccount = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -105,7 +106,7 @@ public class MainScreen extends javax.swing.JFrame {
         pnlViewPort.setLayout(new java.awt.CardLayout());
         scrViewPort.setViewportView(pnlViewPort);
 
-        jMenu1.setText("Lớp học");
+        mnuClass.setText("Lớp học");
 
         jMenuItem1.setText("Các khối");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +114,8 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
-        jMenu1.add(jSeparator1);
+        mnuClass.add(jMenuItem1);
+        mnuClass.add(jSeparator1);
 
         jMenuItem2.setText("Các lớp");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +123,7 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        mnuClass.add(jMenuItem2);
 
         jMenuItem3.setText("Thêm lớp");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -130,8 +131,8 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
-        jMenu1.add(jSeparator5);
+        mnuClass.add(jMenuItem3);
+        mnuClass.add(jSeparator5);
 
         jMenuItem15.setText("Môn học");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -139,11 +140,11 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem15ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem15);
+        mnuClass.add(jMenuItem15);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuClass);
 
-        jMenu2.setText("Giáo viên");
+        mnuTeacher.setText("Giáo viên");
 
         jMenuItem4.setText("Danh sách giáo viên");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +152,7 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        mnuTeacher.add(jMenuItem4);
 
         jMenuItem5.setText("Thêm giáo viên");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -159,8 +160,8 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
-        jMenu2.add(jSeparator2);
+        mnuTeacher.add(jMenuItem5);
+        mnuTeacher.add(jSeparator2);
 
         jMenuItem6.setText("Tài khoản giáo viên");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -168,11 +169,11 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        mnuTeacher.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuTeacher);
 
-        jMenu3.setText("Học sinh");
+        mnuStudent.setText("Học sinh");
 
         jMenuItem17.setText("Danh sách học sinh");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +181,7 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem17);
+        mnuStudent.add(jMenuItem17);
 
         jMenuItem7.setText("Thêm học sinh");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -188,11 +189,11 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        mnuStudent.add(jMenuItem7);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnuStudent);
 
-        jMenu5.setText("Hệ thống");
+        mnuAdmin.setText("Hệ thống");
 
         chkWeb.setText("Đóng ứng dụng Web");
         chkWeb.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +201,7 @@ public class MainScreen extends javax.swing.JFrame {
                 chkWebActionPerformed(evt);
             }
         });
-        jMenu5.add(chkWeb);
+        mnuAdmin.add(chkWeb);
 
         chkApp.setText("Đóng ứng dụng giáo viên");
         chkApp.addActionListener(new java.awt.event.ActionListener() {
@@ -208,8 +209,8 @@ public class MainScreen extends javax.swing.JFrame {
                 chkAppActionPerformed(evt);
             }
         });
-        jMenu5.add(chkApp);
-        jMenu5.add(jSeparator3);
+        mnuAdmin.add(chkApp);
+        mnuAdmin.add(jSeparator3);
 
         jMenuItem8.setText("Thông tin trường học");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +218,7 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem8);
+        mnuAdmin.add(jMenuItem8);
 
         jMenuItem9.setText("Thuộc tính hệ thống");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -225,27 +226,27 @@ public class MainScreen extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem9);
+        mnuAdmin.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnuAdmin);
 
         jMenu6.setText("Tài khoản");
 
-        jMenuItem10.setText("Tài khoản Quản lý");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        mniAdminAccount.setText("Tài khoản Quản lý");
+        mniAdminAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                mniAdminAccountActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem10);
+        jMenu6.add(mniAdminAccount);
 
-        jMenuItem11.setText("Tài khoản Giáo viên");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        mniTeacherAccount.setText("Tài khoản Giáo viên");
+        mniTeacherAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                mniTeacherAccountActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem11);
+        jMenu6.add(mniTeacherAccount);
         jMenu6.add(jSeparator4);
 
         jMenuItem12.setText("Tài khoản của tôi");
@@ -343,7 +344,7 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (chkWeb.isSelected()) {
             // User wants to check
-            ConfirmOption conf = WindowUtility.showConfirm(jMenu1, "Vô hiệu hóa website xem điểm", "Phụ huynh và học sinh sẽ không thể sử dụng website xem điểm.\nBạn có chắc chắn?");
+            ConfirmOption conf = WindowUtility.showConfirm(mnuClass, "Vô hiệu hóa website xem điểm", "Phụ huynh và học sinh sẽ không thể sử dụng website xem điểm.\nBạn có chắc chắn?");
             if (conf.equals(ConfirmOption.YES)) {
                 Properties p = new Properties();
                 p.setKey("web_status");
@@ -369,7 +370,7 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (chkApp.isSelected()) {
             // User wants to check
-            ConfirmOption conf = WindowUtility.showConfirm(jMenu1, "Vô hiệu hóa ứng dụng giáo viên", "Giáo viên sẽ khoogn thể đăng nhập ứng dụng nhập điểm.\nBạn có chắc chắn?");
+            ConfirmOption conf = WindowUtility.showConfirm(mnuClass, "Vô hiệu hóa ứng dụng giáo viên", "Giáo viên sẽ khoogn thể đăng nhập ứng dụng nhập điểm.\nBạn có chắc chắn?");
             if (conf.equals(ConfirmOption.YES)) {
                 Properties p = new Properties();
                 p.setKey("app_status");
@@ -391,10 +392,10 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chkAppActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void mniTeacherAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTeacherAccountActionPerformed
         // TODO add your handling code here:
         setViewPort(new TeacherAccountFrame());
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_mniTeacherAccountActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
@@ -406,10 +407,10 @@ public class MainScreen extends javax.swing.JFrame {
         setViewPort(new SystemInfoFrame());
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void mniAdminAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAdminAccountActionPerformed
         // TODO add your handling code here:
         setViewPort(new AdminAccountFrame());
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_mniAdminAccountActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
@@ -462,17 +463,11 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem chkApp;
     private javax.swing.JCheckBoxMenuItem chkWeb;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
@@ -493,6 +488,12 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JMenuItem mniAdminAccount;
+    private javax.swing.JMenuItem mniTeacherAccount;
+    private javax.swing.JMenu mnuAdmin;
+    private javax.swing.JMenu mnuClass;
+    private javax.swing.JMenu mnuStudent;
+    private javax.swing.JMenu mnuTeacher;
     static final javax.swing.JPanel pnlViewPort = new javax.swing.JPanel();
     private javax.swing.JScrollPane scrViewPort;
     // End of variables declaration//GEN-END:variables
@@ -528,5 +529,30 @@ public class MainScreen extends javax.swing.JFrame {
             // ignore
         }
         return r;
+    }
+
+    private void applyRealms() {
+        String[] realms = Application.ACCOUNT.getProhibited().split(",");
+        for (String r : realms) {
+            switch(r) {
+                case "class":
+                    mnuClass.setVisible(false);
+                    break;
+                case "student":
+                    mnuStudent.setVisible(false);
+                    break;
+                case "teacher":
+                    mnuTeacher.setVisible(false);
+                    break;
+                case "admin":
+                    mnuAdmin.setVisible(false);
+                    mniAdminAccount.setVisible(false);
+                    mniTeacherAccount.setVisible(false);
+                    break;
+                default:
+                    // do nothing
+                    break;
+            }
+        }
     }
 }
