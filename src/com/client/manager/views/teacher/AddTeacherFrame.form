@@ -33,10 +33,8 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="0" pref="90" max="32767" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnRemoveInfo" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnAddInfo" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnRemoveInfo" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnAddInfo" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -146,6 +144,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblInfoMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -153,11 +154,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddInfoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRemoveInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveInfoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -173,6 +180,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m gi&#xe1;o vi&#xea;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddTeacherActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

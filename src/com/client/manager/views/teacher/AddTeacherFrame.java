@@ -33,6 +33,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
     private AddTeacherFrame() {
         initComponents();
         initData();
+        btnRemoveInfo.setEnabled(false);
     }
     
     public AddTeacherFrame(TeacherDTO t) {
@@ -177,16 +178,36 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        tblInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInfoMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblInfo);
 
         btnAddInfo.setText("+");
+        btnAddInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddInfoActionPerformed(evt);
+            }
+        });
 
         btnRemoveInfo.setText("-");
+        btnRemoveInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveInfoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Tên đăng nhập:");
 
         btnAddTeacher.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAddTeacher.setText("Thêm giáo viên");
+        btnAddTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTeacherActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -207,9 +228,8 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnRemoveInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAddInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnRemoveInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -261,6 +281,31 @@ public class AddTeacherFrame extends javax.swing.JPanel {
             txtUsername.setText(username);
         }
     }//GEN-LAST:event_txtNameInputMethodTextChanged
+
+    private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
+        // TODO add your handling code here:
+        mInfo.addRow(new String[]{"", ""});
+        btnRemoveInfo.setEnabled(false);
+    }//GEN-LAST:event_btnAddInfoActionPerformed
+
+    private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
+        // TODO add your handling code here:
+        if (tblInfo.getSelectedRow() >= 0) {
+            btnRemoveInfo.setEnabled(true);
+        } else {
+            btnRemoveInfo.setEnabled(false);
+        }
+    }//GEN-LAST:event_tblInfoMouseClicked
+
+    private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
+        // TODO add your handling code here:
+        mInfo.removeRow(tblInfo.getSelectedRow());
+        btnRemoveInfo.setEnabled(false);
+    }//GEN-LAST:event_btnRemoveInfoActionPerformed
+
+    private void btnAddTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTeacherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddTeacherActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
