@@ -270,6 +270,7 @@ public class ClassFrame extends javax.swing.JPanel {
 
     private void btnRemoveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInfoActionPerformed
         // TODO add your handling code here:
+        tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
         mInfo.removeRow(tblInfo.getSelectedRow());
         btnRemoveInfo.setEnabled(false);
     }//GEN-LAST:event_btnRemoveInfoActionPerformed
@@ -285,6 +286,8 @@ public class ClassFrame extends javax.swing.JPanel {
             return;
         }
         clazz = (ClazzDTO) mClass.getElementAt(lstClass.getSelectedIndex());
+        txtName.setText(clazz.getName());
+        
         loadForm();
     }//GEN-LAST:event_lstClassValueChanged
 

@@ -8,6 +8,7 @@ package com.client.manager.views.classes;
 import com.client.manager.constants.WebMethods;
 import com.client.manager.constants.WindowSize;
 import com.client.manager.dto.BulkDTO;
+import com.client.manager.dto.ClazzDTO;
 import com.client.manager.dto.TeacherDTO;
 import com.client.service.Bulk;
 import com.client.service.Teacher;
@@ -193,9 +194,11 @@ public class AddClassFrame extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         AddClassFrame c = new AddClassFrame(bulk, teacher);
-        
-        
-         
+//        ClazzDTO clazz = new ClazzDTO();
+//        clazz.setName(txtName.getText());
+//        clazz.setBulkId(cboBulk.getSelectedIndex());
+//        clazz.setTeacherId(cboTeacher.getSelectedIndex());
+//        WebMethods.addClass(clazz.getClazz());
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
