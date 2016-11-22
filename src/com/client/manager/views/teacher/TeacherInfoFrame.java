@@ -5,8 +5,11 @@
  */
 package com.client.manager.views.teacher;
 
+import com.client.manager.constants.WebMethods;
 import com.client.manager.dto.TeacherDTO;
 import com.client.manager.views.LoadingScreen;
+import com.client.service.Teacher;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -71,15 +74,22 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Mã số", "Họ và tên", "Lớp chủ nhiệm"
+                "Mã số", "Họ và tên", "Tài khoản"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblTeacherInfo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,6 +141,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         AddTeacherFrame.showDialog(null);
         // Reload teachers list
+        initTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tblTeacherInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTeacherInfoMouseClicked
@@ -147,6 +158,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
         try {
             TeacherDTO t = teachers.get(tblTeacherInfo.getSelectedRow());
             AddTeacherFrame.showDialog(null, t);
+            initTable();
         } catch (Exception ex) {
             // ignore
         }
@@ -170,9 +182,11 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
             LoadingScreen load = new LoadingScreen("Đang tải...");
             load.setVisible(true);
             // load teachers
-            // ...here...
-            // then add teachers to table
-            // ...here...
+            List<Teacher> list = WebMethods.getTeachers();
+            for (Teacher t : list) {
+                teachers.add(new TeacherDTO(t));
+                mTeacher.addRow(new Object[]{t.getId(), t.getName(), t.getUsername()});
+            }
             //end
             load.dispose();
         }).start();

@@ -5,13 +5,19 @@
  */
 package com.client.manager.views.teacher;
 
+import com.client.manager.Application;
+import com.client.manager.constants.WebMethods;
 import com.client.manager.constants.WindowSize;
+import com.client.manager.constants.WindowUtility;
 import com.client.manager.dto.TeacherDTO;
 import com.client.manager.views.LoadingScreen;
 import com.client.service.Clazz;
 import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +31,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
     private List<Clazz> clazz;
     private DefaultTableModel mClass, mInfo;
     private Information info = new Information();
-    private TeacherDTO t;
+    private TeacherDTO t = null;
 
     /**
      * Creates new form AddTeacherFrame
@@ -34,48 +40,54 @@ public class AddTeacherFrame extends javax.swing.JPanel {
         initComponents();
         initData();
         btnRemoveInfo.setEnabled(false);
+        lblClass.setVisible(false);
+        tblClass.setVisible(false);
+        jScrollPane1.setVisible(false);
     }
-    
+
     public AddTeacherFrame(TeacherDTO t) {
         this.t = t;
         initComponents();
         btnAddTeacher.setText("Lưu thay đổi");
+        btnRemoveInfo.setEnabled(false);
         initData();
     }
-    
+
     public AddTeacherFrame(List<Clazz> clazz) {
         this.clazz = clazz;
         initComponents();
         initClasses();
     }
-    
+
     public static void showDialog(JFrame owner) {
+        JDialog dia = new JDialog(owner, "Thêm giáo viên mới", true);
+        dia.setSize(WindowSize.SMALL_WINDOW.getDimension());
+        dia.setResizable(false);
+        dia.setLocationRelativeTo(owner);
+        dia.add(new AddTeacherFrame());
+        dia.setVisible(true);
+    }
+
+    public static void showDialog(JFrame owner, List<Clazz> clazz) {
         JDialog dia = new JDialog(owner, "Thêm giáo viên mới", true);
         dia.setSize(WindowSize.NORMAL_WINDOW.getDimension());
         dia.setResizable(false);
         dia.setLocationRelativeTo(owner);
+        dia.setIconImage(Application.ICON);
         dia.add(new AddTeacherFrame());
         dia.setVisible(true);
     }
-    
-    public static void showDialog(JFrame owner, List<Clazz> clazz) {
-        JDialog dia = new JDialog(owner, "Thêm giáo viên mới", true);
-        dia.setSize(WindowSize.SMALL_WINDOW.getDimension());
-        dia.setResizable(false);
-        dia.setLocationRelativeTo(owner);
-        dia.add(new AddTeacherFrame());
-        dia.setVisible(true);
-    }
-    
+
     public static void showDialog(JFrame owner, TeacherDTO teacher) {
         JDialog dia = new JDialog(owner, "Sửa giáo viên", true);
-        dia.setSize(WindowSize.SMALL_WINDOW.getDimension());
-        dia.setResizable(false);
+        dia.setSize(WindowSize.NORMAL_WINDOW.getDimension());
+        dia.setResizable(true);
         dia.setLocationRelativeTo(owner);
-        dia.add(new AddTeacherFrame());
+        dia.setIconImage(Application.ICON);
+        dia.add(new AddTeacherFrame(teacher));
         dia.setVisible(true);
     }
-    
+
     private void initData() {
         new Thread(() -> {
             LoadingScreen load = new LoadingScreen("Đang tải...");
@@ -103,7 +115,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblClass = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClass = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -117,6 +129,11 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
         jLabel1.setText("Họ tên:");
 
+        txtName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNameFocusLost(evt);
+            }
+        });
         txtName.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
@@ -124,8 +141,13 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                 txtNameInputMethodTextChanged(evt);
             }
         });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+        });
 
-        jLabel2.setText("Lớp chủ nhiệm:");
+        lblClass.setText("Lớp chủ nhiệm:");
 
         tblClass.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblClass.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,14 +158,14 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Lớp", "Lựa chọn"
+                "Lựa chọn", "Lớp"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true
+                true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -221,7 +243,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtName))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -248,7 +270,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(lblClass)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,14 +294,6 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
     private void txtNameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtNameInputMethodTextChanged
         // TODO add your handling code here:
-        String[] str = txtName.getText().trim().split(" ");
-        if (str.length>=2) {
-            String username = str[str.length-1].toLowerCase();
-            for (int i = str.length-2; i >= 0; i--) {
-                username += str[i].toLowerCase().toCharArray()[0];
-            }
-            txtUsername.setText(username);
-        }
     }//GEN-LAST:event_txtNameInputMethodTextChanged
 
     private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
@@ -305,7 +319,89 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
     private void btnAddTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTeacherActionPerformed
         // TODO add your handling code here:
+        if (tblInfo.getSelectedRow()>=0 && tblInfo.getSelectedColumn()>=0) {
+            tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
+        }
+        boolean isAddNew = (t == null);
+        // Modify data
+        if (isAddNew) {
+            t = new TeacherDTO();
+            t.setPass("");
+            t.setUsername(txtUsername.getText());
+        } else {
+            t.setName(txtName.getText());
+            t.setUsername(txtUsername.getText());
+        }
+        t.setName(txtName.getText());
+        Information info = new Information();
+        for (int i = 0; i < tblInfo.getRowCount(); i++) {
+            info.put(mInfo.getValueAt(i, 0).toString(), mInfo.getValueAt(i, 1).toString());
+        }
+        try {
+            t.setInfo(info);
+        } catch (Exception ex) {
+            Logger.getLogger(AddTeacherFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Get selected clazz list
+        ArrayList<Clazz> selectedClazz = new ArrayList<>();
+        for (int i = 0; i < tblClass.getRowCount(); i++) {
+            if ((boolean)mClass.getValueAt(i, 0)) {
+                clazz.get(i).setTeacherId(t.getTeacher());
+                selectedClazz.add(clazz.get(i));
+            } else {
+                // select unchecked classes ...
+                if (clazz.get(i).getTeacherId().getId().equals(t.getId())) {
+                    // ... and change the head teacher to default teacher
+                    clazz.get(i).setTeacherId(WebMethods.getTeacherById(1));
+                    selectedClazz.add(clazz.get(i));
+                }
+            }
+        }
+        // send to WS
+        new Thread(()->{
+            LoadingScreen load = new LoadingScreen("Đang tải...");
+            load.setVisible(true);
+            // update or add teacher
+            int tStatus, cStatus = 0;
+            if (isAddNew) {
+                tStatus = WebMethods.addTeacher(t.getTeacher());
+            } else {
+                tStatus = WebMethods.updateTeacher(t.getTeacher());
+            }
+            // set head teacher at classes - UPDATE ONLY
+            for (Clazz c : selectedClazz) {
+                cStatus += WebMethods.updateClass(c);
+            }
+            load.dispose();
+            if (isAddNew) {
+                WindowUtility.showMessage(this, "Cập nhật giáo viên", 
+                        "Cập nhật giáo viên "+((tStatus==0)?"không":"")+" thành công.\n"
+                                + "Cập nhật giáo viên chủ nhiệm cho "+cStatus+" lớp học.", 
+                        WindowUtility.DEFAULT);
+                initData();
+            } else {
+                WindowUtility.showMessage(this, "Thêm giáo viên", 
+                        "Thêm giáo viên mới "+((tStatus==0)?"không":"")+" thành công.", 
+                        WindowUtility.DEFAULT);
+            }
+        }).start();
     }//GEN-LAST:event_btnAddTeacherActionPerformed
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
+        // TODO add your handling code here:
+        String[] str = txtName.getText().trim().split(" ");
+        if (str.length >= 2) {
+            String username = str[str.length - 1].toLowerCase();
+            for (int i = str.length - 2; i >= 0; i--) {
+                username += str[i].toLowerCase().toCharArray()[0];
+            }
+            txtUsername.setText(username);
+        }
+    }//GEN-LAST:event_txtNameFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -313,11 +409,11 @@ public class AddTeacherFrame extends javax.swing.JPanel {
     private javax.swing.JButton btnAddTeacher;
     private javax.swing.JButton btnRemoveInfo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblClass;
     private javax.swing.JTable tblClass;
     private javax.swing.JTable tblInfo;
     private javax.swing.JTextField txtName;
@@ -325,18 +421,35 @@ public class AddTeacherFrame extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initClasses() {
+        mClass = (DefaultTableModel) tblClass.getModel();
+        mClass.setRowCount(0);
+        clazz = WebMethods.getClasses();
+        if (t == null) {
+            for (Clazz c : clazz) {
+                mClass.addRow(new Object[]{Boolean.FALSE, c.getName()});
+            }
+        }
     }
-    
+
     private void getTeacherInfo() {
-        if (t!=null) {
+        if (t != null) {
             txtName.setName(t.getName());
             txtUsername.setText(t.getUsername());
             try {
                 for (SingleInformation si : t.getInfo()) {
-                    mInfo.addRow(new String[] {si.getKey(), si.getValue()});
+                    mInfo.addRow(new String[]{si.getKey(), si.getValue()});
                 }
             } catch (Exception ex) {
                 // ignore
+            }
+
+            mClass.setRowCount(0);
+            for (Clazz c : clazz) {
+                if (c.getTeacherId().getId().equals(t.getId())) {
+                    mClass.addRow(new Object[]{Boolean.TRUE, c.getName()});
+                } else {
+                    mClass.addRow(new Object[]{Boolean.FALSE, c.getName()});
+                }
             }
         }
     }

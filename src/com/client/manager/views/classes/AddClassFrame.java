@@ -7,13 +7,17 @@ package com.client.manager.views.classes;
 
 import com.client.manager.constants.WebMethods;
 import com.client.manager.constants.WindowSize;
+import com.client.manager.constants.WindowUtility;
 import com.client.manager.dto.BulkDTO;
 import com.client.manager.dto.ClazzDTO;
 import com.client.manager.dto.TeacherDTO;
 import com.client.service.Bulk;
 import com.client.service.Teacher;
+import com.marksmana.info.Information;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -80,9 +84,7 @@ public class AddClassFrame extends javax.swing.JPanel {
             for (Teacher t : teachers) {
                 mTeacher.addElement(new TeacherDTO(t));
                 teachersList.add(new TeacherDTO(t));
-            }    
-            
-            
+            }
         }).start();
     }
 
@@ -194,11 +196,26 @@ public class AddClassFrame extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         AddClassFrame c = new AddClassFrame(bulk, teacher);
-//        ClazzDTO clazz = new ClazzDTO();
-//        clazz.setName(txtName.getText());
-//        clazz.setBulkId(cboBulk.getSelectedIndex());
-//        clazz.setTeacherId(cboTeacher.getSelectedIndex());
-//        WebMethods.addClass(clazz.getClazz());
+        ClazzDTO clazz = new ClazzDTO();
+        if (txtName.getText().length()<3) {
+            WindowUtility.showMessage(this, "Thêm lớp học", "Tên lớp học phải có ít nhất 3 kí tự!", WindowUtility.WARNING);
+            return;
+        }
+        clazz.setName(txtName.getText());
+        clazz.setBulkId(bulkList.get(cboBulk.getSelectedIndex()).getId());
+        clazz.setTeacherId(teachersList.get(cboTeacher.getSelectedIndex()).getId());
+        try {
+            clazz.setInfo(new Information());
+        } catch (Exception ex) {
+            // ignore
+        }
+        int result = WebMethods.addClass(clazz.getClazz());
+        if (result>0) {
+            WindowUtility.showMessage(this, "Thêm lớp học", "Thêm lớp thành công.", WindowUtility.DEFAULT);
+            resetForm();
+        } else {
+            WindowUtility.showMessage(this, "Thêm lớp học", "Thêm lớp không thành công.\nVui lòng thử lại!", WindowUtility.WARNING);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -216,5 +233,9 @@ public class AddClassFrame extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initComboBox() {
+    }
+
+    private void resetForm() {
+        txtName.setText("");
     }
 }

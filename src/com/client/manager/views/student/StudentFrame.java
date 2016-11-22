@@ -6,7 +6,9 @@
 package com.client.manager.views.student;
 
 import com.client.manager.Application;
+import com.client.manager.constants.ConfirmOption;
 import com.client.manager.constants.WebMethods;
+import com.client.manager.constants.WindowUtility;
 import com.client.manager.dto.BulkDTO;
 import com.client.manager.dto.ClazzDTO;
 import com.client.manager.dto.StudentDTO;
@@ -353,7 +355,7 @@ public class StudentFrame extends javax.swing.JPanel {
 
     private void btnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInfoActionPerformed
         // TODO add your handling code here:
-        mInfo.addRow(new String[]{"",""});
+        mInfo.addRow(new String[]{"", ""});
         btnRemoveInfo.setEnabled(false);
     }//GEN-LAST:event_btnAddInfoActionPerformed
 
@@ -381,7 +383,6 @@ public class StudentFrame extends javax.swing.JPanel {
 
     private void btnLoadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudentsActionPerformed
         // TODO add your handling code here:
-        mStudent.setRowCount(0);
         refreshList();
     }//GEN-LAST:event_btnLoadStudentsActionPerformed
 
@@ -390,20 +391,28 @@ public class StudentFrame extends javax.swing.JPanel {
         mInfo.setRowCount(0);
         int id = tblStudent.getSelectedRow();
         StudentDTO student = students.get(id);
-        txtID.setText(student.getId()+"");
+        txtID.setText(student.getId() + "");
         txtName.setText(student.getName());
         txtBirthdate.setText("");
         try {
             Information info = student.getInfo();
-            String dob = Application.DATE_FORMAT.format(new java.util.Date(Long.parseLong(info.getValue("_dob"))));
-            txtBirthdate.setText(dob);
-        } catch (Exception ex) {
-            // ignore
-        }
-        try {
-            for (SingleInformation si : student.getInfo()) {
+            if (info.getValue("_dob") == null) {
+                info.put("_dob", "0");
+            }
+            if (info.getValue("_addr") == null) {
+                info.put("_addr", "(Địa chỉ)");
+            }
+            if (info.getValue("_parent") == null) {
+                info.put("_parent", "(Phụ huynh)");
+            }
+            if (info.getValue("_tel") == null) {
+                info.put("_tel", "(Điện thoại)");
+            }
+            for (SingleInformation si : info) {
                 mInfo.addRow(new String[]{si.getKey(), si.getValue()});
             }
+            String dob = Application.DATE_FORMAT.format(new java.util.Date(Long.parseLong(info.getValue("_dob"))));
+            txtBirthdate.setText(dob);
         } catch (Exception ex) {
             // ignore
         }
@@ -411,16 +420,19 @@ public class StudentFrame extends javax.swing.JPanel {
 
     private void tblInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoMouseClicked
         // TODO add your handling code here:
-        if(tblInfo.getSelectedRow()>=0){
+        if (tblInfo.getSelectedRow() >= 0) {
             btnRemoveInfo.setEnabled(true);
         }
     }//GEN-LAST:event_tblInfoMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        
+        ConfirmOption conf = WindowUtility.showConfirm(this, "Xóa học sinh", "Xóa học sinh sẽ đồng thời xóa tất cả thông tin về\nhọc sinh, điểm, bảng điểm.\nBạn có chắc chắn muốn xóa?");
+        if (conf == ConfirmOption.NO) {
+            return;
+        }
         StudentDTO student = students.get(tblStudent.getSelectedRow());
-        if(tblStudent.getSelectedRow()>=0){
+        if (tblStudent.getSelectedRow() >= 0) {
             WebMethods.removeStudent(student.getId());
         }
         mInfo.setRowCount(0);
@@ -432,18 +444,18 @@ public class StudentFrame extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if (tblInfo.getSelectedRow()>=0) {
+        if (tblInfo.getSelectedRow() >= 0) {
             tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
         }
         StudentDTO student = students.get(tblStudent.getSelectedRow());
         ClazzDTO dto = (ClazzDTO) mStudentClazz.getElementAt(cboStudentClazz.getSelectedIndex());
         student.setClassId(dto.getClazz());
-        if (txtName.getText().length() > 0){
+        if (txtName.getText().length() > 0) {
             student.setName(txtName.getText());
         } else {
             txtName.requestFocus();
         }
-        
+
         Information i = new Information();
         for (int j = 0; j < tblInfo.getRowCount(); j++) {
             if (mInfo.getValueAt(j, 0).toString().length() > 0) {
@@ -454,7 +466,7 @@ public class StudentFrame extends javax.swing.JPanel {
             Long time = Application.DATE_FORMAT.parse(txtBirthdate.getText()).getTime();
             i.put("_dob", time.toString());
         } catch (ParseException ex) {
-            Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
+            // ignore
         }
         try {
             student.setInfo(i);
@@ -518,6 +530,9 @@ public class StudentFrame extends javax.swing.JPanel {
             }
             load.dispose();
         }).start();
+        if (bulks.size() > 0) {
+            cboBulk.setSelectedIndex(0);
+        }
     }
 
     private void initClazzList(BulkDTO b) {
@@ -531,6 +546,7 @@ public class StudentFrame extends javax.swing.JPanel {
 
     private void refreshList() {
         students = new ArrayList<>();
+        mStudent.setRowCount(0);
         new Thread(() -> {
             btnLoadStudents.setEnabled(false);
             LoadingScreen load = new LoadingScreen("Đang tải...");

@@ -512,7 +512,6 @@ public class AddStudentFrame extends javax.swing.JPanel {
         btnAddToList.setText("Thêm vào danh sách");
         btnCancelChange.setVisible(false);
         btnDelete.setVisible(false);
-
     }
 
     private void refreshStudentTable() {
