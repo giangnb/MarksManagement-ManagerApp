@@ -5,6 +5,7 @@
  */
 package com.client.manager.views.classes;
 
+import com.client.manager.constants.ConfirmOption;
 import com.client.manager.constants.WebMethods;
 import com.client.manager.constants.WindowUtility;
 import com.client.manager.dto.BulkDTO;
@@ -14,6 +15,7 @@ import com.client.manager.views.LoadingScreen;
 import com.client.service.Bulk;
 import com.client.service.Clazz;
 import com.client.service.Teacher;
+import com.marksmana.info.Information;
 import com.marksmana.info.SingleInformation;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +93,11 @@ public class ClassFrame extends javax.swing.JPanel {
         lblName.setText("Tên:");
 
         cboBulk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Khối --", " " }));
+        cboBulk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboBulkActionPerformed(evt);
+            }
+        });
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,6 +300,10 @@ public class ClassFrame extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        ConfirmOption conf = WindowUtility.showConfirm(this, "Xóa lớp học", "Khi xóa lớp học, mọi học sinh sẽ được\nchuyển sang lớp mặc định.\nBạn có chắc chắn muốn xóa?");
+        if (conf == ConfirmOption.NO) {
+            return;
+        }
         if (clazz.getId()!=1) {
             // Delete class
             int result = WebMethods.removeClass(clazz.getId());
@@ -309,11 +320,39 @@ public class ClassFrame extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        if (txtName.getText().length()<3) {
+            WindowUtility.showMessage(this, "Lưu thay đổi", "Tên lớp học quá ngắn!", WindowUtility.WARNING);
+            return;
+        }
+        if (tblInfo.getSelectedRow() >= 0) {
+            tblInfo.getCellEditor(tblInfo.getSelectedRow(), tblInfo.getSelectedColumn()).stopCellEditing();
+        }
+        clazz.setName(txtName.getText());
+        clazz.setBulkId(bulkList.get(cboBulk.getSelectedIndex()).getBulk());
+        clazz.setTeacherId(teachersList.get(cboTeacher.getSelectedIndex()).getTeacher());
+        Information info = new Information();
+        for (int i = 0; i < tblInfo.getRowCount(); i++) {
+            info.put(mInfo.getValueAt(i, 0).toString(), mInfo.getValueAt(i, 1).toString());
+        }
+        try {
+            clazz.setInfo(info);
+        } catch (Exception ex) {
+            // ignore
+        }
+        new Thread(()->{
+            btnSave.setEnabled(false);
+            WebMethods.updateClass(clazz.getClazz());
+            btnSave.setEnabled(true);
+        }).start();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void cboBulkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBulkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboBulkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

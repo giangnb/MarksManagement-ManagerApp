@@ -373,7 +373,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
                 cStatus += WebMethods.updateClass(c);
             }
             load.dispose();
-            if (isAddNew) {
+            if (!isAddNew) {
                 WindowUtility.showMessage(this, "Cập nhật giáo viên", 
                         "Cập nhật giáo viên "+((tStatus==0)?"không":"")+" thành công.\n"
                                 + "Cập nhật giáo viên chủ nhiệm cho "+cStatus+" lớp học.", 
@@ -393,13 +393,16 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
     private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
         // TODO add your handling code here:
+        if (t!=null) return;
         String[] str = txtName.getText().trim().split(" ");
         if (str.length >= 2) {
             String username = str[str.length - 1].toLowerCase();
+            String suffix = "";
             for (int i = str.length - 2; i >= 0; i--) {
-                username += str[i].toLowerCase().toCharArray()[0];
+                suffix = str[i].toLowerCase().toCharArray()[0] + suffix;
             }
-            txtUsername.setText(username);
+            username += suffix;
+            txtUsername.setText(username.replaceAll("[^a-z0-9]", ""));
         }
     }//GEN-LAST:event_txtNameFocusLost
 
@@ -433,7 +436,7 @@ public class AddTeacherFrame extends javax.swing.JPanel {
 
     private void getTeacherInfo() {
         if (t != null) {
-            txtName.setName(t.getName());
+            txtName.setText(t.getName());
             txtUsername.setText(t.getUsername());
             try {
                 for (SingleInformation si : t.getInfo()) {

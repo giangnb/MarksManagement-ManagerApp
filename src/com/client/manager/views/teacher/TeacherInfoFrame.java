@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author pxduc
  */
 public class TeacherInfoFrame extends javax.swing.JPanel {
+
     private java.util.List<TeacherDTO> teachers = new java.util.ArrayList<>();
     private DefaultTableModel mTeacher;
 
@@ -26,6 +27,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
     public TeacherInfoFrame() {
         initComponents();
         btnChangeInfo.setEnabled(false);
+        btnEndSearch.setVisible(false);
         initTable();
     }
 
@@ -45,11 +47,17 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
         btnChangeInfo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTeacherInfo = new javax.swing.JTable();
+        btnEndSearch = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel1.setText("Tìm kiếm");
 
         btnSearch.setText("Tìm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setText("Thêm mới");
@@ -99,6 +107,13 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblTeacherInfo);
 
+        btnEndSearch.setText("Dừng tìm kiếm");
+        btnEndSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +121,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -114,7 +129,9 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEndSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnChangeInfo)))
@@ -130,7 +147,8 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
                     .addComponent(btnAdd)
-                    .addComponent(btnChangeInfo))
+                    .addComponent(btnChangeInfo)
+                    .addComponent(btnEndSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                 .addContainerGap())
@@ -146,7 +164,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
 
     private void tblTeacherInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTeacherInfoMouseClicked
         // TODO add your handling code here:
-        if (tblTeacherInfo.getSelectedRow()>=0) {
+        if (tblTeacherInfo.getSelectedRow() >= 0) {
             btnChangeInfo.setEnabled(true);
         } else {
             btnChangeInfo.setEnabled(false);
@@ -164,10 +182,32 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnChangeInfoActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        mTeacher.setRowCount(0);
+        for (TeacherDTO t : teachers) {
+            if (t.getName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                mTeacher.addRow(new Object[]{t.getId(), t.getName(), t.getUsername()});
+            }
+        }
+        btnEndSearch.setVisible(true);
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnEndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndSearchActionPerformed
+        // TODO add your handling code here:
+        mTeacher.setRowCount(0);
+        for (TeacherDTO t : teachers) {
+            mTeacher.addRow(new Object[]{t.getId(), t.getName(), t.getUsername()});
+        }
+        btnEndSearch.setVisible(false);
+        txtSearch.setText("");
+    }//GEN-LAST:event_btnEndSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnChangeInfo;
+    private javax.swing.JButton btnEndSearch;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -178,7 +218,7 @@ public class TeacherInfoFrame extends javax.swing.JPanel {
     private void initTable() {
         mTeacher = (DefaultTableModel) tblTeacherInfo.getModel();
         mTeacher.setRowCount(0);
-        new Thread(()->{
+        new Thread(() -> {
             LoadingScreen load = new LoadingScreen("Đang tải...");
             load.setVisible(true);
             // load teachers

@@ -160,11 +160,12 @@ public class TeacherAccountFrame extends javax.swing.JPanel {
             if (pass.length() > 5) {
                 teacher.setPass(pass);
                 WebMethods.updateTeacher(teacher);
+            } else {
+                WindowUtility.showMessage(this, "Đặt lại mật khẩu", "Mật khẩu phải chứa ít nhất 5 kí tự", WindowUtility.WARNING);
+                return;
             }
-        } else {
-            WindowUtility.showMessage(this, "Đặt lại mật khẩu", "Mật khẩu phải chứa ít nhất 5 kí tự", WindowUtility.WARNING);
+            JOptionPane.showMessageDialog(this, "Đặt lại mật khẩu thành công!");
         }
-        JOptionPane.showMessageDialog(this, "Đặt lại mật khẩu thành công!");
     }//GEN-LAST:event_btnResetPassActionPerformed
 
     private void btnBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlockActionPerformed
