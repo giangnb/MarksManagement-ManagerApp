@@ -233,7 +233,7 @@ public class AdminAccountFrame extends javax.swing.JPanel {
         if (current == null) {
             return;
         }
-        if (txtUser.getText().length() > 5) {
+        if (txtUser.getText().length() >= 5) {
             // Dung
             if (txtPass.getText().length() > 0) {
                 ConfirmOption conf = WindowUtility.showConfirm(this, "Đổi mật khẩu", "Bạn có thực sự muốn đổi mật khẩu cho tài khoản này?");
@@ -318,9 +318,9 @@ public class AdminAccountFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         ConfirmOption conf = WindowUtility.showConfirm(this, "Xóa tài khoản", "Bạn thực sự muốn xóa tài khoản quản lý?");
         if (conf.equals(ConfirmOption.YES)) {
-            String captcha = PasswordUtility.genreatePassword((int) Math.round(Math.random() * 12), PasswordUtility.STRONG);
+            String captcha = PasswordUtility.genreatePassword((int) Math.round(Math.random() * 10), PasswordUtility.MEDIUM);
             captcha += " ";
-            captcha += PasswordUtility.genreatePassword((int) Math.round(Math.random() * 12), PasswordUtility.STRONG);
+            captcha += PasswordUtility.genreatePassword((int) Math.round(Math.random() * 10), PasswordUtility.MEDIUM);
             String input = WindowUtility.showInputPrompt(this, "Xác nhận", "Hãy xác nhận việc xóa tài khoản bằng việc nhập lại chuỗi kí tự sau:\n" + captcha);
             if (input != null) {
                 if (input.equals(captcha)) {

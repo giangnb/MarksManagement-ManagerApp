@@ -157,7 +157,7 @@ public class TeacherAccountFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         String pass = WindowUtility.showInputPrompt(this, "Đặt lại mật khẩu", "Nhập mật khẩu bạn muốn đặt lại:");
         if (pass != null) {
-            if (pass.length() > 5) {
+            if (pass.length() >= 5) {
                 teacher.setPass(pass);
                 WebMethods.updateTeacher(teacher);
             } else {
